@@ -10,7 +10,7 @@ Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map 
 _30-second video link (YouTube/Drive, public)_
 
 ## Link to final project
-_Live site (GitHub Pages) and repository link_
+https://suathamzali.github.io/radar-absheron/ (live app) · https://github.com/suathamzali/radar-absheron (code)
 
 ## Detailed project description
 **What it does.** A story of 9 steps plus a free Explore mode:

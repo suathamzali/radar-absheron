@@ -40,10 +40,14 @@ function layerName(desc) {
 }
 
 // ---------- layers ----------
+let applySeq = 0;
 async function applyLayers(left, right, swipe) {
+  const seq = ++applySeq;
   S.left = left; S.right = right || null;
   await rmap.setLeft(left);
+  if (seq !== applySeq) return; // a newer request superseded this one
   await rmap.setRight(S.right);
+  if (seq !== applySeq) return;
   $('#swipe').hidden = !S.right;
   if (S.right) {
     if (swipe !== undefined) setSwipe(swipe);
@@ -75,13 +79,13 @@ function datedTarget() {
   return null;
 }
 
-function setDate(i, { fromUser = false } = {}) {
+function setDate(i, { fromUser = false, layers = true } = {}) {
   S.date = Math.max(0, Math.min(data.D - 1, i));
   $('#dateRange').value = S.date;
   $('#dateRange').setAttribute('aria-valuetext', `${fmtDate(S.date)}, ${levelOf(S.date)}`);
   $('#dateLabel').textContent = fmtDate(S.date);
   $('#dateSub').textContent = ` ${t('pass_sub', passTime(S.date))} · ${levelOf(S.date)}`;
-  const tgt = datedTarget();
+  const tgt = layers ? datedTarget() : null;
   if (tgt === 'left') applyLayers({ ...S.left, date: S.date }, S.right);
   else if (tgt === 'right') applyLayers(S.left, { ...S.right, date: S.date });
   else renderLegend();
@@ -257,7 +261,7 @@ function renderStep(apply = true) {
   stopPlay();
   rmap.fly(st.view.center, st.view.zoom);
   S.date = st.date;
-  setDate(st.date);
+  setDate(st.date, { layers: false });
   applyLayers(st.left, st.right, st.swipe ?? 50);
   if (st.inspect) {
     const p = data.places.find((x) => x.id === st.inspect);

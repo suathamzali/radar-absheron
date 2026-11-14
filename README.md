@@ -4,7 +4,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the SARs"*, by team **NasAda** (Baku, Azerbaijan).
 
-> **Live demo:** _add GitHub Pages link_ · **Code:** _add repository link_ · **Demo video (30 s):** _add link_
+> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Demo video (30 s):** _add link_
 
 ## The problem
 Radar images are powerful (day or night, through cloud) but hard to read: grey speckle, strange colours, units like σ⁰ in decibels. People who could use them, such as farmers, water managers, teachers and students in Azerbaijan, rarely do.
