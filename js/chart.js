@@ -35,7 +35,8 @@ export function renderChart(host, tableHost, opts) {
   // x labels (every other)
   dates.forEach((d, i) => {
     if (i % 2 && i !== dates.length - 1) return;
-    svg.append(el('text', { x: x(i), y: m.t + ph + 14, 'text-anchor': 'middle', class: 'axis' }, fmtDate(d, lang)));
+    const anchor = i === 0 ? 'start' : i === dates.length - 1 ? 'end' : 'middle';
+    svg.append(el('text', { x: x(i) + (i === 0 ? -4 : i === dates.length - 1 ? 4 : 0), y: m.t + ph + 14, 'text-anchor': anchor, class: 'axis' }, fmtDate(d, lang)));
   });
   for (const g of gaps) {
     const x0 = x(g) + 6, x1 = x(g + 1) - 6;
