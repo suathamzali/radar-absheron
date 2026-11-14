@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar Absheron — NISAR radar over Baku and the Kura-Araz lowland</title>
+<meta name="description" content="Five months of NASA-ISRO NISAR L-band radar over Baku, the Absheron peninsula and the Kura-Araz lowland: time-lapse, swipe, change map and point history. NASA Space Apps 2026, team NasAda.">
+<meta name="theme-color" content="#f5f6f2">
+<link rel="icon" href="assets/img/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="css/style.css?v=20261115a">
+</head>
+<body>
+<a class="skip" href="#panel" data-i18n="skip">Skip to the story panel</a>
+
+<header class="top">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16 L27 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M6 21c3-2 6-2 9 0s6 2 9 0" fill="none" stroke="var(--hv)" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="16" r="2.2" fill="var(--hh)"/></svg>
+    <div>
+      <h1 class="brand-name">Radar Absheron</h1>
+      <p class="brand-sub" data-i18n="tagline">NISAR L-band radar · Baku · Kura-Araz · Jun–Oct 2026</p>
+    </div>
+  </div>
+  <nav class="modes" aria-label="Views">
+    <button type="button" data-mode="story" aria-pressed="true" data-i18n="mode_story">Story</button>
+    <button type="button" data-mode="explore" aria-pressed="false" data-i18n="mode_explore">Explore</button>
+    <button type="button" data-mode="data" aria-pressed="false" data-i18n="mode_data">Data &amp; method</button>
+  </nav>
+  <div class="tools">
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-lang="az" aria-pressed="false" lang="az">AZ</button>
+    </div>
+    <button type="button" class="icon-btn" id="helpBtn" aria-haspopup="dialog" data-i18n-aria="help">?</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside id="panel" class="panel" tabindex="-1" aria-label="Story and controls">
+    <section id="storyView" class="view" aria-labelledby="stepTitle">
+      <p class="eyebrow" id="stepCount"></p>
+      <h2 id="stepTitle"></h2>
+      <div id="stepBody" class="prose"></div>
+      <div id="stepActions" class="actions"></div>
+      <div class="stepper">
+        <button type="button" class="btn" id="prevStep" data-i18n="back">Back</button>
+        <ol class="dots" id="stepDots" aria-label="Story steps"></ol>
+        <button type="button" class="btn btn-primary" id="nextStep" data-i18n="next">Next</button>
+      </div>
+    </section>
+
+    <section id="exploreView" class="view" hidden aria-labelledby="exploreTitle">
+      <h2 id="exploreTitle" data-i18n="explore_title">Explore the radar record</h2>
+      <p class="hint" data-i18n="explore_hint">Click anywhere on the map to read that place's radar history. Keyboard: focus the map, move it with the arrow keys, then press I to inspect the centre.</p>
+
+      <fieldset class="field">
+        <legend data-i18n="layer">Layer</legend>
+        <div class="seg" id="layerSeg">
+          <label><input type="radio" name="layer" value="composite" checked> <span data-i18n="layer_composite">Colour (HH + HV)</span></label>
+          <label><input type="radio" name="layer" value="hh"> <span data-i18n="layer_hh">HH only</span></label>
+          <label><input type="radio" name="layer" value="hv"> <span data-i18n="layer_hv">HV only</span></label>
+          <label><input type="radio" name="layer" value="sm"> <span data-i18n="layer_sm">Soil moisture</span></label>
+          <label><input type="radio" name="layer" value="change"> <span data-i18n="layer_change">Change map</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field" id="changeFields" hidden>
+        <div class="row2">
+          <label><span data-i18n="from">From</span> <select id="changeFrom"></select></label>
+          <label><span data-i18n="to">To</span> <select id="changeTo"></select></label>
+        </div>
+        <label class="row"><span data-i18n="change_pol">Polarization</span>
+          <select id="changePol"><option value="0">HH</option><option value="1">HV</option></select>
+        </label>
+      </div>
+
+      <div class="field">
+        <label class="switch"><input type="checkbox" id="compareToggle"> <span data-i18n="compare">Compare with a swipe</span></label>
+        <label class="row" id="compareRow" hidden><span data-i18n="right_side">Right side</span>
+          <select id="compareRight"></select>
+        </label>
+      </div>
+
+      <label class="field row"><span data-i18n="opacity">Radar opacity</span>
+        <input type="range" id="opacity" min="0" max="100" value="100" step="5">
+      </label>
+
+      <h3 data-i18n="places">Places to visit</h3>
+      <ul class="places" id="placeList"></ul>
+    </section>
+
+    <section id="dataView" class="view prose" hidden aria-labelledby="dataTitle"></section>
+    <section id="inspector" aria-labelledby="inspTitle" class="inspector" hidden>
+      <div class="inspector-head">
+        <h3 id="inspTitle"></h3>
+        <button type="button" class="icon-btn" id="inspClose" data-i18n-aria="close">×</button>
+      </div>
+      <p id="inspDesc" class="insp-desc"></p>
+      <div id="chart" class="chart"></div>
+      <div id="chart2" class="chart"></div>
+      <p id="inspNote" class="hint"></p>
+      <details class="table-alt"><summary data-i18n="as_table">Show values as a table</summary><div id="chartTable"></div><div id="chartTable2"></div></details>
+    </section>
+  </aside>
+
+  <section class="map-wrap" aria-label="Map">
+    <div id="map"></div>
+    <div id="swipe" class="swipe" hidden>
+      <div class="swipe-line" aria-hidden="true"></div>
+      <button type="button" class="swipe-knob" id="swipeKnob" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-i18n-aria="swipe"><span aria-hidden="true">⇔</span></button>
+      <span class="swipe-tag swipe-left" id="swipeLeftTag"></span>
+      <span class="swipe-tag swipe-right" id="swipeRightTag"></span>
+    </div>
+    <div class="crosshair" aria-hidden="true"></div>
+    <div id="legend" class="legend card"></div>
+
+    <div class="timebar card">
+      <button type="button" class="btn btn-icon" id="playBtn" aria-pressed="false" data-i18n-aria="play"><span aria-hidden="true">▶</span></button>
+      <div class="time-main">
+        <label for="dateRange" class="sr-only" data-i18n="date">Date</label>
+        <input type="range" id="dateRange" min="0" max="10" value="0" step="1">
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+      </div>
+      <p class="date-label"><strong id="dateLabel"></strong><span id="dateSub"></span></p>
+    </div>
+
+  </section>
+</main>
+
+<p id="live" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+
+<dialog id="startDlg" class="dlg" aria-labelledby="startTitle">
+  <div class="lang lang-start" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true" lang="en">English</button>
+    <button type="button" data-lang="az" aria-pressed="false" lang="az">Azərbaycanca</button>
+  </div>
+  <p class="eyebrow" data-i18n="start_eyebrow">NASA Space Apps 2026 · Dancing with the SARs</p>
+  <h2 id="startTitle" data-i18n="start_q">Can a satellite watch Azerbaijan's land change, through clouds and in the dark?</h2>
+  <ol class="start-steps">
+    <li data-i18n="start_1">Learn to read radar colours in one minute.</li>
+    <li data-i18n="start_2">Watch a season of NISAR passes over the Kura fields, Baku and the Caspian, and the day the land felt the rain.</li>
+    <li data-i18n="start_3">Click any place to read its own radar history.</li>
+  </ol>
+  <div class="actions">
+    <button type="button" class="btn btn-primary btn-lg" id="startStory" data-i18n="start_go">Start the story</button>
+    <button type="button" class="btn btn-lg" id="startExplore" data-i18n="start_explore">Explore the map freely</button>
+  </div>
+  <p class="fine" data-i18n="start_fine">Real, calibrated NASA-ISRO NISAR data: 15 radar passes from November 2025 to October 2026. No sound. Works with a keyboard and screen readers.</p>
+</dialog>
+
+<dialog id="helpDlg" class="dlg" aria-labelledby="helpTitle">
+  <h2 id="helpTitle" data-i18n="help_title">Keyboard shortcuts</h2>
+  <dl class="keys" id="keyList"></dl>
+  <div class="actions"><button type="button" class="btn btn-primary" id="helpClose" data-i18n="close">Close</button></div>
+</dialog>
+
+<noscript><p class="noscript">Radar Absheron needs JavaScript to draw the map.</p></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script type="module" src="js/main.js?v=20261115a"></script>
+</body>
+</html>

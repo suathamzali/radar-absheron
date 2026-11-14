@@ -1,0 +1,7 @@
+.claude/
+CLAUDE.local.md
+data_raw/
+.taste-skill/
+__pycache__/
+*.part
+.env

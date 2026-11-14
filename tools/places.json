@@ -1,0 +1,50 @@
+[
+ {
+  "id": "baku",
+  "name": "Baku city centre",
+  "lon": 49.867,
+  "lat": 40.395
+ },
+ {
+  "id": "boyukshor",
+  "name": "Boyukshor Lake, Baku",
+  "lon": 49.835,
+  "lat": 40.432
+ },
+ {
+  "id": "oilfield",
+  "name": "Balakhani\u2013Sabunchu oil fields",
+  "lon": 49.94,
+  "lat": 40.455
+ },
+ {
+  "id": "kura_fields",
+  "name": "Kura-Araz irrigated fields (Saatly\u2013Sabirabad)",
+  "lon": 48.42,
+  "lat": 39.97
+ },
+ {
+  "id": "hajigabul",
+  "name": "Hajigabul Lake",
+  "lon": 48.94,
+  "lat": 40.05
+ },
+ {
+  "id": "forest",
+  "name": "Greater Caucasus forest (Ismayilli)",
+  "lon": 48.15,
+  "lat": 40.82
+ },
+ {
+  "id": "caspian",
+  "name": "Caspian Sea, offshore Absheron",
+  "lon": 50.3,
+  "lat": 40.15
+ },
+ {
+  "id": "shirvan",
+  "name": "Shirvan lowland semi-desert",
+  "lon": 48.95,
+  "lat": 39.75
+ }
+]
