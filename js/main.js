@@ -5,6 +5,7 @@ import { renderChart } from './chart.js';
 import { STEPS, ACTIONS } from './story.js';
 import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js';
 import { dataPanelHtml } from './datapanel.js';
+import { linkTerms, closeTip } from './glossary.js';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -159,6 +160,7 @@ function renderLegend() {
   const wasOpen = L.querySelector('details') ? L.querySelector('details').open : window.matchMedia('(min-width: 1100px)').matches;
   html = html.replace(/^\s*<h3>(.*?)<\/h3>/, (m0, title) => `<details${wasOpen ? ' open' : ''}><summary><h3>${title}</h3></summary>`) + '</details>';
   L.innerHTML = html;
+  linkTerms(L, getLang());
 }
 
 // ---------- inspector ----------
@@ -216,7 +218,15 @@ function drawInspector() {
     hv0: f(hv0), hv1: f(hv1), hhMin: hhP.length ? f(Math.min(...hhP)) : '–', hhMax: hhP.length ? f(Math.max(...hhP)) : '–',
     sm: smTxt, extra,
   });
+  const plain = [];
+  if (prov(s.hv).length && Math.max(...prov(s.hv)) < -18.5) plain.push(t('plain_water'));
+  else if (hhP.length && Math.max(...hhP) > -3) plain.push(t('plain_city'));
+  else if (prov(s.hv).length && Math.max(...prov(s.hv)) > -12) plain.push(t('plain_green'));
+  if (smA !== null && smB !== null && smB - smA > 0.03) plain.push(t('plain_wetter', smA.toFixed(2), smB.toFixed(2)));
+  if (!plain.length) plain.push(t('plain_quiet'));
+  $('#inspPlain').innerHTML = `<strong>${t('in_short')}</strong> ${plain.join(' ')}`;
   $('#inspDesc').textContent = desc;
+  linkTerms($('#inspPlain'), getLang());
   $('#inspNote').textContent = `${t('beta_note')} ${t('rain_label')}: NASA POWER, ${data.power.sites[site].name}.`;
   announce(`${$('#inspTitle').textContent}. ${desc}`);
   if (window.matchMedia('(min-width: 761px)').matches) box.scrollIntoView({ block: 'nearest', behavior: reduceMotion() ? 'auto' : 'smooth' });
@@ -242,7 +252,11 @@ function renderStep(apply = true) {
   const tx = st[L] || st.en;
   $('#stepCount').textContent = t('step_of', S.step + 1, STEPS.length);
   $('#stepTitle').textContent = tx.title;
-  $('#stepBody').innerHTML = tx.body;
+  const moreOpen = store.get('ra_more', '0') === '1';
+  $('#stepBody').innerHTML = `${tx.simple ? `<div class="plain"><p><strong>${t('in_short')}</strong> ${tx.simple}</p></div>` : ''}
+    <details class="more"${moreOpen ? ' open' : ''}><summary>${t('more_detail')}</summary><div class="more-body">${tx.body}</div></details>`;
+  $('#stepBody details.more').addEventListener('toggle', (e) => store.set('ra_more', e.target.open ? '1' : '0'));
+  linkTerms($('#stepBody'), L);
   const acts = $('#stepActions');
   acts.replaceChildren(...(st.actions || []).map((a) => {
     const b = document.createElement('button');
@@ -366,7 +380,9 @@ function setMode(m) {
   stopPlay();
   if (m === 'story') renderStep();
   if (m === 'explore') applyExplore();
-  if (m === 'data') $('#dataView').innerHTML = dataPanelHtml(data, getLang());
+  if (m === 'data') { $('#dataView').innerHTML = dataPanelHtml(data, getLang()); linkTerms($('#dataView'), getLang()); }
+  if (m === 'explore') linkTerms($('#exploreView .hint'), getLang());
+  closeTip();
   $('#panel').scrollTop = 0;
 }
 
@@ -381,7 +397,7 @@ function applyLanguage(l) {
   buildKeys();
   fillSelects();
   if (S.mode === 'story') renderStep(false);
-  if (S.mode === 'data') $('#dataView').innerHTML = dataPanelHtml(data, l);
+  if (S.mode === 'data') { $('#dataView').innerHTML = dataPanelHtml(data, l); linkTerms($('#dataView'), l); }
   setDate(S.date);
   if (S.inspected) drawInspector();
   if (S.right) { $('#swipeLeftTag').textContent = layerName(S.left); $('#swipeRightTag').textContent = layerName(S.right); }

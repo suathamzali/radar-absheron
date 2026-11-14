@@ -27,7 +27,7 @@ Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 
 
 **How it works.** We downloaded NISAR L3 SME2 products (track 56, frame 22) from the ASF DAAC. A Python script reads σ⁰ HH/HV, the noise floor, soil moisture, quality flags and water fraction; converts σ⁰ to dB; uses one fixed colour stretch for every date so colours are comparable over time; and builds small web images and a ~1 km data cube. The browser app (vanilla JavaScript + Leaflet) draws the layers, swipe, time-lapse, change maps and charts.
 
-**Benefits.** Anyone can read radar without training; numbers carry units and limits; it works through clouds and at night; it is keyboard and screen-reader friendly and bilingual; the method works for any NISAR frame.
+**Benefits.** Anyone can read radar without training: every step starts with a plain "In short" summary, the science is one tap away under "More detail", and hard words open a one-sentence explanation; numbers carry units and limits; it works through clouds and at night; it is keyboard and screen-reader friendly and bilingual; the method works for any NISAR frame.
 
 **What we hope to achieve.** A first step towards a public NISAR viewer for Azerbaijan: crop and harvest maps with GCOV, flood maps of the Kura floodplain, and ground-motion monitoring around Baku's oil fields.
 

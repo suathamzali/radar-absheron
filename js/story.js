@@ -16,12 +16,14 @@ export const STEPS = [
     date: 7,
     en: {
       title: 'Radar sees through clouds',
+      simple: `Ordinary satellites take photos with sunlight, so clouds hide the ground (left). NISAR sends its own radio waves, like a torch whose light passes through clouds, and saw the ground clearly the same morning (right). Drag the white handle to compare.`,
       body: `<p>On <strong>12 July 2026</strong> NASA's Terra satellite photographed this area in visible light: clouds covered much of the Kura-Araz lowland <em>(left)</em>.</p>
 <p>The same morning, about five hours earlier (05:47 Baku time), the NASA-ISRO satellite <strong>NISAR</strong> imaged the ground with its own microwave pulses <em>(right)</em>. Its L-band waves are about 24 cm long: they pass through clouds and need no sunlight.</p>
 <p>Drag the white handle (or focus it and use the arrow keys) to compare.</p>${SRC_MODIS}${SRC_NISAR}`,
     },
     az: {
       title: 'Radar buludların arxasını görür',
+      simple: `Adi peyklər günəş işığı ilə şəkil çəkir, ona görə buludlar yeri gizlədir (solda). NISAR isə özü radio dalğası göndərir, işığı buluddan keçən fənər kimi, və həmin səhər yeri aydın gördü (sağda). Müqayisə üçün ağ tutacağı sürüşdürün.`,
       body: `<p><strong>12 iyul 2026</strong>-da NASA-nın Terra peyki bu ərazini görünən işıqda çəkdi: Kür-Araz ovalığının çox hissəsini buludlar örtmüşdü <em>(solda)</em>.</p>
 <p>Həmin səhər, təxminən beş saat əvvəl (Bakı vaxtı ilə 05:47), NASA-ISRO peyki <strong>NISAR</strong> yer səthini öz mikrodalğa impulsları ilə çəkdi <em>(sağda)</em>. Onun L-diapazon dalğaları təxminən 24 sm uzunluğundadır: buludlardan keçir və günəş işığına ehtiyac duymur.</p>
 <p>Müqayisə üçün ağ tutacağı sürüşdürün (və ya ona fokuslanıb ox düymələrindən istifadə edin).</p>${SRC_MODIS}${SRC_NISAR}`,
@@ -35,6 +37,7 @@ export const STEPS = [
     actions: ['fly_baku', 'fly_forest', 'fly_caspian', 'fly_kura'],
     en: {
       title: 'How to read radar colours',
+      simple: `The colours tell you what the radio wave bounced off. <strong>Pink-white</strong>: buildings and rough bare ground. <strong>Green</strong>: plants and trees. <strong>Dark</strong>: calm water or smooth soil. Press a button below to fly to an example.`,
       body: `<p>NISAR sends a horizontally polarized pulse and listens twice:</p>
 <ul><li><span class="chip chip-hh">HH</span> the echo that comes back horizontal. Strong from buildings (the wave bounces off the ground and a wall straight back) and from rough bare ground.</li>
 <li><span class="chip chip-hv">HV</span> the echo that comes back vertical. Strong where the wave bounces many times inside leaves, stems and branches: it tracks <strong>plant volume</strong>.</li></ul>
@@ -45,6 +48,7 @@ export const STEPS = [
     },
     az: {
       title: 'Radar rənglərini necə oxumalı',
+      simple: `Rənglər radio dalğasının nədən əks olunduğunu göstərir. <strong>Çəhrayı-ağ</strong>: binalar və kobud çılpaq torpaq. <strong>Yaşıl</strong>: bitkilər və ağaclar. <strong>Tünd</strong>: sakit su və ya hamar torpaq. Nümunəyə uçmaq üçün aşağıdakı düymələrdən birini basın.`,
       body: `<p>NISAR üfüqi polyarizasiyalı impuls göndərir və iki dəfə dinləyir:</p>
 <ul><li><span class="chip chip-hh">HH</span> üfüqi qayıdan əks-səda. Binalardan (dalğa yerdən və divardan birbaşa geri sıçrayır) və kobud çılpaq torpaqdan güclüdür.</li>
 <li><span class="chip chip-hv">HV</span> şaquli qayıdan əks-səda. Dalğanın yarpaq, gövdə və budaqlar arasında dəfələrlə səpələndiyi yerdə güclüdür: <strong>bitki həcmini</strong> izləyir.</li></ul>
@@ -63,6 +67,7 @@ export const STEPS = [
     actions: ['play_again'],
     en: {
       title: 'Ten passes, one summer: the dance',
+      simple: `These are four months of radar pictures, about one every 12 days, played like a short film. Watch three things: the sea flickers, the whole land flashes once in early October, and the city barely changes.`,
       body: `<p>NISAR passed over this area every 12 days (with one 24-day gap in August), at about <strong>05:47 Baku time</strong>. The time-lapse plays the passes from <strong>18 June</strong> to <strong>16 October 2026</strong> once. The October passes came before sunrise.</p>
 <p>Watch who moves and who stands still:</p>
 <ul><li><strong>The Caspian Sea</strong> flickers from date to date.</li>
@@ -72,6 +77,7 @@ export const STEPS = [
     },
     az: {
       title: 'On keçid, bir yay: rəqs',
+      simple: `Bunlar dörd aylıq radar şəkilləridir, təxminən hər 12 gündən bir, qısa film kimi oynadılır. Üç şeyə baxın: dəniz titrəyir, oktyabrın əvvəlində bütün quru bir dəfə parlayır, şəhər isə demək olar ki, dəyişmir.`,
       body: `<p>NISAR bu ərazinin üzərindən hər 12 gündən bir (avqustda bir 24 günlük fasilə ilə), <strong>Bakı vaxtı ilə təxminən 05:47-də</strong> keçib. Animasiya <strong>18 iyun</strong>dan <strong>16 oktyabr 2026</strong>-yadək keçidləri bir dəfə oynadır. Oktyabr keçidləri gün doğmazdan əvvəl olub.</p>
 <p>Kimin hərəkət etdiyinə, kimin yerində durduğuna baxın:</p>
 <ul><li><strong>Xəzər dənizi</strong> tarixdən tarixə titrəyir.</li>
@@ -90,6 +96,7 @@ export const STEPS = [
     inspect: 'kura_fields',
     en: {
       title: 'The radar felt the rain of 3 October',
+      simple: `Wet soil reflects more radio waves than dry soil. On 3 October it rained; the next morning the satellite saw the land brighter, which means wetter. On the map, <strong>blue = wetter soil</strong>: compare the left (before) and right (after) sides.`,
       body: `<p>Water raises the soil's dielectric constant, so wet soil echoes more strongly. NISAR's soil-moisture product turns that into m³ of water per m³ of soil.</p>
 <p>Left: <strong>22 September</strong>. Right: <strong>4 October</strong>. In between, NASA POWER shows a heavy rain on <strong>3 October</strong>: about <strong>18 mm</strong> around Baku and <strong>12 mm</strong> in the Kura-Araz lowland.</p>
 <p>Across the land in this frame, the median HH echo rose from <strong>−13.5 to −11.3 dB</strong> and the median soil moisture from <strong>0.18 to 0.23 m³/m³</strong>. Twelve days later soil moisture was back at 0.18; HH fell back only partly (−12.7 dB).</p>
@@ -98,6 +105,7 @@ export const STEPS = [
     },
     az: {
       title: 'Radar 3 oktyabr yağışını hiss etdi',
+      simple: `Nəm torpaq quru torpaqdan daha çox radio dalğası əks etdirir. 3 oktyabrda yağış yağdı; ertəsi səhər peyk qurunu daha parlaq, yəni daha nəm gördü. Xəritədə <strong>göy = daha nəm torpaq</strong>: sol (əvvəl) və sağ (sonra) tərəfləri müqayisə edin.`,
       body: `<p>Su torpağın dielektrik sabitini artırır, ona görə nəm torpaq daha güclü əks-səda verir. NISAR-ın torpaq nəmliyi məhsulu bunu torpağın hər m³-də neçə m³ su olduğuna çevirir.</p>
 <p>Solda: <strong>22 sentyabr</strong>. Sağda: <strong>4 oktyabr</strong>. Arada NASA POWER <strong>3 oktyabrda</strong> güclü yağış göstərir: Bakı ətrafında təxminən <strong>18 mm</strong>, Kür-Araz ovalığında <strong>12 mm</strong>.</p>
 <p>Bu kadrdakı qurunun median HH əks-sədası <strong>−13,5-dən −11,3 dB-yə</strong>, median torpaq nəmliyi isə <strong>0,18-dən 0,23 m³/m³-ə</strong> qalxdı. On iki gün sonra torpaq nəmliyi yenidən 0,18 idi; HH isə yalnız qismən geri düşdü (−12,7 dB).</p>
@@ -116,6 +124,7 @@ export const STEPS = [
     actions: ['ndvi_compare'],
     en: {
       title: 'Kura-Araz lowland: a quiet dancer',
+      simple: `We expected the farm fields to change a lot as crops grew and were harvested. At this map's level of detail they changed very little, because many small fields are blended into each dot. A sharper NISAR product could follow single fields.`,
       body: `<p>Between the Kura and Araz rivers lies Azerbaijan's largest irrigated farmland, in a semi-arid climate where crops depend on canals. The swipe shows only <span class="chip chip-hv">HV</span>, the plant-volume echo: <strong>18 June</strong> left, <strong>16 October</strong> right.</p>
 <p>A surprise: at this scale the farmland barely moved. Across the lowland, HV rose by a median of only <strong>0.6 dB</strong> from June to October, and fewer than 3 % of 1 km cells changed by more than 1.5 dB. The biggest jump between two passes came from the <strong>3 October rain</strong>, not from the crops (see the chart).</p>
 <div class="callout hyp"><p><strong>Why, and what next (hypothesis).</strong> Each 200 m pixel averages several fields: one field growing and its neighbour being harvested cancel out. A second reason: over these dry plains HV is often within 3 dB of the noise floor, and the noise floor itself (measured over the sea) rose by about 1.2 dB from June to October, as much as the change we are looking for. Following single fields needs NISAR's 10–20 m GCOV product, plus 2026 field records to check it.</p></div>
@@ -123,6 +132,7 @@ export const STEPS = [
     },
     az: {
       title: 'Kür-Araz ovalığı: sakit rəqqas',
+      simple: `Bitkilər böyüdükcə və məhsul yığıldıqca əkin sahələrinin çox dəyişəcəyini gözləyirdik. Bu xəritənin dəqiqliyində onlar çox az dəyişdi, çünki hər nöqtədə bir neçə kiçik sahə qarışır. NISAR-ın daha dəqiq məhsulu ayrı-ayrı sahələri izləyə bilər.`,
       body: `<p>Kür və Araz çayları arasında Azərbaycanın ən böyük suvarılan əkin sahələri yerləşir; iqlim yarımquraqdır və əkinlər kanallardan asılıdır. Sürüşdürmə yalnız <span class="chip chip-hv">HV</span>, yəni bitki həcmi əks-sədasını göstərir: solda <strong>18 iyun</strong>, sağda <strong>16 oktyabr</strong>.</p>
 <p>Gözlənilməz nəticə: bu miqyasda əkin sahələri demək olar ki, dəyişmədi. Ovalıq boyu HV iyundan oktyabradək median cəmi <strong>0,6 dB</strong> artdı və 1 km-lik xanaların 3 %-dən azı 1,5 dB-dən çox dəyişdi. İki keçid arasında ən böyük sıçrayışı əkinlər yox, <strong>3 oktyabr yağışı</strong> yaratdı (qrafikə baxın).</p>
 <div class="callout hyp"><p><strong>Niyə və sonra nə (fərziyyə).</strong> Hər 200 m-lik piksel bir neçə sahəni ortalayır: bir sahənin böyüməsi ilə qonşu sahədə məhsul yığımı bir-birini sıfırlayır. İkinci səbəb: bu quru düzənliklərdə HV çox vaxt küy səviyyəsindən 3 dB-dən az yuxarıdır, küy səviyyəsinin özü isə (dənizdə ölçülüb) iyundan oktyabradək təxminən 1,2 dB qalxıb, yəni axtardığımız dəyişiklik qədər. Ayrı sahələri izləmək üçün NISAR-ın 10–20 m-lik GCOV məhsulu və yoxlama üçün 2026-cı il sahə qeydləri lazımdır.</p></div>
@@ -138,6 +148,7 @@ export const STEPS = [
     actions: ['fly_baku', 'fly_oil'],
     en: {
       title: 'Absheron: a city that stands still',
+      simple: `Baku looks bright and steady because walls and streets bounce the radio wave straight back. Because the city stays the same, NISAR can be used over years to check whether the ground is slowly sinking, for example around the old oil fields.`,
       body: `<p>Baku glows white-pink on every date. Walls and streets act as corner reflectors that send the wave straight back.</p>
 <p>North of the city, the <strong>Balakhani–Sabunchu oil fields</strong> have been worked for more than a century: a patchwork of pads, pipes, roads and oily lakes. Human structures dominate the echo, so it changes far less here than in farmland.</p>
 <div class="callout"><p><strong>Why it matters.</strong> A stable echo is exactly what radar interferometry (InSAR) needs to measure ground motion of millimetres to centimetres. NISAR's interferogram products can, over years, watch for ground sinking around oil fields and the city.</p></div>
@@ -145,6 +156,7 @@ export const STEPS = [
     },
     az: {
       title: 'Abşeron: yerində duran şəhər',
+      simple: `Bakı parlaq və sabit görünür, çünki divarlar və küçələr radio dalğasını birbaşa geri qaytarır. Şəhər dəyişmədiyi üçün NISAR ilə illər ərzində yerin yavaş-yavaş çöküb-çökmədiyini, məsələn köhnə neft yataqları ətrafında, yoxlamaq olar.`,
       body: `<p>Bakı hər tarixdə ağ-çəhrayı parlayır. Divarlar və küçələr dalğanı birbaşa geri göndərən künc əks etdiriciləri kimi işləyir.</p>
 <p>Şəhərin şimalında <strong>Balaxanı–Sabunçu neft yataqları</strong> yüz ildən artıqdır istismar olunur: meydançalar, borular, yollar və neftli göllərdən ibarət mozaika. Əks-sədanı insan tikililəri müəyyən edir, ona görə o, əkin sahələrindən xeyli az dəyişir.</p>
 <div class="callout"><p><strong>Niyə vacibdir.</strong> Sabit əks-səda radar interferometriyasının (InSAR) millimetrdən santimetrədək yer hərəkətini ölçməsi üçün məhz lazım olandır. NISAR-ın interferoqram məhsulları illər ərzində neft yataqları və şəhər ətrafında yerin çökməsini izləyə bilər.</p></div>
@@ -161,12 +173,14 @@ export const STEPS = [
     actions: ['play_again'],
     en: {
       title: 'The Caspian dances with the wind',
+      simple: `Calm water is like a mirror: the wave bounces away and the sea looks dark. Wind makes small ripples that send part of the wave back, so the sea looks brighter. So the sea's brightness tells us about the wind, not about the water depth.`,
       body: `<p>Calm water is a mirror: it reflects the radar wave away and looks dark. Wind raises ripples a few centimetres long, which send part of the wave back, so the sea brightens.</p>
 <p>That is why the Caspian's HH echo changes from pass to pass (median between <strong>−16.8 and −15.1 dB</strong>): NISAR records the <strong>wind on the sea surface</strong> at 05:47, not the depth or the water level.</p>
 <div class="callout limit"><p>Over the sea, HV (about −20 dB) sits on NISAR's own noise floor (also about −20 dB), so the green stripes there are instrument noise along the swath, not sea features. The slow fall of the Caspian Sea level cannot be seen in one season; a multi-year NISAR shoreline record could show it.</p></div>${SRC_NISAR}`,
     },
     az: {
       title: 'Xəzər küləklə rəqs edir',
+      simple: `Sakit su güzgü kimidir: dalğa kənara əks olunur və dəniz tünd görünür. Külək kiçik ləpələr yaradır, onlar dalğanın bir hissəsini geri qaytarır və dəniz parlaq görünür. Yəni dənizin parlaqlığı suyun dərinliyindən yox, küləkdən xəbər verir.`,
       body: `<p>Sakit su güzgü kimidir: radar dalğasını kənara əks etdirir və tünd görünür. Külək bir neçə santimetrlik ləpələr yaradır, onlar dalğanın bir hissəsini geri qaytarır və dəniz parlaqlaşır.</p>
 <p>Ona görə Xəzərin HH əks-sədası keçiddən keçidə dəyişir (median <strong>−16,8 ilə −15,1 dB</strong> arası): NISAR dərinliyi və ya su səviyyəsini yox, saat 05:47-də <strong>dəniz səthindəki küləyi</strong> qeydə alır.</p>
 <div class="callout limit"><p>Dənizdə HV (təxminən −20 dB) NISAR-ın öz küy səviyyəsindədir (o da təxminən −20 dB), ona görə oradakı yaşıl zolaqlar dəniz obyekti yox, cihaz küyüdür. Xəzər səviyyəsinin yavaş enməsini bir mövsümdə görmək olmur; sahil xəttinin çoxillik NISAR qeydi bunu göstərə bilər.</p></div>${SRC_NISAR}`,
@@ -180,6 +194,7 @@ export const STEPS = [
     actions: ['change_season', 'go_explore'],
     en: {
       title: 'Find the change yourself',
+      simple: `This map shows only what changed between two days. <strong>Teal</strong>: became brighter (here: wetter after the rain). <strong>Brown</strong>: became darker. <strong>Empty</strong>: almost no change. Tap any spot to see its whole history.`,
       body: `<p>This <strong>change map</strong> subtracts HH on <strong>22 September</strong> from HH on <strong>4 October</strong>, in decibels, over land. Teal: the echo grew. Brown: it fell. Clear: less than 1.5 dB of change.</p>
 <p>The rain of 3 October painted the land: <strong>69 %</strong> of land cells brightened by more than 1.5 dB (median +1.9 dB), about 1 dB of it scene-wide (see step 4). Twelve days later 35 % had faded back by more than 1.5 dB.</p>
 <p>Click any patch (or focus the map and press <kbd>I</kbd>) to read its full history. Then compare a whole season, 18 June → 16 October in HV:</p>
@@ -187,6 +202,7 @@ export const STEPS = [
     },
     az: {
       title: 'Dəyişikliyi özünüz tapın',
+      simple: `Bu xəritə yalnız iki gün arasında nəyin dəyişdiyini göstərir. <strong>Firuzəyi</strong>: parlaqlaşıb (burada: yağışdan sonra nəmlənib). <strong>Qəhvəyi</strong>: tündləşib. <strong>Boş</strong>: demək olar ki, dəyişməyib. Tam tarixçəni görmək üçün istənilən yerə toxunun.`,
       body: `<p>Bu <strong>dəyişiklik xəritəsi</strong> quruda <strong>4 oktyabr</strong> HH-dan <strong>22 sentyabr</strong> HH-ı desibellə çıxır. Firuzəyi: əks-səda artıb. Qəhvəyi: azalıb. Şəffaf: 1,5 dB-dən az dəyişib.</p>
 <p>3 oktyabr yağışı qurunu "rəngləyib": quru xanalarının <strong>69 %</strong>-i 1,5 dB-dən çox parlaqlaşıb (median +1,9 dB), bunun təxminən 1 dB-i bütün kadr üzrədir (4-cü addıma baxın). On iki gün sonra 35 %-i yenidən 1,5 dB-dən çox zəifləyib.</p>
 <p>Tam tarixçəni oxumaq üçün istənilən sahəyə klikləyin (və ya xəritəyə fokuslanıb <kbd>I</kbd> basın). Sonra bütöv mövsümü müqayisə edin, HV-də 18 iyun → 16 oktyabr:</p>
@@ -201,6 +217,7 @@ export const STEPS = [
     actions: ['go_explore', 'go_data'],
     en: {
       title: 'What we saw, and why it matters',
+      simple: `A free satellite can watch Azerbaijan's land about every 12 days, day and night, through clouds. It already saw the land get wet after a rain and showed that the sea follows the wind. With a few more years of data it could help farmers, water managers and city planners.`,
       body: `<div class="summary-card"><h3>What you saw</h3><ul>
 <li>NISAR imaged Azerbaijan through clouds and before sunrise, about every 12 days.</li>
 <li>Its two echoes separate cities (HH) from plants (HV).</li>
@@ -215,6 +232,7 @@ export const STEPS = [
     },
     az: {
       title: 'Nə gördük və niyə vacibdir',
+      simple: `Pulsuz peyk Azərbaycan torpağını təxminən hər 12 gündən bir, gecə-gündüz, buludların arxasından izləyə bilir. O, artıq yağışdan sonra torpağın nəmləndiyini gördü və dənizin küləyə tabe olduğunu göstərdi. Bir neçə il daha məlumatla fermerlərə, su idarəçilərinə və şəhər planlaşdırıcılarına kömək edə bilər.`,
       body: `<div class="summary-card"><h3>Nə gördünüz</h3><ul>
 <li>NISAR Azərbaycanı buludların arxasından və gün doğmazdan əvvəl, təxminən hər 12 gündən bir çəkib.</li>
 <li>Onun iki əks-sədası şəhərləri (HH) bitkilərdən (HV) ayırır.</li>

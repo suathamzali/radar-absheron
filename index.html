@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="css/style.css?v=20261115c">
+<link rel="stylesheet" href="css/style.css?v=20261115d">
 </head>
 <body>
 <a class="skip" href="#panel" data-i18n="skip">Skip to the story panel</a>
@@ -98,7 +98,8 @@
         <h3 id="inspTitle"></h3>
         <button type="button" class="icon-btn" id="inspClose" data-i18n-aria="close">×</button>
       </div>
-      <p id="inspDesc" class="insp-desc"></p>
+      <p id="inspPlain" class="plain-line"></p>
+      <details class="more"><summary data-i18n="numbers">The numbers</summary><p id="inspDesc" class="insp-desc"></p></details>
       <div id="chart" class="chart"></div>
       <div id="chart2" class="chart"></div>
       <p id="inspNote" class="hint"></p>
@@ -139,6 +140,7 @@
   </div>
   <p class="eyebrow" data-i18n="start_eyebrow">NASA Space Apps 2026 · Dancing with the SARs</p>
   <h2 id="startTitle" data-i18n="start_q">Can a satellite watch Azerbaijan's land change, through clouds and in the dark?</h2>
+  <p class="lead" data-i18n="start_lead">NISAR is a satellite that sends radio waves to Earth and listens to the echo, a bit like a bat. This site shows, in plain words, what those echoes tell us about our region.</p>
   <ol class="start-steps">
     <li data-i18n="start_1">Learn to read radar colours in one minute.</li>
     <li data-i18n="start_2">Watch a season of NISAR passes over the Kura fields, Baku and the Caspian, and the day the land felt the rain.</li>
@@ -159,6 +161,6 @@
 
 <noscript><p class="noscript">Radar Absheron needs JavaScript to draw the map.</p></noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script type="module" src="js/main.js?v=20261115c"></script>
+<script type="module" src="js/main.js?v=20261115d"></script>
 </body>
 </html>
