@@ -42,7 +42,7 @@ export const STR = {
     lg_sm: 'Water in the top soil layer, m³ of water per m³ of soil. Pale = retrieval not recommended (dense vegetation, city).',
     lg_sm_dry: 'dry', lg_sm_wet: 'wet',
     level_beta: 'BETA', level_prov: 'PROVISIONAL',
-    live_date: (d, layer) => `Showing ${layer}, ${d}.`,
+    live_date: (layer) => `Showing ${layer}.`,
     live_compare: (l, r) => `Swipe compare: left ${l}, right ${r}.`,
     legend_title_composite: 'NISAR radar colour (HH + HV)',
     legend_title_hh: 'NISAR HH only', legend_title_hv: 'NISAR HV only',
@@ -104,7 +104,7 @@ export const STR = {
     lg_sm: 'Torpağın üst qatında su: hər m³ torpaqda m³ su. Solğun = tövsiyə olunmayan ölçmə (sıx bitki, şəhər).',
     lg_sm_dry: 'quru', lg_sm_wet: 'nəm',
     level_beta: 'BETA', level_prov: 'İLKİN',
-    live_date: (d, layer) => `${layer}, ${d} göstərilir.`,
+    live_date: (layer) => `${layer} göstərilir.`,
     live_compare: (l, r) => `Sürüşdürmə müqayisəsi: solda ${l}, sağda ${r}.`,
     legend_title_composite: 'NISAR radar rəngi (HH + HV)',
     legend_title_hh: 'NISAR, yalnız HH', legend_title_hv: 'NISAR, yalnız HV',
@@ -127,6 +127,18 @@ export const STR = {
 };
 
 let lang = 'en';
+const MONTHS = {
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  az: ['yan', 'fev', 'mar', 'apr', 'may', 'iyn', 'iyl', 'avq', 'sen', 'okt', 'noy', 'dek'],
+};
+/** Format an ISO date (YYYY-MM-DD) without relying on Intl locale data. mode: 'full' | 'short' | 'month' */
+export function fmtISO(iso, mode = 'full', l = lang) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const mon = (MONTHS[l] || MONTHS.en)[m - 1];
+  if (mode === 'month') return `${mon} ${String(y).slice(2)}`;
+  if (mode === 'short') return `${d} ${mon}`;
+  return `${d} ${mon} ${y}`;
+}
 export const getLang = () => lang;
 export function setLang(l) { lang = STR[l] ? l : 'en'; }
 export function t(key, ...args) {

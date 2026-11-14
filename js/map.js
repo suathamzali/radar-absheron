@@ -65,7 +65,7 @@ export class RadarMap {
     this.map.on('click', (e) => this.inspect(e.latlng));
     this.map.on('move zoom zoomend viewreset resize', () => this.updateClip());
     this.map.getContainer().addEventListener('keydown', (e) => {
-      if ((e.key === 'i' || e.key === 'I') && !e.ctrlKey && !e.metaKey) {
+      if (e.code === 'KeyI' && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         this.inspect(this.map.getCenter());
       }

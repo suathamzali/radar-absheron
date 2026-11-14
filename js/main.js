@@ -3,7 +3,7 @@ import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.j
 import { RadarMap, CONTEXT, CHANGE_DB } from './map.js';
 import { renderChart } from './chart.js';
 import { STEPS, ACTIONS } from './story.js';
-import { t, setLang, getLang, applyStatic } from './i18n.js';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js';
 import { dataPanelHtml } from './datapanel.js';
 
 const $ = (s) => document.querySelector(s);
@@ -23,11 +23,7 @@ const S = {
 let data, rmap;
 
 // ---------- helpers ----------
-function fmtDate(i, short = false) {
-  const d = data.dates[i].date;
-  return new Date(`${d}T00:00:00Z`).toLocaleDateString(getLang() === 'az' ? 'az' : 'en-GB',
-    short ? { day: 'numeric', month: 'short', timeZone: 'UTC' } : { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
-}
+function fmtDate(i, short = false) { return fmtISO(data.dates[i].date, short ? 'short' : 'full'); }
 function passTime(i) {
   const s = data.dates[i].start;
   return new Date(/Z$/.test(s) ? s : `${s}Z`).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Baku' });
@@ -55,7 +51,7 @@ async function applyLayers(left, right, swipe) {
     $('#swipeRightTag').textContent = layerName(S.right);
     announce(t('live_compare', layerName(left), layerName(S.right)));
   } else {
-    announce(t('live_date', fmtDate(S.date), layerName(left)));
+    announce(t('live_date', layerName(left)));
   }
   renderLegend();
 }
@@ -156,6 +152,8 @@ function renderLegend() {
   if (S.right && d.kind !== 'ctx') html += `<p><strong>⇔</strong> ${layerName(S.right)}</p>`;
   const anyBeta = [S.left, S.right].some((x) => x && x.date !== undefined && data.dates[x.date].level === 'BETA');
   if (anyBeta) html += `<p class="tag">${t('beta_note')}</p>`;
+  const wasOpen = L.querySelector('details') ? L.querySelector('details').open : window.matchMedia('(min-width: 1100px)').matches;
+  html = html.replace(/^\s*<h3>(.*?)<\/h3>/, (m0, title) => `<details${wasOpen ? ' open' : ''}><summary><h3>${title}</h3></summary>`) + '</details>';
   L.innerHTML = html;
 }
 
@@ -386,14 +384,13 @@ function applyLanguage(l) {
 }
 
 function buildTicks() {
-  const lbl = (i) => new Date(`${data.dates[i].date}T00:00:00Z`).toLocaleDateString(getLang() === 'az' ? 'az' : 'en-GB', { month: 'short', year: '2-digit', timeZone: 'UTC' });
-  $('#ticks').innerHTML = [0, 4, 5, 8, 11, 14].map((i) => `<span>${lbl(i)}</span>`).join('');
+  $('#ticks').innerHTML = [0, 4, 5, 8, 11, 14].map((i) => `<span>${fmtISO(data.dates[i].date, 'month')}</span>`).join('');
 }
 
 function buildKeys() {
   const k = [
     ['[ ]', t('k_prevnext')], ['P', t('k_play')], ['C', t('k_compare')], ['I', t('k_inspect')],
-    ['B N', t('k_story')], ['← → ↑ ↓', t('k_arrows')], ['?', t('k_help')], ['Esc', t('k_esc')],
+    ['B N', t('k_story')], ['← → ↑ ↓', t('k_arrows')], ['? H', t('k_help')], ['Esc', t('k_esc')],
   ];
   $('#keyList').innerHTML = k.map(([a, b]) => `<dt>${a.split(' ').map((x) => `<kbd>${x}</kbd>`).join(' ')}</dt><dd>${b}</dd>`).join('');
 }
@@ -448,14 +445,15 @@ function wire() {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (document.querySelector('dialog[open]')) return;
     if (tag === 'select' || (tag === 'input' && e.target.type !== 'range' && e.target.type !== 'radio' && e.target.type !== 'checkbox')) return;
-    const k = e.key;
-    if (k === '[') { setDate(S.date - 1, { fromUser: true }); e.preventDefault(); }
-    else if (k === ']') { setDate(S.date + 1, { fromUser: true }); e.preventDefault(); }
-    else if (k === 'p' || k === 'P') { S.playing ? stopPlay() : play(); }
-    else if ((k === 'c' || k === 'C') && S.mode === 'explore') { S.compare = !S.compare; $('#compareToggle').checked = S.compare; applyExplore(); }
-    else if ((k === 'n' || k === 'N') && S.mode === 'story') goStep(S.step + 1);
-    else if ((k === 'b' || k === 'B') && S.mode === 'story') goStep(S.step - 1);
-    else if (k === '?') $('#helpDlg').showModal();
+    // Physical key codes so shortcuts work on any keyboard layout (e.g. Azerbaijani).
+    const code = e.code, k = e.key;
+    if (code === 'BracketLeft' || k === '[') { setDate(S.date - 1, { fromUser: true }); e.preventDefault(); }
+    else if (code === 'BracketRight' || k === ']') { setDate(S.date + 1, { fromUser: true }); e.preventDefault(); }
+    else if (code === 'KeyP') { S.playing ? stopPlay() : play(); }
+    else if (code === 'KeyC' && S.mode === 'explore') { S.compare = !S.compare; $('#compareToggle').checked = S.compare; applyExplore(); }
+    else if (code === 'KeyN' && S.mode === 'story') goStep(S.step + 1);
+    else if (code === 'KeyB' && S.mode === 'story') goStep(S.step - 1);
+    else if (k === '?' || code === 'KeyH' || (code === 'Slash' && e.shiftKey)) $('#helpDlg').showModal();
     else if (k === 'Escape' && !$('#inspector').hidden) closeInspector();
   });
 

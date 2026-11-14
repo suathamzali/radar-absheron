@@ -8,7 +8,8 @@ function el(tag, attrs = {}, text) {
   return n;
 }
 
-const fmtDate = (d, lang) => new Date(`${d}T00:00:00Z`).toLocaleDateString(lang === 'az' ? 'az-Latn-AZ' : 'en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+import { fmtISO } from './i18n.js';
+const fmtDate = (d, lang) => fmtISO(d, 'short', lang);
 
 /**
  * opts: { dates, series: [{label, color, dash, values}], yMin, yMax, yLabel,
