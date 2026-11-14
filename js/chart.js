@@ -8,7 +8,7 @@ function el(tag, attrs = {}, text) {
   return n;
 }
 
-import { fmtISO } from './i18n.js';
+import { fmtISO } from './i18n.js?v=20261115e';
 const fmtDate = (d, lang) => fmtISO(d, 'short', lang);
 
 /**

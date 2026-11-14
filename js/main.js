@@ -1,11 +1,11 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js';
-import { renderChart } from './chart.js';
-import { STEPS, ACTIONS } from './story.js';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js';
-import { dataPanelHtml } from './datapanel.js';
-import { linkTerms, closeTip } from './glossary.js';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115e';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115e';
+import { renderChart } from './chart.js?v=20261115e';
+import { STEPS, ACTIONS } from './story.js?v=20261115e';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115e';
+import { dataPanelHtml } from './datapanel.js?v=20261115e';
+import { linkTerms, closeTip } from './glossary.js?v=20261115e';
 
 const $ = (s) => document.querySelector(s);
 const store = {
