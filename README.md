@@ -14,7 +14,7 @@ Radar images are powerful (day or night, through cloud) but hard to read: grey s
 |---|---|---|
 | Radar sees through clouds | MODIS true colour + NISAR, both 12 Jul 2026 | Swipe: clouds over the Kura lowland vs the clear radar view of the same morning |
 | How to read radar colours | NISAR SME2 σ⁰ HH/HV | Legend first: magenta = HH (buildings, rough ground), green = HV (plant volume), dark = smooth water |
-| The dance | 10 NISAR passes, 18 Jun–16 Oct 2026 | Time-lapse that plays once: the sea flickers, the land flashes on 4 Oct, Baku stands still |
+| The dance | 10 NISAR passes, 18 Jun–16 Oct 2026 | Time-lapse that plays once: the sea flickers, the land flashes on 4 Oct, Baku changes least |
 | The radar felt the rain | NISAR soil moisture + NASA POWER rain | Swipe 22 Sep vs 4 Oct: the first autumn rain (3 Oct) |
 | Kura-Araz lowland | NISAR HV, MODIS NDVI | An honest negative result: at 200 m–1 km the farmland barely changed |
 | Absheron | NISAR composite | A stable city and century-old oil fields: why InSAR could watch them |
@@ -26,7 +26,8 @@ Radar images are powerful (day or night, through cloud) but hard to read: grey s
 A start screen asks one question and lists three steps. The story shows the legend before the data, plays the time-lapse once and then explains, and ends with a summary card ("what you saw, why it matters, what NISAR could do next"). Every view has a source line and a limits box. Explore mode hands over all controls.
 
 ### Findings (all checkable in the app)
-- After **3 October 2026** rain (NASA POWER: ~18 mm around Baku, ~12 mm in the Kura-Araz lowland), the median land HH σ⁰ in the frame rose from **−13.5 to −11.3 dB** and median soil moisture from **0.18 to 0.23 m³/m³** (4 Oct pass); both fell back by 16 Oct.
+- After **3 October 2026** rain (NASA POWER: ~18 mm around Baku, ~12 mm in the Kura-Araz lowland), the median land HH σ⁰ in the frame rose from **−13.5 to −11.3 dB** and median soil moisture from **0.18 to 0.23 m³/m³** (4 Oct pass). Part of this was scene-wide (central Baku +1.0 dB, sea +1.7 dB); the land rose about **1.3 dB more than the stable city**. By 16 Oct soil moisture was back at 0.18; HH recovered only partly (−12.7 dB).
+- Over dry land HV is weak: on 63–70 % of land cells it lies within 3 dB of the noise floor.
 - Over the Caspian, HV (median ≈ −20 dB) equals NISAR's noise-equivalent σ⁰ (≈ −20 dB): sea HV is noise; sea HH varies between −16.8 and −15.1 dB with wind.
 - In the Kura-Araz lowland, HV changed by a median of only +0.6 dB from June to October; fewer than 3 % of 1 km cells changed by more than 1.5 dB. Field-scale crop monitoring needs the 10–20 m GCOV product.
 

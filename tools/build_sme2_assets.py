@@ -111,6 +111,8 @@ def main():
             hh = take(read("radarData/frequencyA/sigma0HH"))
             hv = take(read("radarData/frequencyA/sigma0HV"))
             nesz = take(read("radarData/frequencyA/noiseEquivalentBackscatterHV"))
+            if np.nanmedian(nesz) > -1.0:  # BETA products store the noise floor as linear power
+                nesz = to_db(nesz)
             sm = take(read("soilMoisture"))
             flag = take(g["retrievalQualityFlag"][:].astype(np.int32))
             ident = h["science/LSAR/identification"]

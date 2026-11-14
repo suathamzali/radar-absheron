@@ -4,7 +4,7 @@
 Radar Absheron
 
 ## High-level project summary
-Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map that makes NASA-ISRO NISAR radar readable for anyone. It plays 15 calibrated NISAR passes (Nov 2025–Oct 2026) over Baku, the Absheron peninsula and the Kura-Araz lowland, our home region. A swipe shows NISAR seeing the ground on 12 July 2026 while MODIS saw only clouds. A legend-first story teaches HH vs HV colours, then shows real findings: after the 3 October rain, the land's median radar echo rose by about 2 dB and soil moisture from 0.18 to 0.23 m³/m³; the Caspian's brightness follows the wind; Baku stands still; and, honestly, the farmland barely changed at 200 m–1 km. Change maps and click-anywhere time series let users test their own questions. Every value states its units, source and limits. It matters because free, all-weather radar every 12 days can help farmers, water managers and students in Azerbaijan follow their land and water.
+Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map that makes NASA-ISRO NISAR radar readable for anyone. It plays 15 calibrated NISAR passes (Nov 2025–Oct 2026) over Baku, the Absheron peninsula and the Kura-Araz lowland, our home region. A swipe shows NISAR seeing the ground on 12 July 2026 while MODIS saw only clouds. A legend-first story teaches HH vs HV colours, then shows real findings: after the 3 October rain, soil moisture rose from 0.18 to 0.23 m³/m³ and the land's radar echo rose about 1.3 dB more than the stable city (checked against an urban control); the Caspian's brightness follows the wind; Baku stands still; and, honestly, the farmland barely changed at 200 m–1 km. Change maps and click-anywhere time series let users test their own questions. Every value states its units, source and limits. It matters because free, all-weather radar every 12 days can help farmers, water managers and students in Azerbaijan follow their land and water.
 
 ## Link to project demo
 _30-second video link (YouTube/Drive, public)_
@@ -17,10 +17,10 @@ _Live site (GitHub Pages) and repository link_
 1. Radar sees through clouds: swipe between MODIS true colour and NISAR, same day (12 Jul 2026).
 2. How to read radar colours: magenta = HH (buildings, rough ground), green = HV (plant volume), dark = smooth water; four example places.
 3. The dance: a time-lapse of 10 passes (18 Jun–16 Oct 2026) that plays once.
-4. The radar felt the rain: soil moisture 22 Sep vs 4 Oct, NASA POWER rain, measured change (+2.2 dB median HH; 0.18 → 0.23 m³/m³).
+4. The radar felt the rain: soil moisture 22 Sep vs 4 Oct, NASA POWER rain, measured change (land median HH +2.3 dB, of which ~1 dB was scene-wide; land ≈ 1.3 dB above the urban control; soil moisture 0.18 → 0.23 m³/m³).
 5. Kura-Araz lowland: an honest negative result. HV changed by only +0.6 dB (median) June–October at this scale; field-level monitoring needs NISAR's 10–20 m GCOV.
 6. Absheron: a stable city and century-old oil fields, and why NISAR interferometry could watch ground motion there.
-7. The Caspian dances with the wind: sea HH varies with wind; sea HV equals the instrument noise floor (≈ −20 dB).
+7. The Caspian dances with the wind: sea HH varies with wind; sea HV equals the instrument noise floor (≈ −20 dB). Over dry land, too, HV is often within 3 dB of the noise floor, and the app says so.
 8. Find the change yourself: a dB change map (69 % of land cells brightened by > 1.5 dB after the rain), plus a season comparison.
 9. Summary: what you saw, why it matters, what NISAR could do next here.
 Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 dates, swipe against MODIS true colour or NDVI, and click anywhere for a calibrated σ⁰ and soil-moisture time series with rain bars and a table alternative.

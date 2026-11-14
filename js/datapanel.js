@@ -43,6 +43,8 @@ Downloaded from the <a href="https://search.asf.alaska.edu/#/?dataset=NISAR" tar
 <li>PROVISIONAL and BETA products are not fully calibrated or validated. The winter BETA dates may carry an offset of about 1 dB against the summer PROVISIONAL dates (we see a ~1 dB shift even over the sea), so the main findings use June–October only.</li>
 <li>Soil moisture is not yet validated; NISAR's accuracy goal is 0.06 m³/m³ where vegetation water content is below 5 kg/m². Retrievals in cities, dense vegetation and water are flagged.</li>
 <li>Over the sea, HV is at the noise floor (median HV ≈ noise-equivalent σ⁰ ≈ −20 dB): sea HV is noise.</li>
+<li>Over dry land, HV is also weak: on 63–70 % of land cells (summer–autumn dates) it lies within 3 dB of the noise floor, so small HV changes there are not meaningful.</li>
+<li>On 4 Oct 2026 part of the brightening was scene-wide (central Baku +1.0 dB, sea +1.7 dB); we compare land with this urban control rather than claim the full +2.3 dB for wet soil.</li>
 <li>Points and change maps use ~1 km cells (median of 3 × 3 cells in the point chart). Single fields are smaller.</li>
 <li>Explanations of farmland changes are hypotheses. We have no 2026 field records or crop maps for Azerbaijan.</li>
 <li>NASA POWER rain is a ~50 km model estimate, not a local gauge.</li>
