@@ -83,9 +83,13 @@ body.shot .bar, body.shot #live { display: none; }
 body.shot .deck { inset: 0; }
 body.shot .slide { left: 0; top: 0; transform: none !important; box-shadow: none; }
 
+.frame { display: contents; }
 @media (max-width: 760px) {
+  html, body { overflow-x: hidden; }
   .deck { position: static; overflow: visible; padding: 10px 0 80px; }
-  .slide { display: flex; position: relative; left: auto; top: auto; transform-origin: top left; }
+  .frame { display: block; position: relative; overflow: hidden; margin: 0 8px 12px; border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+  .frame .slide { display: flex; position: absolute; left: 0; top: 0; transform-origin: top left; box-shadow: none; }
   .bar .count, #prev, #next { display: none; }
 }
 
@@ -299,7 +303,7 @@ const UI = {
 
 function render() {
   document.documentElement.lang = lang;
-  deck.innerHTML = SLIDES.map((s, i) => `<section class="slide ${s.cls || ''}" role="group" aria-roledescription="slide" aria-label="${UI[lang].slide(i + 1, SLIDES.length)}">${s[lang]}</section>`).join('');
+  deck.innerHTML = SLIDES.map((s, i) => `<div class="frame"><section class="slide ${s.cls || ''}" role="group" aria-roledescription="slide" aria-label="${UI[lang].slide(i + 1, SLIDES.length)}">${s[lang]}</section></div>`).join('');
   document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   document.getElementById('prev').setAttribute('aria-label', UI[lang].prev);
   document.getElementById('next').setAttribute('aria-label', UI[lang].next);
@@ -325,10 +329,13 @@ function fit() {
   const narrow = window.matchMedia('(max-width: 760px)').matches;
   document.querySelectorAll('.slide').forEach((s) => {
     if (narrow) {
-      const k = (window.innerWidth - 16) / 1280;
+      const fw = document.documentElement.clientWidth - 16;
+      const k = fw / 1280;
+      s.parentElement.style.height = `${Math.round(720 * k)}px`;
       s.style.transform = `scale(${k})`;
-      s.style.margin = `0 0 ${-720 * (1 - k) + 12}px 8px`;
+      s.style.margin = '';
     } else {
+      s.parentElement.style.height = '';
       const k = Math.min(deck.clientWidth / 1320, deck.clientHeight / 760);
       s.style.transform = `translate(-50%, -50%) scale(${k})`;
       s.style.margin = '';
