@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Renders the pitch illustrations from the real app images with three.js.
+     ?scene=hero  : NISAR above a cloudy MODIS view (12 Jul 2026), the radar view of the same morning seen through a hole.
+     ?scene=stack : the 10 provisional soil-moisture maps (one fixed scale) stacked in time.
+     Screenshots: headless Chrome, see pitch/3d/README.md. -->
+<html><head><meta charset="utf-8"><title>Radar Absheron 3D</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@600&display=swap">
+<style>html,body{margin:0;background:transparent;overflow:hidden}body.dark{background:linear-gradient(135deg,#0b5f66,#15212b)}canvas{display:block}
+.lbl{position:absolute;font:500 22px "IBM Plex Mono",monospace;color:#15212b;white-space:nowrap;transform:translate(0,-50%)}
+.lbl.k{color:#a3237a;font-weight:600}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+const q = new URLSearchParams(location.search), which = q.get('scene') || 'hero';
+if (q.get('bg') === 'dark') document.body.className = 'dark';
+const W = +(q.get('w') || innerWidth), H = +(q.get('h') || innerHeight);
+const r = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+r.setPixelRatio(1); r.setSize(W, H); r.setClearColor(0x000000, 0); r.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(r.domElement);
+const S = new THREE.Scene();
+const load = (u) => new Promise((ok, no) => new THREE.TextureLoader().load(u, (t) => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; ok(t); }, undefined, no));
+let cam;
+const done = () => { r.render(S, cam); document.title = 'ready'; };
+
+if (which === 'hero') {
+  cam = new THREE.PerspectiveCamera(36, W / H, 0.1, 100);
+  cam.position.set(8.5, 12.5, 11.5); cam.lookAt(0.2, 2.9, 0.4);
+  S.add(new THREE.HemisphereLight(0xffffff, 0x334455, 1.6));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(5, 10, 6); S.add(sun);
+  const [radar, optical] = await Promise.all([load('../img/radar-0712.jpg'), load('../img/optical-0712.jpg')]);
+  const GW = 8, GH = GW * 487 / 560;
+  const side = new THREE.MeshStandardMaterial({ color: 0x0e2a33 });
+  const ground = new THREE.Mesh(new THREE.BoxGeometry(GW, 0.18, GH), [side, side, new THREE.MeshStandardMaterial({ map: radar, roughness: .9 }), side, side, side]);
+  S.add(ground);
+  const hc = document.createElement('canvas'); hc.width = hc.height = 512; const g = hc.getContext('2d');
+  g.fillStyle = '#fff'; g.fillRect(0, 0, 512, 512);
+  const HX = 0.58, HY = 0.52, hx = HX * 512, hy = HY * 512, grad = g.createRadialGradient(hx, hy, 70, hx, hy, 118);
+  grad.addColorStop(0, '#000'); grad.addColorStop(1, '#fff'); g.fillStyle = grad; g.beginPath(); g.arc(hx, hy, 120, 0, 7); g.fill();
+  const alpha = new THREE.CanvasTexture(hc);
+  const cloud = new THREE.Mesh(new THREE.PlaneGeometry(GW, GH), new THREE.MeshBasicMaterial({ map: optical, alphaMap: alpha, transparent: true, opacity: .97, side: THREE.DoubleSide, depthWrite: false }));
+  cloud.rotation.x = -Math.PI / 2; cloud.position.y = 2.2; S.add(cloud);
+  const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(GW, GH)), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .6 }));
+  edge.rotation.x = -Math.PI / 2; edge.position.y = 2.2; S.add(edge);
+  const fx = (HX - .5) * GW, fz = (HY - .5) * GH;
+  const sat = new THREE.Group(); const sx = -2.4, sy = 6.3, sz = -1.0; sat.position.set(sx, sy, sz); S.add(sat);
+  const white = new THREE.MeshStandardMaterial({ color: 0xf2f2ee, metalness: .2, roughness: .45 });
+  const gold = new THREE.MeshStandardMaterial({ color: 0xd9a441, metalness: .7, roughness: .35 });
+  const panel = new THREE.MeshStandardMaterial({ color: 0x1b3d78, metalness: .5, roughness: .3, emissive: 0x0a1630 });
+  sat.add(new THREE.Mesh(new THREE.BoxGeometry(.7, .7, .9), gold));
+  const wing = new THREE.Mesh(new THREE.BoxGeometry(2.4, .04, .75), panel); wing.position.set(-1.6, .1, 0); sat.add(wing);
+  const wing2 = wing.clone(); wing2.position.x = 1.6; sat.add(wing2);
+  const boom = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, 1.0), white); boom.position.set(0, -.85, 0); sat.add(boom);
+  const dish = new THREE.Mesh(new THREE.SphereGeometry(1.5, 48, 16, 0, Math.PI * 2, 0, .55), new THREE.MeshStandardMaterial({ color: 0xe9eef0, side: THREE.DoubleSide, roughness: .6, metalness: .3 }));
+  dish.position.set(0, -2.9, 0); dish.rotation.z = -.25; sat.add(dish);
+  const top = new THREE.Vector3(sx, sy - 1.7, sz), foot = new THREE.Vector3(fx, .1, fz);
+  const dir = foot.clone().sub(top).normalize(), len = top.distanceTo(foot), mid = top.clone().add(foot).multiplyScalar(.5);
+  const beam = new THREE.Mesh(new THREE.ConeGeometry(1.25, len, 48, 1, true), new THREE.MeshBasicMaterial({ color: 0x5fe0d0, transparent: true, opacity: .13, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending }));
+  beam.position.copy(mid); beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), dir); S.add(beam);
+  for (let i = 1; i <= 5; i++) {
+    const t = i / 6, ring = new THREE.Mesh(new THREE.TorusGeometry(1.25 * t, .025 + .012 * t, 8, 64), new THREE.MeshBasicMaterial({ color: 0xbffcf4, transparent: true, opacity: .85 }));
+    ring.position.copy(top.clone().lerp(foot, t)); ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir); S.add(ring);
+  }
+  const spot = new THREE.Mesh(new THREE.RingGeometry(1.15, 1.3, 64), new THREE.MeshBasicMaterial({ color: 0xf2a6e3 }));
+  spot.rotation.x = -Math.PI / 2; spot.position.set(fx, .11, fz); S.add(spot);
+  done();
+}
+
+if (which === 'stack') {
+  const dates = ['2026-06-18', '2026-06-30', '2026-07-12', '2026-07-24', '2026-08-17', '2026-08-29', '2026-09-10', '2026-09-22', '2026-10-04', '2026-10-16'];
+  const lab = ['18 Jun', '30 Jun', '12 Jul', '24 Jul', '17 Aug', '29 Aug', '10 Sep', '22 Sep', '4 Oct', '16 Oct'];
+  const asp = W / H, v = 8.2;
+  cam = new THREE.OrthographicCamera(-v * asp, v * asp, v, -v, .1, 100);
+  cam.position.set(10, 5.4, 10); cam.lookAt(1.0, 0.2, 0);
+  cam.updateMatrixWorld();
+  const tex = await Promise.all(dates.map((d) => load(`../../assets/data/sme/sm_${d}.webp`)));
+  const PW = 7.2, PH = PW * 268 / 290, gap = 1.25;
+  tex.forEach((t, i) => {
+    const y = (i - 4.5) * gap;
+    const base = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshBasicMaterial({ color: 0xe9ece7, transparent: true, opacity: .25, side: THREE.DoubleSide, depthWrite: false }));
+    base.rotation.x = -Math.PI / 2; base.position.y = y - .002; base.renderOrder = i * 3; S.add(base);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshBasicMaterial({ map: t, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
+    m.rotation.x = -Math.PI / 2; m.position.y = y; m.renderOrder = i * 3 + 1; S.add(m);
+    const e = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(PW, PH)), new THREE.LineBasicMaterial({ color: i === 8 ? 0xa3237a : 0x0b5f66 }));
+    e.rotation.x = -Math.PI / 2; e.position.y = y; e.renderOrder = i * 3 + 2; S.add(e);
+    const p = new THREE.Vector3(PW / 2, y, -PH / 2).project(cam);
+    const el = document.createElement('div'); el.className = 'lbl' + (i === 8 ? ' k' : '');
+    el.textContent = lab[i] + (i === 8 ? '  after the rain' : '');
+    el.style.left = ((p.x + 1) / 2 * W + 14) + 'px'; el.style.top = ((1 - p.y) / 2 * H) + 'px'; document.body.appendChild(el);
+  });
+  done();
+}
+</script></body></html>

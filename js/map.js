@@ -1,6 +1,6 @@
 /* global L */
 // Leaflet map with a NISAR radar layer, an optional swipe-compare layer, and point inspection.
-import { V } from './data.js?v=20261115k';
+import { V } from './data.js?v=20261115l';
 const GIBS = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best';
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

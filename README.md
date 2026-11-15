@@ -1,5 +1,8 @@
 # Radar Absheron
 
+![Radar Absheron: NISAR radar sees the Kura-Araz lowland through the clouds of 12 July 2026](pitch/img/cover.jpg)
+
+
 **Can a satellite watch Azerbaijan's land change, through clouds and in the dark?** Radar Absheron is an interactive web story map that plays calibrated NASA-ISRO **NISAR** L-band radar over Baku, the Absheron peninsula and the Kura-Araz lowland, and explains in plain language (English and Azerbaijani) what changed, why, and what the data cannot tell you. It works with a keyboard and is built for screen readers (not yet tested with one).
 
 Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the SARs"*, by team **NasAda** (Baku, Azerbaijan).
@@ -111,3 +114,9 @@ The team chose the challenge, the study area (our home region) and the concept, 
 
 ## Team
 NasAda, Baku, Azerbaijan: Ayan Alieva, Natig Mammadov, Türkan Süleymanova, Ali Hashimzada, Suat Hamzali.
+
+## Brand and pitch media
+- Logo: `assets/brand/logo-mark.svg` (NISAR waves through a cloud to the Absheron peninsula; pink dot = the echo). Colours and type: IBM Plex Sans/Mono, teal #0B5F66, ink #15212B.
+- 3D illustrations (`pitch/img/3d-hero.png`, `pitch/img/3d-stack.png`) are drawn with three.js from the app's real NASA images: `pitch/3d/scene.html`.
+- 6-second intro video (`pitch/intro/intro.mp4`) made with Remotion: `pitch/intro/`.
+- Image credits: NISAR L3 SME2 (NASA/JPL, doi:10.5067/NIL3SME2-P1); MODIS Terra true colour via NASA GIBS (https://gibs.earthdata.nasa.gov). The satellite in the 3D picture is a simplified model, not to scale.
