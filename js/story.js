@@ -176,6 +176,9 @@ export const STEPS = [
       simple: `Calm water is like a mirror: the wave bounces away and the sea looks dark. Wind makes small ripples that send part of the wave back, so the sea looks brighter. So the sea's brightness tells us about the wind, not about the water depth.`,
       body: `<p>Calm water is a mirror: it reflects the radar wave away and looks dark. Wind raises ripples a few centimetres long, which send part of the wave back, so the sea brightens.</p>
 <p>That is why the Caspian's HH echo changes from pass to pass (median between <strong>−16.8 and −15.1 dB</strong>): NISAR records the <strong>wind on the sea surface</strong> at 05:47, not the depth or the water level.</p>
+<div class="callout"><p><strong>We tested it.</strong> On windier mornings the sea was brighter: across all 15 passes, sea HH and the wind at the pass time (NASA POWER, hourly) go together with r = 0.63 (permutation p ≈ 0.01). The link holds when we remove the noise-floor drift (r = 0.67) and without the stormy 4 October (r = 0.56, p ≈ 0.04). The effect is modest: about +0.12 dB per m/s, roughly 1 dB between calm and 10 m/s.</p></div>
+<figure class="step-fig"><img src="assets/img/wind-vs-sea.svg?v=20261115i" alt="Scatter plot of sea radar brightness against wind speed for 15 dates: brighter on windier mornings." width="440" height="230"><figcaption>Each dot is one NISAR pass. Filled: provisional (summer–autumn 2026); hollow: beta (winter). Dashed line: linear fit.</figcaption></figure>
+<p class="source">Wind: NASA POWER hourly WS10M (MERRA-2/GEOS-IT model, ~50 km grid) at 40.15° N, 50.30° E, interpolated to 01:47 UTC. A modelled wind at one point is compared with the median of the whole sea area, and wind direction is not used, so this is a first check, not a calibration.</p>
 <div class="callout limit"><p>Over the sea, HV (about −20 dB) sits on NISAR's own noise floor (also about −20 dB), so the green stripes there are instrument noise along the swath, not sea features. The slow fall of the Caspian Sea level cannot be seen in one season; a multi-year NISAR shoreline record could show it.</p></div>${SRC_NISAR}`,
     },
     az: {
@@ -183,6 +186,9 @@ export const STEPS = [
       simple: `Sakit su güzgü kimidir: dalğa kənara əks olunur və dəniz tünd görünür. Külək kiçik ləpələr yaradır, onlar dalğanın bir hissəsini geri qaytarır və dəniz parlaq görünür. Yəni dənizin parlaqlığı suyun dərinliyindən yox, küləkdən xəbər verir.`,
       body: `<p>Sakit su güzgü kimidir: radar dalğasını kənara əks etdirir və tünd görünür. Külək bir neçə santimetrlik ləpələr yaradır, onlar dalğanın bir hissəsini geri qaytarır və dəniz parlaqlaşır.</p>
 <p>Ona görə Xəzərin HH əks-sədası keçiddən keçidə dəyişir (median <strong>−16,8 ilə −15,1 dB</strong> arası): NISAR dərinliyi və ya su səviyyəsini yox, saat 05:47-də <strong>dəniz səthindəki küləyi</strong> qeydə alır.</p>
+<div class="callout"><p><strong>Biz bunu yoxladıq.</strong> Küləkli səhərlərdə dəniz daha parlaq idi: 15 keçidin hamısında dənizin HH əks-sədası ilə keçid anındakı külək (NASA POWER, saatlıq) birlikdə dəyişir, r = 0,63 (permutasiya p ≈ 0,01). Küy səviyyəsinin dəyişməsini çıxanda (r = 0,67) və fırtınalı 4 oktyabr olmadan da (r = 0,56, p ≈ 0,04) əlaqə qalır. Təsir orta güclüdür: hər m/s üçün təxminən +0,12 dB, sakit hava ilə 10 m/s arasında təxminən 1 dB.</p></div>
+<figure class="step-fig"><img src="assets/img/wind-vs-sea.svg?v=20261115i" alt="15 tarix üçün dəniz radar parlaqlığının külək sürətinə qarşı nöqtə qrafiki: küləkli səhərlərdə daha parlaq." width="440" height="230"><figcaption>Hər nöqtə bir NISAR keçididir. Dolu: ilkin (yay–payız 2026); boş: beta (qış). Qırıq xətt: xətti uyğunlaşma.</figcaption></figure>
+<p class="source">Külək: NASA POWER saatlıq WS10M (MERRA-2/GEOS-IT modeli, ~50 km şəbəkə), 40,15° şm. e., 50,30° ş. u., 01:47 UTC-yə interpolyasiya. Bir nöqtədəki model küləyi bütün dəniz sahəsinin medianı ilə müqayisə olunur və küləyin istiqaməti nəzərə alınmır, ona görə bu, kalibrləmə yox, ilk yoxlamadır.</p>
 <div class="callout limit"><p>Dənizdə HV (təxminən −20 dB) NISAR-ın öz küy səviyyəsindədir (o da təxminən −20 dB), ona görə oradakı yaşıl zolaqlar dəniz obyekti yox, cihaz küyüdür. Xəzər səviyyəsinin yavaş enməsini bir mövsümdə görmək olmur; sahil xəttinin çoxillik NISAR qeydi bunu göstərə bilər.</p></div>${SRC_NISAR}`,
     },
   },
@@ -221,7 +227,7 @@ export const STEPS = [
       body: `<div class="summary-card"><h3>What you saw</h3><ul>
 <li>NISAR imaged Azerbaijan through clouds and before sunrise, about every 12 days.</li>
 <li>Its two echoes separate cities (HH) from plants (HV).</li>
-<li>At the next pass after the 3 October rain the land rose 0.6–1.3 dB more than stable controls (city, oil fields, sea); the Caspian changes with the wind (our explanation, not yet tested against wind data); over the summer Baku changed least; at 200 m–1 km the farmland changed far less than we expected.</li></ul></div>
+<li>At the next pass after the 3 October rain the land rose 0.6–1.3 dB more than stable controls (city, oil fields, sea); the Caspian brightens on windier mornings (tested against NASA POWER wind: r = 0.63); over the summer Baku changed least; at 200 m–1 km the farmland changed far less than we expected.</li></ul></div>
 <div class="summary-card"><h3>Why it matters</h3>
 <p>Farming and water use in the Kura-Araz lowland matter for food and for the shrinking Kura river and Caspian. Free, calibrated radar every 12 days, in any weather, lets farmers, water managers and students follow their own fields and canals.</p></div>
 <div class="summary-card"><h3>What NISAR could do next here</h3><ul>
@@ -244,7 +250,7 @@ export const STEPS = [
       body: `<div class="summary-card"><h3>Nə gördünüz</h3><ul>
 <li>NISAR Azərbaycanı buludların arxasından və gün doğmazdan əvvəl, təxminən hər 12 gündən bir çəkib.</li>
 <li>Onun iki əks-sədası şəhərləri (HH) bitkilərdən (HV) ayırır.</li>
-<li>3 oktyabr yağışından sonrakı keçiddə quru sabit nəzarətlərdən (şəhər, neft yataqları, dəniz) 0,6–1,3 dB çox qalxdı; Xəzər küləklə dəyişir (bizim izahımızdır, külək məlumatı ilə hələ yoxlanmayıb); yay ərzində Bakı ən az dəyişdi; 200 m–1 km miqyasında əkin sahələri gözlədiyimizdən xeyli az dəyişdi.</li></ul></div>
+<li>3 oktyabr yağışından sonrakı keçiddə quru sabit nəzarətlərdən (şəhər, neft yataqları, dəniz) 0,6–1,3 dB çox qalxdı; Xəzər küləkli səhərlərdə parlaqlaşır (NASA POWER küləyi ilə yoxlanıb: r = 0,63); yay ərzində Bakı ən az dəyişdi; 200 m–1 km miqyasında əkin sahələri gözlədiyimizdən xeyli az dəyişdi.</li></ul></div>
 <div class="summary-card"><h3>Niyə vacibdir</h3>
 <p>Kür-Araz ovalığında əkinçilik və su istifadəsi həm ərzaq, həm də dayazlaşan Kür çayı və Xəzər üçün önəmlidir. Hər 12 gündən bir, istənilən havada pulsuz, kalibrlənmiş radar fermerlərə, su idarəçilərinə və tələbələrə öz sahələrini və kanallarını izləməyə imkan verir.</p></div>
 <div class="summary-card"><h3>NISAR burada daha nə edə bilər</h3><ul>

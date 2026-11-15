@@ -24,6 +24,7 @@ Downloaded from the <a href="https://search.asf.alaska.edu/#/?dataset=NISAR" tar
 <h3>2. Context data</h3>
 <ul>
 <li><strong>NASA POWER</strong> daily precipitation (PRECTOTCORR), 1 Nov 2025 – 31 Oct 2026, for two points: Baku area (40.40° N, 49.85° E) and the Kura-Araz lowland (39.95° N, 48.45° E). A MERRA-2-based reanalysis on a ~50 km grid: an area estimate, not a rain gauge. <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">power.larc.nasa.gov</a></li>
+<li><strong>NASA POWER hourly wind</strong> (WS10M) at 40.15° N, 50.30° E, interpolated to each pass time (01:47 UTC), to test whether sea brightness follows the wind (tools/wind_test.py: r = 0.63 over 15 passes, permutation p ≈ 0.01; partial r = 0.67 after removing the noise-floor drift).</li>
 <li><strong>NASA Terra/MODIS</strong> Corrected Reflectance (True Colour) for 12 Jul and 16 Oct 2026, and MODIS Terra NDVI (8-day) for the same dates, via <a href="https://www.earthdata.nasa.gov/data/tools/gibs" target="_blank" rel="noopener">NASA GIBS</a> WMS.</li>
 <li>Base map: NASA Blue Marble shaded relief and reference labels (OpenStreetMap-derived) via NASA GIBS.</li>
 </ul>

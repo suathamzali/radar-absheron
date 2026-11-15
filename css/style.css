@@ -91,6 +91,9 @@ button, input, select { font: inherit; color: inherit; }
   border-radius: var(--radius); padding: 10px 12px; margin: 0 0 1em;
 }
 .prose code { overflow-wrap: anywhere; }
+.step-fig { margin: 0 0 12px; }
+.step-fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.step-fig figcaption { font-size: var(--s-1); color: var(--ink-2); margin-top: 4px; }
 .prose li { margin-bottom: .35em; }
 .prose h3 { margin-top: 1.2em; }
 .hint { color: var(--ink-2); font-size: var(--s-1); }

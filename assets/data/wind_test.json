@@ -1,0 +1,125 @@
+{
+ "rows": [
+  {
+   "date": "2025-11-26",
+   "level": "BETA",
+   "wind_ms": 7.8,
+   "sea_hh_db": -16.03,
+   "noise_hv_db": -20.68
+  },
+  {
+   "date": "2025-12-08",
+   "level": "BETA",
+   "wind_ms": 8.54,
+   "sea_hh_db": -15.82,
+   "noise_hv_db": -20.46
+  },
+  {
+   "date": "2025-12-20",
+   "level": "BETA",
+   "wind_ms": 5.01,
+   "sea_hh_db": -16.08,
+   "noise_hv_db": -20.62
+  },
+  {
+   "date": "2026-01-01",
+   "level": "BETA",
+   "wind_ms": 5.1,
+   "sea_hh_db": -15.45,
+   "noise_hv_db": -19.91
+  },
+  {
+   "date": "2026-01-13",
+   "level": "BETA",
+   "wind_ms": 4.34,
+   "sea_hh_db": -16.21,
+   "noise_hv_db": -20.46
+  },
+  {
+   "date": "2026-06-18",
+   "level": "PROVISIONAL",
+   "wind_ms": 2.31,
+   "sea_hh_db": -16.78,
+   "noise_hv_db": -20.22
+  },
+  {
+   "date": "2026-06-30",
+   "level": "PROVISIONAL",
+   "wind_ms": 1.9,
+   "sea_hh_db": -16.02,
+   "noise_hv_db": -20.12
+  },
+  {
+   "date": "2026-07-12",
+   "level": "PROVISIONAL",
+   "wind_ms": 6.02,
+   "sea_hh_db": -15.63,
+   "noise_hv_db": -20.35
+  },
+  {
+   "date": "2026-07-24",
+   "level": "PROVISIONAL",
+   "wind_ms": 6.79,
+   "sea_hh_db": -16.21,
+   "noise_hv_db": -20.38
+  },
+  {
+   "date": "2026-08-17",
+   "level": "PROVISIONAL",
+   "wind_ms": 9.32,
+   "sea_hh_db": -15.66,
+   "noise_hv_db": -19.89
+  },
+  {
+   "date": "2026-08-29",
+   "level": "PROVISIONAL",
+   "wind_ms": 10.22,
+   "sea_hh_db": -15.33,
+   "noise_hv_db": -19.64
+  },
+  {
+   "date": "2026-09-10",
+   "level": "PROVISIONAL",
+   "wind_ms": 4.78,
+   "sea_hh_db": -15.7,
+   "noise_hv_db": -19.53
+  },
+  {
+   "date": "2026-09-22",
+   "level": "PROVISIONAL",
+   "wind_ms": 2.69,
+   "sea_hh_db": -16.78,
+   "noise_hv_db": -19.49
+  },
+  {
+   "date": "2026-10-04",
+   "level": "PROVISIONAL",
+   "wind_ms": 10.1,
+   "sea_hh_db": -15.12,
+   "noise_hv_db": -19.15
+  },
+  {
+   "date": "2026-10-16",
+   "level": "PROVISIONAL",
+   "wind_ms": 5.12,
+   "sea_hh_db": -15.2,
+   "noise_hv_db": -18.98
+  }
+ ],
+ "stats": {
+  "n": 15,
+  "r": 0.63,
+  "p": 0.011,
+  "r_provisional": 0.71,
+  "p_provisional": 0.025,
+  "partial_r_given_noise": 0.67,
+  "partial_p": 0.003,
+  "r_without_4_oct": 0.56,
+  "p_without_4_oct": 0.042,
+  "slope_db_per_ms": 0.12,
+  "intercept_db": -16.57,
+  "wind_min": 1.9,
+  "wind_max": 10.22,
+  "wind_source": "NASA POWER hourly WS10M (MERRA-2/GEOS-IT), 40.15N 50.30E, interpolated to pass time"
+ }
+}
