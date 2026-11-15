@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar Absheron — pitch (7 slides)</title>
+<meta name="description" content="Seven-slide pitch for Radar Absheron, NASA Space Apps 2026, team NasAda, Baku.">
+<link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #e9ece7; --paper: #ffffff; --ink: #15212b; --ink-2: #44515c; --line: #cfd5d2;
+  --accent: #0b5f66; --soft: #eef6f5; --hh: #a3237a; --hv: #1d7a3c; --warn: #8a4b00;
+  --font: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.5 var(--font); }
+:focus-visible { outline: 3px solid #c25700; outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; background: rgba(255,255,255,.95); border-top: 1px solid var(--line); }
+.bar button, .bar a { min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--ink);
+  background: #fff; font: 500 15px var(--font); color: var(--ink); cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; }
+.bar button[disabled] { opacity: .4; cursor: default; }
+.bar .primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.bar .count { font: 500 15px var(--mono); margin: 0 auto; }
+.bar .lang { display: flex; gap: 4px; }
+.bar .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+.deck { position: fixed; inset: 0 0 61px 0; overflow: hidden; }
+.slide { width: 1280px; height: 720px; background: var(--paper); position: absolute; left: 50%; top: 50%;
+  transform-origin: center center; padding: 52px 64px 40px; display: none; flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0,0,0,.18); overflow: hidden; }
+.slide.on { display: flex; }
+.kicker { font: 500 15px/1.2 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 10px; }
+.slide h1 { font-size: 64px; line-height: 1.02; margin: 0 0 16px; letter-spacing: -.01em; }
+.slide h2 { font-size: 36px; line-height: 1.14; margin: 0 0 22px; letter-spacing: -.005em; }
+.slide p, .slide li { font-size: 21px; line-height: 1.42; margin: 0 0 12px; }
+.slide ul, .slide ol { margin: 0; padding-left: 1.1em; }
+.slide li { margin-bottom: 10px; }
+.slide .small { font-size: 16px; color: var(--ink-2); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; min-height: 0; align-items: center; }
+.cols-img { grid-template-columns: .8fr 1.2fr; }
+.cols-60 { grid-template-columns: 1.15fr .85fr; }
+.foot { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 24px;
+  font: 400 13px/1.4 var(--mono); color: var(--ink-2); }
+.crit { align-self: flex-start; font: 600 14px/1 var(--mono); color: #fff; background: var(--accent); padding: 7px 11px;
+  border-radius: 999px; margin-bottom: 14px; letter-spacing: .03em; }
+figure { margin: 0; }
+figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.big { font: 600 50px/1 var(--font); color: var(--accent); }
+.big small { font-size: 22px; color: var(--ink-2); font-weight: 500; }
+.stat { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: var(--soft); }
+.stat p { font-size: 18px; margin: 6px 0 0; }
+.stats { display: grid; gap: 12px; align-content: start; }
+.pipe { font: 400 15.5px/1.55 var(--mono); background: #f3f5f2; border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 18px; white-space: pre-wrap; margin: 0; align-self: start; }
+table.users { border-collapse: collapse; width: 100%; font-size: 18px; align-self: start; }
+table.users th, table.users td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.users th { font: 600 14px var(--mono); color: var(--ink-2); text-transform: uppercase; letter-spacing: .05em; }
+table.users td:first-child { font-weight: 600; width: 34%; }
+.steps { counter-reset: s; list-style: none; padding: 0 !important; }
+.steps li { counter-increment: s; position: relative; padding-left: 44px; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: #fff; display: grid; place-items: center; font: 600 16px var(--mono); }
+.title-slide { background: linear-gradient(135deg, #0b5f66 0%, #15212b 100%); color: #fff; }
+.title-slide .kicker { color: #9fe0d6; }
+.title-slide p { color: #e3ecea; }
+.title-slide .foot { border-color: rgba(255,255,255,.25); color: #cfe2df; }
+.qr { width: 200px; height: 200px; background: #fff; border-radius: 12px; padding: 10px; }
+.qr img { width: 100%; height: 100%; display: block; }
+.url { font: 500 19px var(--mono); color: #fff; text-align: center; }
+
+body.shot { background: #fff; overflow: hidden; }
+body.shot .bar, body.shot #live { display: none; }
+body.shot .deck { inset: 0; }
+body.shot .slide { left: 0; top: 0; transform: none !important; box-shadow: none; }
+
+@media (max-width: 760px) {
+  .deck { position: static; overflow: visible; padding: 10px 0 80px; }
+  .slide { display: flex; position: relative; left: auto; top: auto; transform-origin: top left; }
+  .bar .count, #prev, #next { display: none; }
+}
+
+@page { size: 1280px 720px; margin: 0; }
+@media print {
+  html, body { height: auto; background: #fff; }
+  .bar { display: none; }
+  .deck { position: static; overflow: visible; }
+  .slide { display: grid !important; grid-template-rows: auto auto auto 1fr auto; align-content: start;
+    position: relative; left: 0; top: 0; transform: none !important; margin: 0 !important;
+    box-shadow: none; break-inside: avoid; height: 718px !important; max-height: 718px; }
+  .slide + .slide { break-before: page; page-break-before: always; }
+  .slide .foot { align-self: end; }
+  .title-slide { grid-template-rows: auto 1fr auto; }
+  #live { display: none; }
+  .slide, .stat, .crit, .steps li::before, .pipe, .qr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<main class="deck" id="deck" aria-label="Pitch slides"></main>
+<p id="live" class="sr-only" aria-live="polite"></p>
+<nav class="bar" aria-label="Slide controls">
+  <button type="button" id="prev" aria-label="Previous slide">←</button>
+  <button type="button" id="next" class="primary" aria-label="Next slide">→</button>
+  <span class="count" id="count" aria-hidden="true"></span>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+    <button type="button" data-lang="az" aria-pressed="false" lang="az">AZ</button>
+  </div>
+  <a id="pdf" href="radar-absheron-pitch-en.pdf" download>PDF</a>
+  <a href="../" id="appLink">App</a>
+</nav>
+
+<script>
+const LIVE = 'suathamzali.github.io/radar-absheron';
+const REPO = 'github.com/suathamzali/radar-absheron';
+const T = (en, az) => ({ en, az });
+const SLIDES = [
+  { cls: 'title-slide', ...T(
+`<p class="kicker">NASA Space Apps Challenge 2026 · Dancing with the SARs · Baku</p>
+<div class="cols cols-60"><div style="align-self:center">
+<h1>Radar Absheron</h1>
+<p style="font-size:29px;line-height:1.3;margin-bottom:24px">NISAR radar, explained for everyone in Azerbaijan: through clouds, in the dark, every 12 days.</p>
+<p>Team <strong>NasAda</strong>: Ayan Alieva · Natig Mammadov · Türkan Süleymanova · Ali Hashimzada · Suat Hamzali</p>
+</div><div style="display:grid;place-items:center;gap:14px;align-content:center">
+<div class="qr"><img src="img/qr.svg" alt="QR code to the live app"></div>
+<p class="url">${LIVE}</p></div></div>
+<div class="foot"><span>Open code: ${REPO}</span><span>Data: NASA-ISRO NISAR · NASA MODIS · NASA POWER</span></div>`,
+`<p class="kicker">NASA Space Apps Challenge 2026 · Dancing with the SARs · Bakı</p>
+<div class="cols cols-60"><div style="align-self:center">
+<h1>Radar Absheron</h1>
+<p style="font-size:29px;line-height:1.3;margin-bottom:24px">NISAR radarı Azərbaycanda hər kəs üçün izah olunur: buludların arxasından, qaranlıqda, hər 12 gündən bir.</p>
+<p>Komanda <strong>NasAda</strong>: Ayan Alieva · Natig Mammadov · Türkan Süleymanova · Ali Hashimzada · Suat Hamzali</p>
+</div><div style="display:grid;place-items:center;gap:14px;align-content:center">
+<div class="qr"><img src="img/qr.svg" alt="Canlı tətbiqə QR kod"></div>
+<p class="url">${LIVE}</p></div></div>
+<div class="foot"><span>Açıq kod: ${REPO}</span><span>Məlumat: NASA-ISRO NISAR · NASA MODIS · NASA POWER</span></div>`) },
+
+  T(`<span class="crit">Relevance of the problem</span>
+<h2>Water decides farming in the Kura-Araz lowland, and clouds hide it from ordinary satellites</h2>
+<div class="cols cols-img"><ul>
+<li>Azerbaijan's largest irrigated farmland lies in a semi-arid lowland: crops depend on canals and rain.</li>
+<li>Optical satellites need sunlight and a clear sky. On 12 July 2026 clouds covered this area.</li>
+<li>Radar sees through clouds, but its data (σ⁰, dB, HH/HV) is unreadable for non-experts, and nothing explains it in Azerbaijani.</li></ul>
+<figure><div class="pair"><img src="img/optical-0712.jpg" alt="MODIS photo of the Kura lowland on 12 July 2026, mostly covered by clouds"><img src="img/radar-0712.jpg" alt="NISAR radar image of the same area the same morning, showing the Kura river and fields"></div>
+<figcaption>Same area, 12 July 2026 (48.3–49.4° E, 39.4–40.1° N). Left: NASA MODIS, clouds. Right: NISAR radar, the Kura river and fields.</figcaption></figure></div>
+<div class="foot"><span>Sources: NASA Terra/MODIS via GIBS · NISAR L3 SME2, doi:10.5067/NIL3SME2-P1</span><span>2 / 7</span></div>`,
+`<span class="crit">Problemin aktuallığı</span>
+<h2>Kür-Araz ovalığında əkinçiliyi su həll edir, buludlar isə onu adi peyklərdən gizlədir</h2>
+<div class="cols cols-img"><ul>
+<li>Azərbaycanın ən böyük suvarılan əkin sahələri yarımquraq ovalıqdadır: əkinlər kanallardan və yağışdan asılıdır.</li>
+<li>Optik peyklərə günəş işığı və açıq səma lazımdır. 12 iyul 2026-da bu ərazini buludlar örtmüşdü.</li>
+<li>Radar buludların arxasını görür, amma onun məlumatı (σ⁰, dB, HH/HV) mütəxəssis olmayan üçün anlaşılmazdır və Azərbaycan dilində izah edən heç nə yoxdur.</li></ul>
+<figure><div class="pair"><img src="img/optical-0712.jpg" alt="12 iyul 2026-da Kür ovalığının MODIS şəkli, çox hissəsi bulud altında"><img src="img/radar-0712.jpg" alt="Həmin səhər eyni ərazinin NISAR radar şəkli, Kür çayı və sahələr görünür"></div>
+<figcaption>Eyni ərazi, 12 iyul 2026 (48,3–49,4° ş. u., 39,4–40,1° şm. e.). Solda: NASA MODIS, buludlar. Sağda: NISAR radarı, Kür çayı və sahələr.</figcaption></figure></div>
+<div class="foot"><span>Mənbələr: NASA Terra/MODIS (GIBS) · NISAR L3 SME2, doi:10.5067/NIL3SME2-P1</span><span>2 / 7</span></div>`),
+
+  T(`<span class="crit">Presentation · the product</span>
+<h2>A story map anyone can read, on a phone, in Azerbaijani or English</h2>
+<div class="cols cols-60"><figure><img src="img/app-clouds.jpg" alt="Screenshot of the Radar Absheron app: story panel on the left, swipe map on the right"><figcaption>Live app: ${LIVE}</figcaption></figure>
+<ul>
+<li><strong>9-step story</strong> that plays once and explains: clouds, colours, the rain, the farms, Baku, the Caspian, a change map, a summary.</li>
+<li>Every step opens with <strong>"In short"</strong> in everyday words; the science is one tap away.</li>
+<li><strong>Explore:</strong> 15 radar dates, swipe against optical photos, tap any place for its history.</li>
+<li>Full-screen map; keyboard and screen-reader friendly.</li></ul></div>
+<div class="foot"><span>Demo: 30-second video + live app</span><span>3 / 7</span></div>`,
+`<span class="crit">Təqdimat · məhsul</span>
+<h2>Hər kəsin oxuya biləcəyi hekayə-xəritə: telefonda, Azərbaycan və ya ingilis dilində</h2>
+<div class="cols cols-60"><figure><img src="img/app-clouds.jpg" alt="Radar Absheron tətbiqinin ekran görüntüsü: solda hekayə paneli, sağda sürüşdürmə xəritəsi"><figcaption>Canlı tətbiq: ${LIVE}</figcaption></figure>
+<ul>
+<li>Bir dəfə oynayıb izah edən <strong>9 addımlıq hekayə</strong>: buludlar, rənglər, yağış, sahələr, Bakı, Xəzər, dəyişiklik xəritəsi, yekun.</li>
+<li>Hər addım gündəlik dildə <strong>"Qısaca"</strong> ilə başlayır; elmi izah bir toxunuşla açılır.</li>
+<li><strong>Kəşf et:</strong> 15 radar tarixi, optik şəkillə müqayisə, istənilən yerə toxunub tarixçəsini görmək.</li>
+<li>Tam ekran xəritə; klaviatura və ekran oxuyucusu dəstəyi.</li></ul></div>
+<div class="foot"><span>Demo: 30 saniyəlik video + canlı tətbiq</span><span>3 / 7</span></div>`),
+
+  T(`<span class="crit">What the radar found</span>
+<h2>The land felt the rain of 3 October; the sea follows the wind</h2>
+<div class="cols cols-60"><figure><div class="pair"><img src="img/sm-before.jpg" alt="NISAR soil moisture map on 22 September 2026, mostly brown, dry"><img src="img/sm-after.jpg" alt="NISAR soil moisture map on 4 October 2026, mostly blue, wetter"></div>
+<figcaption>NISAR soil moisture: 22 September (left), 4 October (right). Blue = wetter.</figcaption></figure>
+<div class="stats">
+<div class="stat"><div class="big">0.18 → 0.23 <small>m³/m³</small></div><p>Median soil moisture across the land, after about 12–18 mm of rain (NASA POWER).</p></div>
+<div class="stat"><div class="big">+1.3 <small>dB</small></div><p>The land echo rose this much more than the stable city (urban control).</p></div>
+<div class="stat"><p><strong>Honest result:</strong> at 200 m the Kura farmland changed little; single fields need NISAR's 10–20 m product.</p></div></div></div>
+<div class="foot"><span>NISAR SME2 PROVISIONAL (not yet validated) · NASA POWER reanalysis</span><span>4 / 7</span></div>`,
+`<span class="crit">Radar nə tapdı</span>
+<h2>Torpaq 3 oktyabr yağışını hiss etdi; dəniz isə küləyə tabedir</h2>
+<div class="cols cols-60"><figure><div class="pair"><img src="img/sm-before.jpg" alt="22 sentyabr 2026, NISAR torpaq nəmliyi xəritəsi, əsasən qəhvəyi, quru"><img src="img/sm-after.jpg" alt="4 oktyabr 2026, NISAR torpaq nəmliyi xəritəsi, əsasən göy, daha nəm"></div>
+<figcaption>NISAR torpaq nəmliyi: 22 sentyabr (solda), 4 oktyabr (sağda). Göy = daha nəm.</figcaption></figure>
+<div class="stats">
+<div class="stat"><div class="big">0,18 → 0,23 <small>m³/m³</small></div><p>Quru üzrə median torpaq nəmliyi, təxminən 12–18 mm yağışdan sonra (NASA POWER).</p></div>
+<div class="stat"><div class="big">+1,3 <small>dB</small></div><p>Quru əks-sədası sabit şəhərdən bu qədər çox artdı (şəhər nəzarəti).</p></div>
+<div class="stat"><p><strong>Dürüst nəticə:</strong> 200 m-də Kür sahələri az dəyişdi; ayrı sahələr üçün NISAR-ın 10–20 m-lik məhsulu lazımdır.</p></div></div></div>
+<div class="foot"><span>NISAR SME2 İLKİN (hələ təsdiqlənməyib) · NASA POWER reanalizi</span><span>4 / 7</span></div>`),
+
+  T(`<span class="crit">Innovation</span>
+<h2>Radar made readable, without losing the science</h2>
+<div class="cols"><ul>
+<li><strong>A plain-language NISAR tool in Azerbaijani:</strong> "In short" on every step and tap-to-explain words (dB, HH, HV, σ⁰…).</li>
+<li><strong>Legend first, then data:</strong> people learn the colours before they read the map.</li>
+<li><strong>The "dance" story:</strong> each place has its rhythm: the sea with the wind, the land with the rain, the city standing still.</li></ul>
+<ul>
+<li><strong>Honesty built in:</strong> calibrated dB on one fixed scale, an urban control, noise-floor warnings, "provisional" labels, and a negative result shown, not hidden.</li>
+<li><strong>Accessible:</strong> keyboard, screen readers, reduced motion, phone-first, two languages.</li></ul></div>
+<div class="foot"><span>Open source · ${REPO}</span><span>5 / 7</span></div>`,
+`<span class="crit">İnnovasiya</span>
+<h2>Elmi itirmədən oxunaqlı radar</h2>
+<div class="cols"><ul>
+<li><strong>Azərbaycan dilində sadə dilli NISAR aləti:</strong> hər addımda "Qısaca" və toxunanda izah olunan sözlər (dB, HH, HV, σ⁰…).</li>
+<li><strong>Əvvəl rəng açarı, sonra məlumat:</strong> insanlar xəritəni oxumazdan əvvəl rəngləri öyrənir.</li>
+<li><strong>"Rəqs" hekayəsi:</strong> hər yerin öz ritmi var: dəniz küləklə, torpaq yağışla, şəhər isə yerində durur.</li></ul>
+<ul>
+<li><strong>Daxili dürüstlük:</strong> bir sabit şkalada kalibrlənmiş dB, şəhər nəzarəti, küy səviyyəsi xəbərdarlıqları, "ilkin" nişanları; mənfi nəticə gizlədilmir, göstərilir.</li>
+<li><strong>Əlçatan:</strong> klaviatura, ekran oxuyucusu, azaldılmış hərəkət, telefon əsaslı, iki dil.</li></ul></div>
+<div class="foot"><span>Açıq mənbə · ${REPO}</span><span>5 / 7</span></div>`),
+
+  T(`<span class="crit">Technical readiness</span>
+<h2>Live today, built on real calibrated NISAR data</h2>
+<div class="cols cols-60"><pre class="pipe">ASF DAAC: NISAR L3 SME2 (15 passes, Nov 2025 – Oct 2026)
+  → Python: h5py, numpy, Pillow
+     · σ⁰ HH/HV → dB on one fixed scale for every date
+     · soil moisture, quality flags, noise floor, water mask
+     · web images + a ~1 km data cube
+  → Browser: Leaflet 1.9.4, plain JavaScript
+     · story, swipe, time-lapse, change map, charts
+  → GitHub Pages (static, free)</pre>
+<ul>
+<li><strong>Live:</strong> desktop and phone, nothing to install.</li>
+<li><strong>Data:</strong> NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1), NASA POWER rain, NASA MODIS via GIBS.</li>
+<li><strong>Tested:</strong> every view at 1280, 375 and 320 px in both languages, keyboard paths, no errors.</li>
+<li><strong>Repeatable:</strong> two scripts rebuild everything from the archive.</li></ul></div>
+<div class="foot"><span>Still to do: tests on real phones and with screen-reader users</span><span>6 / 7</span></div>`,
+`<span class="crit">Texniki hazırlıq</span>
+<h2>Bu gün canlıdır, real kalibrlənmiş NISAR məlumatı üzərində qurulub</h2>
+<div class="cols cols-60"><pre class="pipe">ASF DAAC: NISAR L3 SME2 (15 keçid, noy 2025 – okt 2026)
+  → Python: h5py, numpy, Pillow
+     · σ⁰ HH/HV → dB, bütün tarixlər üçün bir sabit şkala
+     · torpaq nəmliyi, keyfiyyət bayraqları, küy səviyyəsi, su maskası
+     · veb şəkillər + ~1 km məlumat kubu
+  → Brauzer: Leaflet 1.9.4, sadə JavaScript
+     · hekayə, sürüşdürmə, animasiya, dəyişiklik xəritəsi, qrafiklər
+  → GitHub Pages (statik, pulsuz)</pre>
+<ul>
+<li><strong>Canlı:</strong> kompüterdə və telefonda, quraşdırma lazım deyil.</li>
+<li><strong>Məlumat:</strong> NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1), NASA POWER yağışı, NASA MODIS (GIBS).</li>
+<li><strong>Yoxlanıb:</strong> hər görünüş 1280, 375 və 320 px-də, iki dildə, klaviatura yolları, xəta yoxdur.</li>
+<li><strong>Təkrarlana bilən:</strong> iki skript hər şeyi arxivdən yenidən qurur.</li></ul></div>
+<div class="foot"><span>Hələ qalıb: real telefonlarda və ekran oxuyucusu istifadəçiləri ilə test</span><span>6 / 7</span></div>`),
+
+  T(`<span class="crit">Market potential · scalability</span>
+<h2>Free for users, near-zero cost to run, ready for any NISAR frame</h2>
+<div class="cols"><table class="users"><thead><tr><th>Who</th><th>What they get</th></tr></thead><tbody>
+<tr><td>Farmers, agronomists</td><td>How wet their area is after rain or irrigation, even under clouds</td></tr>
+<tr><td>Water managers</td><td>Every 12 days: where water reached the land</td></tr>
+<tr><td>Insurers, lenders</td><td>Independent evidence of rain, floods, field activity</td></tr>
+<tr><td>Cities, planners</td><td>A stable radar record for ground-motion checks</td></tr>
+<tr><td>Schools, universities</td><td>Radar taught in Azerbaijani with local data</td></tr></tbody></table>
+<div><p><strong>Cost:</strong> free NASA data, free static hosting, about 1 GB per frame per season on one laptop.</p>
+<ol class="steps"><li>Automatic refresh after every 12-day pass.</li>
+<li>All of Azerbaijan, then irrigated basins of the South Caucasus and Central Asia.</li>
+<li>Field-level crop and flood maps (10–20 m GCOV); a pilot with a cooperative or university.</li></ol>
+<p class="small">Model (plan): the tool stays free and open; tailored reports for agencies and insurers fund it.</p></div></div>
+<div class="foot"><span>Radar Absheron · team NasAda · ${LIVE}</span><span>7 / 7</span></div>`,
+`<span class="crit">Bazar potensialı · miqyaslanma</span>
+<h2>İstifadəçi üçün pulsuz, işlətməsi demək olar ki, xərcsiz, istənilən NISAR kadrına hazır</h2>
+<div class="cols"><table class="users"><thead><tr><th>Kim</th><th>Nə əldə edir</th></tr></thead><tbody>
+<tr><td>Fermerlər, aqronomlar</td><td>Yağış və ya suvarmadan sonra ərazinin nəmliyi, hətta bulud altında</td></tr>
+<tr><td>Su idarəçiləri</td><td>Hər 12 gündən bir: su torpağa harada çatıb</td></tr>
+<tr><td>Sığortaçılar, kreditorlar</td><td>Yağış, daşqın, sahə fəaliyyəti barədə müstəqil sübut</td></tr>
+<tr><td>Şəhərlər, planlaşdırıcılar</td><td>Yer hərəkəti yoxlamaları üçün sabit radar qeydi</td></tr>
+<tr><td>Məktəb və universitetlər</td><td>Yerli məlumatla, Azərbaycan dilində radar təhsili</td></tr></tbody></table>
+<div><p><strong>Xərc:</strong> pulsuz NASA məlumatı, pulsuz statik hostinq, hər kadr üçün mövsümdə təxminən 1 GB, bir noutbukda.</p>
+<ol class="steps"><li>Hər 12 günlük keçiddən sonra avtomatik yeniləmə.</li>
+<li>Bütün Azərbaycan, sonra Cənubi Qafqaz və Mərkəzi Asiyanın suvarılan hövzələri.</li>
+<li>Sahə səviyyəsində əkin və daşqın xəritələri (10–20 m GCOV); kooperativ və ya universitetlə pilot.</li></ol>
+<p class="small">Model (plan): alət pulsuz və açıq qalır; qurumlar və sığortaçılar üçün xüsusi hesabatlar onu maliyyələşdirir.</p></div></div>
+<div class="foot"><span>Radar Absheron · komanda NasAda · ${LIVE}</span><span>7 / 7</span></div>`),
+];
+
+const params = new URLSearchParams(location.search);
+let lang = params.get('lang') === 'az' ? 'az' : 'en';
+let cur = Math.max(0, Math.min(SLIDES.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+const deck = document.getElementById('deck');
+const SHOT = params.has('shot');
+if (SHOT) { document.body.classList.add('shot'); cur = Math.max(0, Math.min(SLIDES.length - 1, parseInt(params.get('shot'), 10) - 1 || 0)); }
+const UI = {
+  en: { prev: 'Previous slide', next: 'Next slide', app: 'App', slide: (i, n) => `Slide ${i} of ${n}` },
+  az: { prev: 'Əvvəlki slayd', next: 'Növbəti slayd', app: 'Tətbiq', slide: (i, n) => `Slayd ${i} / ${n}` },
+};
+
+function render() {
+  document.documentElement.lang = lang;
+  deck.innerHTML = SLIDES.map((s, i) => `<section class="slide ${s.cls || ''}" role="group" aria-roledescription="slide" aria-label="${UI[lang].slide(i + 1, SLIDES.length)}">${s[lang]}</section>`).join('');
+  document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.getElementById('prev').setAttribute('aria-label', UI[lang].prev);
+  document.getElementById('next').setAttribute('aria-label', UI[lang].next);
+  document.getElementById('appLink').textContent = UI[lang].app;
+  document.getElementById('pdf').href = `radar-absheron-pitch-${lang}.pdf`;
+  show(cur, false);
+}
+function show(i, announce = true) {
+  cur = Math.max(0, Math.min(SLIDES.length - 1, i));
+  document.querySelectorAll('.slide').forEach((s, k) => s.classList.toggle('on', k === cur));
+  document.getElementById('count').textContent = `${cur + 1} / ${SLIDES.length}`;
+  document.getElementById('prev').disabled = cur === 0;
+  document.getElementById('next').disabled = cur === SLIDES.length - 1;
+  if (!SHOT) history.replaceState(null, '', `${location.pathname}${lang === 'az' ? '?lang=az' : ''}#${cur + 1}`);
+  fit();
+  if (announce) {
+    const h = document.querySelectorAll('.slide')[cur].querySelector('h1, h2');
+    document.getElementById('live').textContent = `${UI[lang].slide(cur + 1, SLIDES.length)}: ${h ? h.textContent : ''}`;
+  }
+}
+function fit() {
+  if (SHOT) return;
+  const narrow = window.matchMedia('(max-width: 760px)').matches;
+  document.querySelectorAll('.slide').forEach((s) => {
+    if (narrow) {
+      const k = (window.innerWidth - 16) / 1280;
+      s.style.transform = `scale(${k})`;
+      s.style.margin = `0 0 ${-720 * (1 - k) + 12}px 8px`;
+    } else {
+      const k = Math.min(deck.clientWidth / 1320, deck.clientHeight / 760);
+      s.style.transform = `translate(-50%, -50%) scale(${k})`;
+      s.style.margin = '';
+    }
+  });
+}
+document.getElementById('prev').addEventListener('click', () => show(cur - 1));
+document.getElementById('next').addEventListener('click', () => show(cur + 1));
+document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => { lang = b.dataset.lang; render(); }));
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (['ArrowRight', 'PageDown'].includes(e.key) || (e.key === ' ' && e.target.tagName !== 'BUTTON')) { e.preventDefault(); show(cur + 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(SLIDES.length - 1);
+});
+window.addEventListener('resize', fit);
+render();
+</script>
+</body>
+</html>

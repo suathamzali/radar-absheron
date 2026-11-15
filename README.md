@@ -4,7 +4,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the SARs"*, by team **NasAda** (Baku, Azerbaijan).
 
-> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Demo video (30 s):** _add link_
+> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf)) · **Demo video (30 s):** _add link_
 
 ## The problem
 Radar images are powerful (day or night, through cloud) but hard to read: grey speckle, strange colours, units like σ⁰ in decibels. People who could use them, such as farmers, water managers, teachers and students in Azerbaijan, rarely do.
@@ -30,6 +30,18 @@ Every step opens with an **"In short"** box in everyday language (no jargon); th
 - Over dry land HV is weak: on 63–70 % of land cells it lies within 3 dB of the noise floor.
 - Over the Caspian, HV (median ≈ −20 dB) equals NISAR's noise-equivalent σ⁰ (≈ −20 dB): sea HV is noise; sea HH varies between −16.8 and −15.1 dB with wind.
 - In the Kura-Araz lowland, HV changed by a median of only +0.6 dB from June to October; fewer than 3 % of 1 km cells changed by more than 1.5 dB. Field-scale crop monitoring needs the 10–20 m GCOV product.
+
+## Who uses it, and how it scales
+| User | What they get |
+|---|---|
+| Farmers, agronomists | How wet their area is after rain or irrigation, free, even under clouds |
+| Water and irrigation managers | Every 12 days: where water reached the land |
+| Insurers, agricultural lenders | Independent evidence of rain, floods and field activity |
+| Cities, planners | A stable radar record for future ground-motion (InSAR) checks |
+| Schools, universities | Radar explained in Azerbaijani with real local data |
+
+**Cost:** NASA data are free and open; the app is a static site on free hosting; one radar frame for one season is about 1 GB of download, processed on a laptop.
+**Scale (plan):** the scripts work for any NISAR frame. (1) Automatic refresh after each 12-day pass; (2) all of Azerbaijan, then irrigated river basins in the South Caucasus and Central Asia; (3) field-level maps from 10–20 m GCOV, piloted with a farming cooperative or university. The tool stays free and open; tailored reports for agencies and insurers could fund it.
 
 ## Accessibility
 Built in from the start: a plain-language summary on every step and a tap-to-explain glossary, keyboard control of everything (shortcuts: `[` `]` date, `P` play, `C` compare, `I` inspect map centre, `F` full-screen map (side panel hidden; also the button on the time bar), `B` `N` story, `H` or `?` help; physical key codes, so they work on an Azerbaijani layout), visible focus, native modal `<dialog>`, `aria-live` descriptions of every layer and point, a table alternative for every chart, line style + colour in charts, colour-blind-safe brown/teal change palette, reduced-motion support (no auto-play), 44 px touch targets on phones, English and Azerbaijani.

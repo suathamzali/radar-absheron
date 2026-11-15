@@ -7,7 +7,8 @@ Radar Absheron
 Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map that makes NASA-ISRO NISAR radar readable for anyone. It plays 15 calibrated NISAR passes (Nov 2025–Oct 2026) over Baku, the Absheron peninsula and the Kura-Araz lowland, our home region. A swipe shows NISAR seeing the ground on 12 July 2026 while MODIS saw only clouds. A legend-first story teaches HH vs HV colours, then shows real findings: after the 3 October rain, soil moisture rose from 0.18 to 0.23 m³/m³ and the land's radar echo rose about 1.3 dB more than the stable city (checked against an urban control); the Caspian's brightness follows the wind; Baku stands still; and, honestly, the farmland barely changed at 200 m–1 km. Change maps and click-anywhere time series let users test their own questions. Every value states its units, source and limits. It matters because free, all-weather radar every 12 days can help farmers, water managers and students in Azerbaijan follow their land and water.
 
 ## Link to project demo
-_30-second video link (YouTube/Drive, public)_
+Option A (7 slides, public): https://suathamzali.github.io/radar-absheron/pitch/ (PDF: https://suathamzali.github.io/radar-absheron/pitch/radar-absheron-pitch-en.pdf)
+Option B: 30-second video link (YouTube/Drive, public), if the team records one.
 
 ## Link to final project
 https://suathamzali.github.io/radar-absheron/ (live app) · https://github.com/suathamzali/radar-absheron (code)
@@ -29,7 +30,7 @@ Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 
 
 **Benefits.** Anyone can read radar without training: every step starts with a plain "In short" summary, the science is one tap away under "More detail", and hard words open a one-sentence explanation; numbers carry units and limits; it works through clouds and at night; it is keyboard and screen-reader friendly and bilingual; the method works for any NISAR frame.
 
-**What we hope to achieve.** A first step towards a public NISAR viewer for Azerbaijan: crop and harvest maps with GCOV, flood maps of the Kura floodplain, and ground-motion monitoring around Baku's oil fields.
+**What we hope to achieve.** A free public NISAR viewer for Azerbaijan used by farmers, water and irrigation managers, insurers, planners and schools. Cost is close to zero (free NASA data, static hosting, about 1 GB per frame per season). The same scripts work for any NISAR frame, so the plan is: automatic refresh after every 12-day pass; all of Azerbaijan, then irrigated basins in the South Caucasus and Central Asia; field-level crop and harvest maps from 10–20 m GCOV, flood maps of the Kura floodplain, and ground-motion monitoring around Baku's oil fields; a pilot with a farming cooperative or university. The tool stays open; tailored reports for agencies and insurers could fund it.
 
 **Tools.** HTML, CSS, JavaScript (ES modules), Leaflet 1.9.4, Python 3 (h5py, numpy, Pillow, requests), GitHub Pages. Accessibility: native dialog, aria-live, reduced motion, 44 px touch targets.
 

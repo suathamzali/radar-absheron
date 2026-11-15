@@ -228,6 +228,14 @@ export const STEPS = [
 <li>Crop maps and harvest dates for every field, every season.</li>
 <li>Flood maps of the Kura floodplain through clouds.</li>
 <li>Millimetre-scale ground motion around Baku's oil fields from years of interferometry.</li></ul></div>
+<div class="summary-card"><h3>Who uses it, and how it grows</h3>
+<ul><li><strong>Farmers and agronomists:</strong> see after rain or irrigation how wet their area is, for free, even under clouds.</li>
+<li><strong>Water and irrigation managers:</strong> check every 12 days where water reached the land.</li>
+<li><strong>Insurers and agricultural lenders:</strong> independent evidence of rain, floods and field activity.</li>
+<li><strong>Cities and planners:</strong> a stable radar record for future ground-motion checks.</li>
+<li><strong>Schools and universities:</strong> radar explained in Azerbaijani, with real local data.</li></ul>
+<p><strong>Cost:</strong> the data are free (NASA open data); the site is a static page with free hosting; preparing one radar frame for a season takes about 1 GB of download and one laptop.</p>
+<p><strong>Scale (plan):</strong> the same scripts work for any NISAR frame. Next: (1) refresh automatically after each 12-day pass; (2) cover all of Azerbaijan, then irrigated river basins in the South Caucasus and Central Asia; (3) field-level maps from the 10–20 m GCOV product, and a pilot with a farming cooperative or university. The tool stays free and open; tailored reports for agencies and insurers could fund it.</p></div>
 <p class="source">Data: NASA-ISRO NISAR (ASF DAAC), NASA Terra/MODIS (GIBS), NASA POWER. Full credits in "Data &amp; method".</p>`,
     },
     az: {
@@ -243,6 +251,14 @@ export const STEPS = [
 <li>Hər mövsüm, hər sahə üçün əkin xəritələri və məhsul yığımı tarixləri.</li>
 <li>Kür daşqın düzənliyinin buludların arxasından daşqın xəritələri.</li>
 <li>İllərlə interferometriya ilə Bakı neft yataqları ətrafında millimetr miqyaslı yer hərəkəti.</li></ul></div>
+<div class="summary-card"><h3>Kim istifadə edir və necə böyüyür</h3>
+<ul><li><strong>Fermerlər və aqronomlar:</strong> yağışdan və ya suvarmadan sonra ərazilərinin nə qədər nəm olduğunu pulsuz, hətta bulud altında da görürlər.</li>
+<li><strong>Su və suvarma idarəçiləri:</strong> hər 12 gündən bir suyun torpağa harada çatdığını yoxlayırlar.</li>
+<li><strong>Sığorta və kənd təsərrüfatı kreditorları:</strong> yağış, daşqın və sahə fəaliyyəti barədə müstəqil sübut.</li>
+<li><strong>Şəhərlər və planlaşdırıcılar:</strong> gələcək yer hərəkəti yoxlamaları üçün sabit radar qeydi.</li>
+<li><strong>Məktəb və universitetlər:</strong> real yerli məlumatla, Azərbaycan dilində izah olunan radar.</li></ul>
+<p><strong>Xərc:</strong> məlumat pulsuzdur (NASA-nın açıq məlumat siyasəti); sayt pulsuz hostinqdə sadə statik səhifədir; bir radar kadrını bir mövsüm üçün hazırlamaq təxminən 1 GB yükləmə və bir noutbuk tələb edir.</p>
+<p><strong>Miqyas (plan):</strong> eyni skriptlər istənilən NISAR kadrı üçün işləyir. Sonrakı addımlar: (1) hər 12 günlük keçiddən sonra avtomatik yeniləmə; (2) bütün Azərbaycan, sonra Cənubi Qafqaz və Mərkəzi Asiyanın suvarılan çay hövzələri; (3) 10–20 m-lik GCOV məhsulu ilə sahə səviyyəsində xəritələr və bir fermer kooperativi və ya universitetlə pilot layihə. Alət pulsuz və açıq qalır; qurumlar və sığortaçılar üçün xüsusi hesabatlar onu maliyyələşdirə bilər.</p></div>
 <p class="source">Məlumat: NASA-ISRO NISAR (ASF DAAC), NASA Terra/MODIS (GIBS), NASA POWER. Tam istinadlar "Məlumat və metod" bölməsindədir.</p>`,
     },
   },
