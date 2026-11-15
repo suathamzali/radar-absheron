@@ -91,7 +91,7 @@ const S2 = () => {
 // 3. Same morning: optical vs radar wipe.
 const S3 = () => {
   const f = useCurrentFrame();
-  const wipe = interpolate(f, [30, 80], [0, 100], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  const wipe = interpolate(f, [22, 62], [0, 100], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   return (
     <AbsoluteFill style={{ background: C.paper }}>
       <div style={{ position: 'absolute', left: 80, right: 80, top: 150 }}>
@@ -104,8 +104,8 @@ const S3 = () => {
         <div style={{ position: 'absolute', top: 0, bottom: 0, left: `${wipe}%`, width: 8, marginLeft: -4, background: '#fff', opacity: wipe > 0 && wipe < 100 ? 1 : 0 }} />
       </div>
       <div style={{ position: 'absolute', left: 80, right: 80, top: 1440, display: 'flex', justifyContent: 'space-between' }}>
-        <Label color={C.ink2} style={{ opacity: interpolate(f, [0, 10, 70, 80], [0, 1, 1, 0.3], clamp) }}>MODIS photo: clouds</Label>
-        <Label style={{ opacity: interpolate(f, [40, 60], [0, 1], clamp) }}>NISAR: the ground</Label>
+        <Label color={C.ink2} style={{ opacity: interpolate(f, [0, 10, 55, 65], [0, 1, 1, 0.3], clamp) }}>MODIS photo: clouds</Label>
+        <Label style={{ opacity: interpolate(f, [35, 50], [0, 1], clamp) }}>NISAR: the ground</Label>
       </div>
     </AbsoluteFill>
   );
@@ -141,13 +141,13 @@ const S4 = () => {
 // 5. The sea dances with the wind.
 const S5 = () => {
   const f = useCurrentFrame();
-  const amp = interpolate(f, [10, 90], [8, 60], clamp);
+  const amp = interpolate(f, [5, 70], [8, 60], clamp);
   const path = (off: number, a: number) => {
     let d = `M -20 ${off}`;
     for (let x = -20; x <= 1100; x += 20) d += ` L ${x} ${off + Math.sin((x + f * 12) / 70) * a}`;
     return d;
   };
-  const r = interpolate(f, [50, 90], [0, 0.63], { ...clamp, easing: ease });
+  const r = interpolate(f, [28, 62], [0, 0.63], { ...clamp, easing: ease });
   return (
     <AbsoluteFill style={{ background: `linear-gradient(180deg, ${C.paper} 0%, #d6e8ec 100%)` }}>
       <div style={{ position: 'absolute', left: 80, right: 80, top: 150 }}>
@@ -211,8 +211,8 @@ const S7 = () => {
 const S8 = () => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const logo = spring({ frame: f - 50, fps, config: { damping: 12 } });
-  const fadeWords = interpolate(f, [42, 54], [1, 0], clamp);
+  const logo = spring({ frame: f - 95, fps, config: { damping: 12 } });
+  const fadeWords = interpolate(f, [84, 96], [1, 0], clamp);
   return (
     <AbsoluteFill style={{ background: `linear-gradient(160deg, ${C.teal} 0%, ${C.ink} 100%)` }}>
       <div style={{ position: 'absolute', left: 80, right: 80, top: 600, opacity: fadeWords }}>
@@ -238,7 +238,9 @@ const Fade = ({ d, children }: { d: number; children: React.ReactNode }) => {
   return <AbsoluteFill style={{ opacity: o }}>{children}</AbsoluteFill>;
 };
 
-export const SCENES: [React.FC, number][] = [[S1, 75], [S2, 75], [S3, 105], [S4, 120], [S5, 105], [S6, 90], [S7, 135], [S8, 195]]; // 900 frames = 30 s; cuts fall on the 120 BPM beat grid
+// 900 frames = 30 s. Scene starts follow the Azerbaijani voiceover (Arif, ElevenLabs), which starts at 0.3 s:
+// 0, 2.8, 5.5, 8.2, 11.87, 14.57, 16.97, 20.87 s.
+export const SCENES: [React.FC, number][] = [[S1, 84], [S2, 81], [S3, 81], [S4, 110], [S5, 81], [S6, 72], [S7, 117], [S8, 274]];
 export const PROMO_FRAMES = SCENES.reduce((a, [, d]) => a + d, 0);
 
 export const Promo = () => {

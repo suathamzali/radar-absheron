@@ -1,7 +1,7 @@
 """Synthesize the 30-second promo soundtrack from scratch (no samples, no third-party music).
 
-120 BPM, A minor (Am - F - C - G). Scene cuts of src/Promo.tsx fall on beats:
-0, 2.5, 5, 8.5, 12.5, 16, 19, 23.5 s; the logo appears at 25.17 s.
+120 BPM, A minor (Am - F - C - G). Whooshes and pings follow the
+scene starts of the voiced cut (see CUTS); the logo appears at about 24.0 s.
 Writes out/music.wav (44.1 kHz, stereo, 16-bit).
 """
 import wave
@@ -14,8 +14,8 @@ DUR = 30.0
 BEAT = 0.5
 N = int(SR * DUR)
 t = np.arange(N) / SR
-CUTS = [2.5, 5.0, 8.5, 12.5, 16.0, 19.0, 23.5]
-LOGO = 23.5 + 50 / 30
+CUTS = [84 / 30, 165 / 30, 246 / 30, 356 / 30, 437 / 30, 509 / 30, 626 / 30]  # scene starts in src/Promo.tsx
+LOGO = 626 / 30 + 95 / 30
 rng = np.random.default_rng(7)
 
 
@@ -110,7 +110,7 @@ while time < 23.5:
 
 # 5. Rain bed during the rain scene (8.5-12.5 s)
 rain = rng.standard_normal(N) * 0.5
-rain = lowpass(rain - lowpass(rain, 1500), 7000) * np.interp(t, [8.5, 9.0, 12.0, 12.5], [0, 1, 1, 0]) * 0.18
+rain = lowpass(rain - lowpass(rain, 1500), 7000) * np.interp(t, [CUTS[2], CUTS[2] + 0.5, CUTS[3] - 0.5, CUTS[3]], [0, 1, 1, 0]) * 0.18
 
 # 6. Whoosh into each cut, radar pings with echoes, final chord under the logo
 fx = np.zeros(N)
@@ -128,9 +128,9 @@ def ping(at, note=93, gain=0.22):
         add(fx, at + k, s, gain * g)
 
 
-ping(3.05)              # the echo dot lands
-ping(3.1 + 40 / 30, 88)
-ping(20.0, 91)          # tap on the map
+ping(CUTS[0] + 0.55)    # the echo dot lands
+ping(CUTS[0] + 0.6 + 40 / 30, 88)
+ping(CUTS[5] + 1.0, 91)  # tap on the map
 ping(LOGO, 81, 0.28)    # logo
 seg = int((DUR - 23.5) * SR)
 x = np.arange(seg) / SR
