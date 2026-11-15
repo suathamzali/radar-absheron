@@ -17,14 +17,14 @@ export const STEPS = [
     en: {
       title: 'Radar sees through clouds',
       simple: `Ordinary satellites take photos with sunlight, so clouds hide the ground (left). NISAR sends its own radio waves, like a torch whose light passes through clouds, and saw the ground clearly the same morning (right). Drag the white handle to compare.`,
-      body: `<p>On <strong>12 July 2026</strong> NASA's Terra satellite photographed this area in visible light: clouds covered much of the Kura-Araz lowland <em>(left)</em>.</p>
+      body: `<p>On <strong>12 July 2026</strong> NASA's Terra satellite photographed this area in visible light: clouds covered large parts of the Kura-Araz lowland <em>(left)</em>.</p>
 <p>The same morning, about five hours earlier (05:47 Baku time), the NASA-ISRO satellite <strong>NISAR</strong> imaged the ground with its own microwave pulses <em>(right)</em>. Its L-band waves are about 24 cm long: they pass through clouds and need no sunlight.</p>
 <p>Drag the white handle (or focus it and use the arrow keys) to compare.</p>${SRC_MODIS}${SRC_NISAR}`,
     },
     az: {
       title: 'Radar buludların arxasını görür',
       simple: `Adi peyklər günəş işığı ilə şəkil çəkir, ona görə buludlar yeri gizlədir (solda). NISAR isə özü radio dalğası göndərir, işığı buluddan keçən fənər kimi, və həmin səhər yeri aydın gördü (sağda). Müqayisə üçün ağ tutacağı sürüşdürün.`,
-      body: `<p><strong>12 iyul 2026</strong>-da NASA-nın Terra peyki bu ərazini görünən işıqda çəkdi: Kür-Araz ovalığının çox hissəsini buludlar örtmüşdü <em>(solda)</em>.</p>
+      body: `<p><strong>12 iyul 2026</strong>-da NASA-nın Terra peyki bu ərazini görünən işıqda çəkdi: Kür-Araz ovalığının böyük hissələrini buludlar örtmüşdü <em>(solda)</em>.</p>
 <p>Həmin səhər, təxminən beş saat əvvəl (Bakı vaxtı ilə 05:47), NASA-ISRO peyki <strong>NISAR</strong> yer səthini öz mikrodalğa impulsları ilə çəkdi <em>(sağda)</em>. Onun L-diapazon dalğaları təxminən 24 sm uzunluğundadır: buludlardan keçir və günəş işığına ehtiyac duymur.</p>
 <p>Müqayisə üçün ağ tutacağı sürüşdürün (və ya ona fokuslanıb ox düymələrindən istifadə edin).</p>${SRC_MODIS}${SRC_NISAR}`,
     },
@@ -100,7 +100,7 @@ export const STEPS = [
       body: `<p>Water raises the soil's dielectric constant, so wet soil echoes more strongly. NISAR's soil-moisture product turns that into m³ of water per m³ of soil.</p>
 <p>Left: <strong>22 September</strong>. Right: <strong>4 October</strong>. In between, NASA POWER shows a heavy rain on <strong>3 October</strong>: about <strong>18 mm</strong> around Baku and <strong>12 mm</strong> in the Kura-Araz lowland.</p>
 <p>Across the land in this frame, the median HH echo rose from <strong>−13.5 to −11.3 dB</strong> and the median soil moisture from <strong>0.18 to 0.23 m³/m³</strong>. Twelve days later soil moisture was back at 0.18; HH fell back only partly (−12.7 dB).</p>
-<div class="callout hyp"><p><strong>Check against a control.</strong> Part of the jump was scene-wide: central Baku (+1.0 dB) and the sea (+1.7 dB) brightened too, perhaps from the storm's wind or a pass-to-pass calibration difference. The land rose about <strong>1.3 dB more than the city</strong>, which points to wet soil. An earlier rain (7–8 Sep, ~12 mm) left only a weak trace at the next pass (land +0.9 dB, city +0.7 dB).</p></div>
+<div class="callout hyp"><p><strong>Check against a control.</strong> Part of the jump was scene-wide: central Baku (+1.0 dB), the oil fields (+1.1 dB) and the sea (+1.7 dB) brightened too, perhaps from the storm's wind or a pass-to-pass calibration difference. The land rose <strong>0.6–1.3 dB more than these controls</strong>, which points to wet soil; each control is a single ~1 km spot, so treat this as an estimate. An earlier rain (7–8 Sep, ~12 mm) left only a weak trace at the next pass (land +0.9 dB, city +0.7 dB).</p></div>
 <div class="callout limit"><p>Soil-moisture values are PROVISIONAL (not yet validated against ground sensors). Pale, half-transparent pixels are retrievals the product does not recommend (dense vegetation, cities, water).</p></div>${SRC_SM}${SRC_POWER}`,
     },
     az: {
@@ -109,7 +109,7 @@ export const STEPS = [
       body: `<p>Su torpağın dielektrik sabitini artırır, ona görə nəm torpaq daha güclü əks-səda verir. NISAR-ın torpaq nəmliyi məhsulu bunu torpağın hər m³-də neçə m³ su olduğuna çevirir.</p>
 <p>Solda: <strong>22 sentyabr</strong>. Sağda: <strong>4 oktyabr</strong>. Arada NASA POWER <strong>3 oktyabrda</strong> güclü yağış göstərir: Bakı ətrafında təxminən <strong>18 mm</strong>, Kür-Araz ovalığında <strong>12 mm</strong>.</p>
 <p>Bu kadrdakı qurunun median HH əks-sədası <strong>−13,5-dən −11,3 dB-yə</strong>, median torpaq nəmliyi isə <strong>0,18-dən 0,23 m³/m³-ə</strong> qalxdı. On iki gün sonra torpaq nəmliyi yenidən 0,18 idi; HH isə yalnız qismən geri düşdü (−12,7 dB).</p>
-<div class="callout hyp"><p><strong>Nəzarət ilə yoxlama.</strong> Sıçrayışın bir hissəsi bütün kadr üzrə idi: Bakı mərkəzi (+1,0 dB) və dəniz (+1,7 dB) də parlaqlaşdı; bəlkə fırtına küləyindən, bəlkə də keçidlər arası kalibrləmə fərqindən. Quru şəhərdən təxminən <strong>1,3 dB çox</strong> qalxdı, bu da nəm torpağa işarədir. Daha əvvəlki yağış (7–8 sentyabr, ~12 mm) növbəti keçiddə yalnız zəif iz buraxdı (quru +0,9 dB, şəhər +0,7 dB).</p></div>
+<div class="callout hyp"><p><strong>Nəzarət ilə yoxlama.</strong> Sıçrayışın bir hissəsi bütün kadr üzrə idi: Bakı mərkəzi (+1,0 dB), neft yataqları (+1,1 dB) və dəniz (+1,7 dB) də parlaqlaşdı; bəlkə fırtına küləyindən, bəlkə də keçidlər arası kalibrləmə fərqindən. Quru bu nəzarətlərdən <strong>0,6–1,3 dB çox</strong> qalxdı, bu da nəm torpağa işarədir; hər nəzarət təxminən 1 km-lik tək nöqtədir, ona görə bunu təxmin kimi qəbul edin. Daha əvvəlki yağış (7–8 sentyabr, ~12 mm) növbəti keçiddə yalnız zəif iz buraxdı (quru +0,9 dB, şəhər +0,7 dB).</p></div>
 <div class="callout limit"><p>Torpaq nəmliyi dəyərləri İLKİNDİR (hələ yer sensorları ilə təsdiqlənməyib). Solğun, yarımşəffaf piksellər məhsulun tövsiyə etmədiyi ölçmələrdir (sıx bitki, şəhər, su).</p></div>${SRC_SM}${SRC_POWER}`,
     },
   },
@@ -221,7 +221,7 @@ export const STEPS = [
       body: `<div class="summary-card"><h3>What you saw</h3><ul>
 <li>NISAR imaged Azerbaijan through clouds and before sunrise, about every 12 days.</li>
 <li>Its two echoes separate cities (HH) from plants (HV).</li>
-<li>At the next pass after the 3 October rain the land was about 1.3 dB brighter than the stable city; the Caspian changes with the wind; Baku stays still; at 200 m–1 km the farmland changed far less than we expected.</li></ul></div>
+<li>At the next pass after the 3 October rain the land rose 0.6–1.3 dB more than stable controls (city, oil fields, sea); the Caspian changes with the wind (our explanation, not yet tested against wind data); over the summer Baku changed least; at 200 m–1 km the farmland changed far less than we expected.</li></ul></div>
 <div class="summary-card"><h3>Why it matters</h3>
 <p>Farming and water use in the Kura-Araz lowland matter for food and for the shrinking Kura river and Caspian. Free, calibrated radar every 12 days, in any weather, lets farmers, water managers and students follow their own fields and canals.</p></div>
 <div class="summary-card"><h3>What NISAR could do next here</h3><ul>
@@ -244,7 +244,7 @@ export const STEPS = [
       body: `<div class="summary-card"><h3>Nə gördünüz</h3><ul>
 <li>NISAR Azərbaycanı buludların arxasından və gün doğmazdan əvvəl, təxminən hər 12 gündən bir çəkib.</li>
 <li>Onun iki əks-sədası şəhərləri (HH) bitkilərdən (HV) ayırır.</li>
-<li>3 oktyabr yağışından sonrakı keçiddə quru sabit şəhərdən təxminən 1,3 dB parlaq idi; Xəzər küləklə dəyişir; Bakı yerində durur; 200 m–1 km miqyasında əkin sahələri gözlədiyimizdən xeyli az dəyişdi.</li></ul></div>
+<li>3 oktyabr yağışından sonrakı keçiddə quru sabit nəzarətlərdən (şəhər, neft yataqları, dəniz) 0,6–1,3 dB çox qalxdı; Xəzər küləklə dəyişir (bizim izahımızdır, külək məlumatı ilə hələ yoxlanmayıb); yay ərzində Bakı ən az dəyişdi; 200 m–1 km miqyasında əkin sahələri gözlədiyimizdən xeyli az dəyişdi.</li></ul></div>
 <div class="summary-card"><h3>Niyə vacibdir</h3>
 <p>Kür-Araz ovalığında əkinçilik və su istifadəsi həm ərzaq, həm də dayazlaşan Kür çayı və Xəzər üçün önəmlidir. Hər 12 gündən bir, istənilən havada pulsuz, kalibrlənmiş radar fermerlərə, su idarəçilərinə və tələbələrə öz sahələrini və kanallarını izləməyə imkan verir.</p></div>
 <div class="summary-card"><h3>NISAR burada daha nə edə bilər</h3><ul>

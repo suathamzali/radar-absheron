@@ -1,10 +1,10 @@
 # Radar Absheron
 
-**Can a satellite watch Azerbaijan's land change, through clouds and in the dark?** Radar Absheron is an interactive web story map that plays calibrated NASA-ISRO **NISAR** L-band radar over Baku, the Absheron peninsula and the Kura-Araz lowland, and explains in plain language (English and Azerbaijani) what changed, why, and what the data cannot tell you. It works with a keyboard and screen readers.
+**Can a satellite watch Azerbaijan's land change, through clouds and in the dark?** Radar Absheron is an interactive web story map that plays calibrated NASA-ISRO **NISAR** L-band radar over Baku, the Absheron peninsula and the Kura-Araz lowland, and explains in plain language (English and Azerbaijani) what changed, why, and what the data cannot tell you. It works with a keyboard and is built for screen readers (not yet tested with one).
 
 Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the SARs"*, by team **NasAda** (Baku, Azerbaijan).
 
-> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf)) · **Demo video (30 s):** _add link_
+> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf))
 
 ## The problem
 Radar images are powerful (day or night, through cloud) but hard to read: grey speckle, strange colours, units like σ⁰ in decibels. People who could use them, such as farmers, water managers, teachers and students in Azerbaijan, rarely do.
@@ -20,13 +20,13 @@ Radar images are powerful (day or night, through cloud) but hard to read: grey s
 | Absheron | NISAR composite | A stable city and century-old oil fields: why InSAR could watch them |
 | The Caspian | NISAR HH/HV + noise floor | Sea brightness follows the wind; HV over the sea is instrument noise |
 | Find the change | NISAR HH dB difference | Change map: 69 % of land cells brightened by > 1.5 dB after the rain |
-| Explore | all of the above | Any layer, any date (15 passes Nov 2025–Oct 2026), swipe with optical/NDVI, click anywhere for a calibrated time series |
+| Explore | all of the above | Any layer, any date (15 passes Nov 2025–Oct 2026: 10 provisional, 5 beta), swipe with optical/NDVI, click anywhere for a calibrated time series |
 
 ### How it works for the user
 Every step opens with an **"In short"** box in everyday language (no jargon); the science, numbers and sources sit under **"More detail"**. Hard words (radar, HH, HV, dB, σ⁰, m³/m³, noise floor, NDVI, InSAR…) are underlined: tap one for a one-sentence explanation. A start screen asks one question and lists three steps. The story shows the legend before the data, plays the time-lapse once and then explains, and ends with a summary card ("what you saw, why it matters, what NISAR could do next"). Every view has a source line and a limits box. Explore mode hands over all controls.
 
 ### Findings (all checkable in the app)
-- After **3 October 2026** rain (NASA POWER: ~18 mm around Baku, ~12 mm in the Kura-Araz lowland), the median land HH σ⁰ in the frame rose from **−13.5 to −11.3 dB** and median soil moisture from **0.18 to 0.23 m³/m³** (4 Oct pass). Part of this was scene-wide (central Baku +1.0 dB, sea +1.7 dB); the land rose about **1.3 dB more than the stable city**. By 16 Oct soil moisture was back at 0.18; HH recovered only partly (−12.7 dB).
+- After **3 October 2026** rain (NASA POWER: ~18 mm around Baku, ~12 mm in the Kura-Araz lowland), the median land HH σ⁰ in the frame rose from **−13.5 to −11.3 dB** and median soil moisture from **0.18 to 0.23 m³/m³** (4 Oct pass). Part of this was scene-wide (central Baku +1.0 dB, oil fields +1.1 dB, sea +1.7 dB); the land rose **0.6–1.3 dB more than these controls** (each a single ~1 km spot, so an estimate). By 16 Oct soil moisture was back at 0.18; HH recovered only partly (−12.7 dB).
 - Over dry land HV is weak: on 63–70 % of land cells it lies within 3 dB of the noise floor.
 - Over the Caspian, HV (median ≈ −20 dB) equals NISAR's noise-equivalent σ⁰ (≈ −20 dB): sea HV is noise; sea HH varies between −16.8 and −15.1 dB with wind.
 - In the Kura-Araz lowland, HV changed by a median of only +0.6 dB from June to October; fewer than 3 % of 1 km cells changed by more than 1.5 dB. Field-scale crop monitoring needs the 10–20 m GCOV product.
