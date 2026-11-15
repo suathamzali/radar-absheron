@@ -238,10 +238,23 @@ input[type="range"] { width: 100%; margin: 0; accent-color: var(--accent); min-h
 
 .timebar {
   position: absolute; left: 12px; right: 12px; bottom: 28px; z-index: 500;
-  display: grid; grid-template-columns: 44px 1fr; grid-template-areas: "play label" "play range";
+  display: grid; grid-template-columns: 44px 1fr 44px; grid-template-areas: "play label full" "play range full";
   align-items: center; gap: 0 12px; padding: 8px 14px 6px 8px;
 }
 #playBtn { grid-area: play; }
+#panelToggle { grid-area: full; }
+#panelToggle .ico-collapse { display: none; }
+body.full #panelToggle .ico-expand { display: none; }
+body.full #panelToggle .ico-collapse { display: block; }
+body.full .layout { grid-template-columns: 1fr; }
+body.full .panel { display: none; }
+.map-note {
+  position: absolute; left: 12px; bottom: 120px; z-index: 530; width: min(420px, calc(100% - 24px));
+  padding: 10px 12px; display: grid; gap: 8px;
+}
+.map-note p { margin: 0; }
+.map-note p strong:first-child { color: var(--accent); }
+.map-note-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .time-main { grid-area: range; min-width: 0; }
 .ticks { display: flex; justify-content: space-between; font: 400 11px/1 var(--mono); color: var(--ink-2); padding: 0 6px; }
 .date-label { grid-area: label; margin: 0; line-height: 1.25; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }

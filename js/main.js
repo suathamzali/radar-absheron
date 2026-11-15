@@ -1,11 +1,11 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115e';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115e';
-import { renderChart } from './chart.js?v=20261115e';
-import { STEPS, ACTIONS } from './story.js?v=20261115e';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115e';
-import { dataPanelHtml } from './datapanel.js?v=20261115e';
-import { linkTerms, closeTip } from './glossary.js?v=20261115e';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115f';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115f';
+import { renderChart } from './chart.js?v=20261115f';
+import { STEPS, ACTIONS } from './story.js?v=20261115f';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115f';
+import { dataPanelHtml } from './datapanel.js?v=20261115f';
+import { linkTerms, closeTip } from './glossary.js?v=20261115f';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -163,6 +163,32 @@ function renderLegend() {
   linkTerms(L, getLang());
 }
 
+// ---------- full-screen map ----------
+function sizeMapForPhone() {
+  const wrap = document.querySelector('.map-wrap');
+  if (S.full && window.matchMedia('(max-width: 760px)').matches) {
+    wrap.style.height = `${window.innerHeight - document.querySelector('.top').offsetHeight}px`;
+  } else {
+    wrap.style.height = '';
+  }
+}
+function setFull(on) {
+  S.full = on;
+  document.body.classList.toggle('full', on);
+  const b = $('#panelToggle');
+  b.setAttribute('aria-expanded', String(!on));
+  b.setAttribute('aria-label', t(on ? 'full_off' : 'full_on'));
+  b.title = t(on ? 'full_off' : 'full_on');
+  if (!on) $('#mapNote').hidden = true;
+  sizeMapForPhone();
+  requestAnimationFrame(() => rmap.invalidate());
+  announce(t(on ? 'full_on' : 'full_off'));
+}
+function showMapNote(text) {
+  $('#mapNoteText').innerHTML = text;
+  $('#mapNote').hidden = false;
+}
+
 // ---------- inspector ----------
 function inspect(latlng, label) {
   S.inspected = { lat: latlng.lat, lng: latlng.lng, label };
@@ -225,6 +251,7 @@ function drawInspector() {
   if (smA !== null && smB !== null && smB - smA > 0.03) plain.push(t('plain_wetter', smA.toFixed(2), smB.toFixed(2)));
   if (!plain.length) plain.push(t('plain_quiet'));
   $('#inspPlain').innerHTML = `<strong>${t('in_short')}</strong> ${plain.join(' ')}`;
+  if (S.full) showMapNote(`<strong>${$('#inspTitle').textContent.replace(/\.$/, '')}.</strong> ${plain.join(' ')}`);
   $('#inspDesc').textContent = desc;
   linkTerms($('#inspPlain'), getLang());
   $('#inspNote').textContent = `${t('beta_note')} ${t('rain_label')}: NASA POWER, ${data.power.sites[site].name}.`;
@@ -392,6 +419,8 @@ function applyLanguage(l) {
   store.set('ra_lang', l);
   applyStatic();
   rmap.setLabelLang(l);
+  $('#panelToggle').setAttribute('aria-label', t(S.full ? 'full_off' : 'full_on'));
+  $('#panelToggle').title = t(S.full ? 'full_off' : 'full_on');
   document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
   buildTicks();
   buildKeys();
@@ -410,14 +439,14 @@ function buildTicks() {
 function buildKeys() {
   const k = [
     ['[ ]', t('k_prevnext')], ['P', t('k_play')], ['C', t('k_compare')], ['I', t('k_inspect')],
-    ['B N', t('k_story')], ['← → ↑ ↓', t('k_arrows')], ['? H', t('k_help')], ['Esc', t('k_esc')],
+    ['B N', t('k_story')], ['← → ↑ ↓', t('k_arrows')], ['F', t('k_full')], ['? H', t('k_help')], ['Esc', t('k_esc')],
   ];
   $('#keyList').innerHTML = k.map(([a, b]) => `<dt>${a.split(' ').map((x) => `<kbd>${x}</kbd>`).join(' ')}</dt><dd>${b}</dd>`).join('');
 }
 
 // ---------- wiring ----------
 function wire() {
-  document.querySelectorAll('.modes button').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  document.querySelectorAll('.modes button').forEach((b) => b.addEventListener('click', () => { if (S.full) setFull(false); setMode(b.dataset.mode); }));
   document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => applyLanguage(b.dataset.lang)));
   $('#prevStep').addEventListener('click', () => goStep(S.step - 1));
   $('#nextStep').addEventListener('click', () => goStep(S.step + 1));
@@ -433,6 +462,9 @@ function wire() {
   $('#dateRange').max = data.D - 1;
   $('#dateRange').addEventListener('input', (e) => setDate(Number(e.target.value), { fromUser: true }));
   $('#playBtn').addEventListener('click', () => (S.playing ? stopPlay() : play()));
+  $('#panelToggle').addEventListener('click', () => setFull(!S.full));
+  $('#mapNoteOpen').addEventListener('click', () => { setFull(false); $('#inspector').scrollIntoView({ block: 'start' }); $('#inspTitle').setAttribute('tabindex', '-1'); $('#inspTitle').focus(); });
+  $('#mapNoteClose').addEventListener('click', () => { $('#mapNote').hidden = true; });
   $('#inspClose').addEventListener('click', closeInspector);
   $('#helpBtn').addEventListener('click', () => $('#helpDlg').showModal());
   $('#helpClose').addEventListener('click', () => $('#helpDlg').close());
@@ -469,6 +501,7 @@ function wire() {
     const code = e.code, k = e.key;
     if (code === 'BracketLeft' || k === '[') { setDate(S.date - 1, { fromUser: true }); e.preventDefault(); }
     else if (code === 'BracketRight' || k === ']') { setDate(S.date + 1, { fromUser: true }); e.preventDefault(); }
+    else if (code === 'KeyF') { setFull(!S.full); }
     else if (code === 'KeyP') { S.playing ? stopPlay() : play(); }
     else if (code === 'KeyC' && S.mode === 'explore') { S.compare = !S.compare; $('#compareToggle').checked = S.compare; applyExplore(); }
     else if (code === 'KeyN' && S.mode === 'story') goStep(S.step + 1);
@@ -477,7 +510,7 @@ function wire() {
     else if (k === 'Escape' && !$('#inspector').hidden) closeInspector();
   });
 
-  window.addEventListener('resize', () => rmap.invalidate());
+  window.addEventListener('resize', () => { sizeMapForPhone(); rmap.invalidate(); });
 
   const dlg = $('#startDlg');
   $('#startStory').addEventListener('click', () => { dlg.close(); setMode('story'); goStep(0); });
@@ -500,6 +533,7 @@ async function init() {
   rmap = new RadarMap($('#map'), data, { onInspect: inspect });
   rmap.setLabelLang(getLang());
   wire();
+  $('#panelToggle').title = t('full_on');
   buildTicks();
   buildKeys();
   fillSelects();

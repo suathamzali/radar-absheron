@@ -2,6 +2,7 @@
 export const STR = {
   en: {
     skip: 'Skip to the story panel',
+    full_on: 'Full-screen map (hide the side panel)', full_off: 'Show the side panel', k_full: 'Full-screen map on or off', show_chart: 'Show the chart',
     in_short: 'In short:', more_detail: 'More detail: the science, numbers and sources', numbers: 'The numbers',
     plain_water: 'This looks like water: here the radar mostly sees the wind on the surface.',
     plain_city: 'A very bright spot, typical of buildings and city streets.',
@@ -71,6 +72,7 @@ export const STR = {
   },
   az: {
     skip: 'Hekayə panelinə keç',
+    full_on: 'Tam ekran xəritə (yan paneli gizlət)', full_off: 'Yan paneli göstər', k_full: 'Tam ekran xəritəni aç və ya bağla', show_chart: 'Qrafiki göstər',
     in_short: 'Qısaca:', more_detail: 'Ətraflı: elmi izah, rəqəmlər və mənbələr', numbers: 'Rəqəmlər',
     plain_water: 'Bura su kimi görünür: radar burada əsasən səthdəki küləyi görür.',
     plain_city: 'Çox parlaq yer, binalar və şəhər küçələri üçün tipikdir.',
