@@ -156,7 +156,7 @@ const SLIDES = [
 <h2>Water decides farming in the Kura-Araz lowland, and clouds hide it from ordinary satellites</h2>
 <div class="cols cols-img"><ul>
 <li><strong>92 %</strong> of Azerbaijan's water goes to farming, and <strong>63 %</strong> of its cropland is irrigated (FAO AQUASTAT, 2023). The largest share lies in the semi-arid Kura-Araz lowland.</li>
-<li>Optical satellites need sunlight and a clear sky. On 12 July 2026 clouds covered about half of this area.</li>
+<li>Optical satellites need sunlight and a clear sky. On 12 July 2026 clouds covered large parts of this area.</li>
 <li>Radar sees through clouds, but its data (σ⁰, dB, HH/HV) is unreadable for non-experts, and nothing explains it in Azerbaijani.</li></ul>
 <figure><div class="pair"><img src="img/optical-0712.jpg" alt="MODIS photo of the Kura lowland on 12 July 2026, mostly covered by clouds"><img src="img/radar-0712.jpg" alt="NISAR radar image of the same area the same morning, showing the Kura river and fields"></div>
 <figcaption>Same area, 12 July 2026 (48.3–49.4° E, 39.4–40.1° N). Left: NASA MODIS, partly cloudy. Right: NISAR radar, the Kura river and fields.</figcaption></figure></div>
@@ -165,7 +165,7 @@ const SLIDES = [
 <h2>Kür-Araz ovalığında əkinçiliyi su həll edir, buludlar isə onu adi peyklərdən gizlədir</h2>
 <div class="cols cols-img"><ul>
 <li>Azərbaycanda suyun <strong>92 %</strong>-i kənd təsərrüfatına gedir, əkin sahəsinin <strong>63 %</strong>-i suvarılır (FAO AQUASTAT, 2023). Ən böyük hissəsi yarımquraq Kür-Araz ovalığındadır.</li>
-<li>Optik peyklərə günəş işığı və açıq səma lazımdır. 12 iyul 2026-da bu ərazinin təxminən yarısını buludlar örtmüşdü.</li>
+<li>Optik peyklərə günəş işığı və açıq səma lazımdır. 12 iyul 2026-da bu ərazinin böyük hissələrini buludlar örtmüşdü.</li>
 <li>Radar buludların arxasını görür, amma onun məlumatı (σ⁰, dB, HH/HV) mütəxəssis olmayan üçün anlaşılmazdır və Azərbaycan dilində izah edən heç nə yoxdur.</li></ul>
 <figure><div class="pair"><img src="img/optical-0712.jpg" alt="12 iyul 2026-da Kür ovalığının MODIS şəkli, çox hissəsi bulud altında"><img src="img/radar-0712.jpg" alt="Həmin səhər eyni ərazinin NISAR radar şəkli, Kür çayı və sahələr görünür"></div>
 <figcaption>Eyni ərazi, 12 iyul 2026 (48,3–49,4° ş. u., 39,4–40,1° şm. e.). Solda: NASA MODIS, qismən buludlu. Sağda: NISAR radarı, Kür çayı və sahələr.</figcaption></figure></div>
@@ -236,11 +236,11 @@ const SLIDES = [
 <tr><td>A · Expert SAR software and portals (ESA SNAP, QGIS, ASF Vertex)</td><td>Full control of raw radar data</td><td>Experts only; hours of processing</td></tr>
 <tr><td>B · Optical maps (MODIS, NDVI viewers)</td><td>Easy to read</td><td>Blind under clouds and at night</td></tr>
 <tr><td>C · NASA NISAR StoryMaps</td><td>Clear explanations</td><td>Fixed stories about other places, in English</td></tr>
-<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, every claim tested against an independent source, live prototype</td></tr></tbody></table>
+<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, main claims tested against independent sources, live prototype</td></tr></tbody></table>
 <ul>
 <li><strong>Tested claims:</strong> rain (NASA POWER), wind (r = 0.63), clouds (MODIS), a city control, an irrigation mask (NDVI).</li>
 <li><strong>Live:</strong> desktop and phone, nothing to install.</li>
-<li><strong>Repeatable:</strong> open scripts rebuild every number from the NASA archive.</li>
+<li><strong>Repeatable:</strong> open scripts rebuild the data from the NASA archive; the rain, wind and irrigation tests are scripted.</li>
 <li><strong>Checked:</strong> every view at 1280, 375 and 320 px, both languages, no errors.</li></ul></div>
 <div class="foot"><span>Data: NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1) · NASA POWER · NASA MODIS via GIBS · method in README</span><span>6 / 7</span></div>`,
 `<span class="crit">Texniki hazırlıq · metodologiya</span>
@@ -249,11 +249,11 @@ const SLIDES = [
 <tr><td>A · Peşəkar SAR proqramları və portalları (ESA SNAP, QGIS, ASF Vertex)</td><td>Xam radar məlumatına tam nəzarət</td><td>Yalnız mütəxəssislər üçün; saatlarla emal</td></tr>
 <tr><td>B · Optik xəritələr (MODIS, NDVI)</td><td>Oxumaq asandır</td><td>Bulud altında və gecə kordur</td></tr>
 <tr><td>C · NASA NISAR StoryMaps</td><td>Aydın izahlar</td><td>Başqa yerlər haqqında hazır hekayələr, ingilis dilində</td></tr>
-<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Bir sabit dB şkalasında kalibrlənmiş NISAR, Azərbaycan və ingilis dilində sadə izah, hər iddia müstəqil mənbə ilə yoxlanıb, canlı prototip</td></tr></tbody></table>
+<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Bir sabit dB şkalasında kalibrlənmiş NISAR, Azərbaycan və ingilis dilində sadə izah, əsas iddialar müstəqil mənbələrlə yoxlanıb, canlı prototip</td></tr></tbody></table>
 <ul>
 <li><strong>Yoxlanmış iddialar:</strong> yağış (NASA POWER), külək (r = 0,63), buludlar (MODIS), şəhər nəzarəti, suvarma maskası (NDVI).</li>
 <li><strong>Canlı:</strong> kompüterdə və telefonda, quraşdırma lazım deyil.</li>
-<li><strong>Təkrarlana bilən:</strong> açıq skriptlər hər rəqəmi NASA arxivindən yenidən qurur.</li>
+<li><strong>Təkrarlana bilən:</strong> açıq skriptlər məlumatı NASA arxivindən yenidən qurur; yağış, külək və suvarma testləri skriptlə aparılır.</li>
 <li><strong>Yoxlanıb:</strong> hər görünüş 1280, 375 və 320 px-də, iki dildə, xəta yoxdur.</li></ul></div>
 <div class="foot"><span>Məlumat: NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1) · NASA POWER · NASA MODIS (GIBS) · metod README-də</span><span>6 / 7</span></div>`),
 

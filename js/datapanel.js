@@ -6,9 +6,9 @@ export function dataPanelHtml(data, lang) {
   const sc = data.sme.scales;
   const az = lang === 'az'
     ? `<div class="plain"><p><strong>Qısaca:</strong> Bu saytdakı hər rəqəm NASA-nın pulsuz, açıq məlumatından gəlir. Radar şəkilləri NASA və Hindistanın NISAR peykindəndir; yağış və külək NASA POWER-dən, adi foto və yaşıllıq NASA MODIS-dəndir.</p>
-<p>Hər tarixi eyni şkalada göstəririk ki, rənglər müqayisə oluna bilsin. Hər iddianı ikinci mənbə ilə yoxlamışıq (yağış, külək, adi foto, şəhər). Məlumat hələ "ilkin" versiyadır: istiqamət verir, amma yerində ölçməni əvəz etmir. Aşağıdakı texniki hissə dəqiqlik üçün ingilis dilindədir.</p></div>`
+<p>Hər tarixi eyni şkalada göstəririk ki, rənglər müqayisə oluna bilsin. Əsas iddiaları ikinci mənbə ilə yoxlamışıq (yağış, külək, adi foto, şəhər). Məlumat hələ "ilkin" versiyadır: istiqamət verir, amma yerində ölçməni əvəz etmir. Aşağıdakı texniki hissə dəqiqlik üçün ingilis dilindədir.</p></div>`
     : `<div class="plain"><p><strong>In short:</strong> every number on this site comes from NASA's free, open data. The radar pictures are from NISAR, a NASA and India (ISRO) satellite; rain and wind come from NASA POWER; the ordinary photos and greenness come from NASA MODIS.</p>
-<p>We show every date on the same scale so colours can be compared, and we checked each claim against a second source (rain, wind, photos, the city). The data are still an early "provisional" version: a good guide, but not a replacement for measuring on the ground. The technical details follow below.</p></div>`;
+<p>We show every date on the same scale so colours can be compared, and we checked the main claims against a second source (rain, wind, photos, the city). The data are still an early "provisional" version: a good guide, but not a replacement for measuring on the ground. The technical details follow below.</p></div>`;
   return `${az}
 <h2 id="dataTitle">Data &amp; method</h2>
 <p>Every number in Radar Absheron comes from NASA (or NASA-ISRO) open data. Here is what each one is, how we processed it, and what it cannot tell you.</p>

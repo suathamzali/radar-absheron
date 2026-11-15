@@ -16,9 +16,11 @@ const T = {
       dense: 'Dense vegetation: trees or tall crops',
       farm: 'Mixed land with some vegetation: farmland, shrubs or mixed surfaces',
       bare: 'Bare or sparse land: dry steppe or semi-desert',
+      industry: 'Oil field and industry (known site)',
     },
     why: {
       water: 'The plant echo (HV) is as weak as the instrument\'s background noise, as over calm water.',
+      industry: 'This is the Balakhani–Sabunchu oil field: pads, pipes and roads shape the echo, so the radar numbers here are not about crops.',
       city: (hh) => `Very strong HH (median ${hh} dB): walls and streets send the wave straight back.`,
       dense: (hv) => `A strong plant echo (HV, median ${hv} dB): leaves and branches bounce the wave around.`,
       farm: (hv) => `A medium plant echo (HV, median ${hv} dB): there are some plants.`,
@@ -39,10 +41,11 @@ const T = {
       water: ['Use this point to follow wind and sea state: on windier mornings the sea looks brighter.', 'Do not use it for soil moisture or plants.'],
       city: ['A stable radar target: a good place to measure slow ground sinking over years with NISAR interferometry (InSAR).', 'Soil moisture is not available here; tap farmland nearby instead.'],
       dense: ['Good for following forest or orchard change over the seasons.', 'Treat soil-moisture values here with care: dense plants weaken the reading.'],
+      industry: ['A stable radar target: with years of NISAR interferometry (InSAR) it could show whether the ground around the oil field is slowly sinking.', 'This is not farmland: do not read the soil-moisture or plant numbers here as farm advice.'],
     },
     // Practical advice for farmland and open land, built from this point's own numbers.
     tip: {
-      wet: (p, a) => `This area is usually <strong>wetter</strong> than the lowland average (${p} vs ${a} m³/m³). It probably needs less irrigation than drier parts of the lowland, so check before watering on a fixed schedule.`,
+      wet: (p, a) => `This area is usually <strong>wetter</strong> than the lowland average (${p} vs ${a} m³/m³), in winter too, so part of it is natural (river soils, groundwater) and part may be irrigation. Do not cut irrigation on this alone; use it together with the rain reaction below.`,
       dry: (p, a) => `This area is usually <strong>drier</strong> than the lowland average (${p} vs ${a} m³/m³). If it is farmland, check whether canal water really reaches it. If it stays dry pass after pass, take this to your water users' association or irrigation office: the satellite shows it too.`,
       same: 'Soil moisture here is close to the lowland average: no sign of a water problem.',
       rainStrong: (d) => `The 3 October rain clearly wetted the soil here (+${d}). If you farm here, after a rain like that you can usually <strong>delay the next irrigation turn by a few days</strong> and save water and pumping costs.`,
@@ -61,9 +64,11 @@ const T = {
       dense: 'Sıx bitki örtüyü: ağaclar və ya hündür əkinlər',
       farm: 'Qismən bitki örtüklü qarışıq torpaq: əkin sahəsi, kolluq və ya qarışıq səth',
       bare: 'Çılpaq və ya seyrək torpaq: quru çöl və ya yarımsəhra',
+      industry: 'Neft yatağı və sənaye (məlum yer)',
     },
     why: {
       water: 'Bitki əks-sədası (HV) cihazın fon küyü qədər zəifdir, sakit suda olduğu kimi.',
+      industry: 'Bura Balaxanı–Sabunçu neft yatağıdır: meydançalar, borular və yollar əks-sədanı formalaşdırır, ona görə buradakı radar rəqəmləri əkinlə bağlı deyil.',
       city: (hh) => `Çox güclü HH (median ${hh} dB): divarlar və küçələr dalğanı birbaşa geri qaytarır.`,
       dense: (hv) => `Güclü bitki əks-sədası (HV, median ${hv} dB): yarpaq və budaqlar dalğanı o yan-bu yana atır.`,
       farm: (hv) => `Orta bitki əks-sədası (HV, median ${hv} dB): burada bir qədər bitki var.`,
@@ -84,9 +89,10 @@ const T = {
       water: ['Bu nöqtədən küləyi və dəniz vəziyyətini izləmək üçün istifadə edin: küləkli səhərlərdə dəniz daha parlaq görünür.', 'Torpaq nəmliyi və bitkilər üçün istifadə etməyin.'],
       city: ['Sabit radar hədəfidir: NISAR interferometriyası (InSAR) ilə illər ərzində yerin yavaş çökməsini ölçmək üçün yaxşı yerdir.', 'Burada torpaq nəmliyi yoxdur; yaxındakı əkin sahəsinə toxunun.'],
       dense: ['Meşə və ya bağ dəyişikliyini mövsümlər boyu izləmək üçün yaxşıdır.', 'Buradakı torpaq nəmliyi dəyərlərinə ehtiyatla yanaşın: sıx bitki ölçməni zəiflədir.'],
+      industry: ['Sabit radar hədəfidir: illərlə NISAR interferometriyası (InSAR) ilə neft yatağı ətrafında yerin yavaş çöküb-çökmədiyini göstərə bilər.', 'Bura əkin sahəsi deyil: buradakı torpaq nəmliyi və bitki rəqəmlərini fermer məsləhəti kimi oxumayın.'],
     },
     tip: {
-      wet: (p, a) => `Bu ərazi adətən ovalığın ortasından <strong>nəmdir</strong> (${p}, ortası ${a} m³/m³). Yəqin ki, ovalığın quru hissələrindən az suvarma tələb edir; ona görə sabit cədvəllə suvarmazdan əvvəl yoxlayın.`,
+      wet: (p, a) => `Bu ərazi adətən ovalığın ortasından <strong>nəmdir</strong> (${p}, ortası ${a} m³/m³), qışda da; deməli, bunun bir hissəsi təbiidir (çay boyu torpaq, qrunt suyu), bir hissəsi suvarma ola bilər. Tək buna görə suvarmanı azaltmayın; aşağıdakı yağış reaksiyası ilə birlikdə baxın.`,
       dry: (p, a) => `Bu ərazi adətən ovalığın ortasından <strong>qurudur</strong> (${p}, ortası ${a} m³/m³). Əkin sahəsidirsə, kanal suyunun həqiqətən çatıb-çatmadığını yoxlayın. Keçiddən keçidə quru qalırsa, su istifadəçiləri birliyinə və ya meliorasiya idarəsinə müraciət edin: peyk də bunu göstərir.`,
       same: 'Buradakı torpaq nəmliyi ovalığın ortasına yaxındır: su problemi əlaməti yoxdur.',
       rainStrong: (d) => `3 oktyabr yağışı burada torpağı aydın şəkildə nəmləndirdi (+${d}). Burada əkinçilik edirsinizsə, belə yağışdan sonra adətən <strong>növbəti suvarmanı bir neçə gün təxirə sala</strong>, su və nasos xərcinə qənaət edə bilərsiniz.`,
@@ -99,7 +105,10 @@ const T = {
 };
 
 /** s = {hh[], hv[], sm[]} for all dates; data = loaded app data; water = 0/1 at the point. */
-export function analyzePoint(data, s, water, lang) {
+// Known non-farm sites among the preset places: read them by what they are, not by HV alone.
+const KNOWN = { oilfield: 'industry' };
+
+export function analyzePoint(data, s, water, lang, pos = null) {
   const L = T[lang] || T.en;
   const prov = (a) => a.slice(P0, P1 + 1);
   const hh = med(prov(s.hh)), hv = med(prov(s.hv)), sm = med(prov(s.sm));
@@ -110,7 +119,11 @@ export function analyzePoint(data, s, water, lang) {
   else if (hv !== null && hv > -12) type = 'dense';
   else if (hv !== null && hv > -16) type = 'farm';
   else type = 'bare';
-  const why = type === 'water' ? L.why.water : type === 'city' ? L.why.city(f1(hh)) : L.why[type](f1(hv));
+  if (pos && data.places && type !== 'water') {
+    const near = data.places.find((p) => KNOWN[p.id] && Math.hypot(p.lat - pos.lat, p.lon - pos.lng) < 0.03);
+    if (near) type = KNOWN[near.id];
+  }
+  const why = type === 'water' || type === 'industry' ? L.why[type] : type === 'city' ? L.why.city(f1(hh)) : L.why[type](f1(hv));
 
   const lines = [];
   let smState = null;

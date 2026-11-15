@@ -1,12 +1,12 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115q';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115q';
-import { renderChart } from './chart.js?v=20261115q';
-import { STEPS, ACTIONS } from './story.js?v=20261115q';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115q';
-import { dataPanelHtml } from './datapanel.js?v=20261115q';
-import { linkTerms, closeTip } from './glossary.js?v=20261115q';
-import { analyzePoint } from './analysis.js?v=20261115q';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115r';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115r';
+import { renderChart } from './chart.js?v=20261115r';
+import { STEPS, ACTIONS } from './story.js?v=20261115r';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115r';
+import { dataPanelHtml } from './datapanel.js?v=20261115r';
+import { linkTerms, closeTip } from './glossary.js?v=20261115r';
+import { analyzePoint } from './analysis.js?v=20261115r';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -258,7 +258,7 @@ function drawInspector() {
   if (S.full) showMapNote(`<strong>${$('#inspTitle').textContent.replace(/\.$/, '')}.</strong> ${plain.join(' ')}`);
   $('#inspDesc').textContent = desc;
   const cell = cellOf(data.bounds, data.H, data.W, lat, lng);
-  $('#inspAnalysis').innerHTML = analyzePoint(data, s, cell ? data.water[cell.r * data.W + cell.c] : 0, getLang());
+  $('#inspAnalysis').innerHTML = analyzePoint(data, s, cell ? data.water[cell.r * data.W + cell.c] : 0, getLang(), { lat, lng });
   linkTerms($('#inspAnalysis'), getLang());
   linkTerms($('#inspPlain'), getLang());
   $('#inspNote').textContent = `${t('beta_note')} ${t('rain_label')}: NASA POWER, ${data.power.sites[site].name}.`;

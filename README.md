@@ -64,7 +64,7 @@ Built in from the start: a plain-language summary on every step and a tap-to-exp
 | A. Expert SAR software and portals (ESA SNAP, QGIS, ASF Vertex) | Full control of raw radar data | Experts only; hours of processing |
 | B. Optical maps (MODIS, NDVI viewers) | Easy to read | Blind under clouds and at night |
 | C. NASA NISAR StoryMaps | Clear explanations | Fixed stories about other places, in English |
-| **D. Radar Absheron (ours)** | Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, every claim tested against an independent source, live prototype | Still to do: field records, field-level (10–20 m) data, real-device and screen-reader tests |
+| **D. Radar Absheron (ours)** | Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, main claims tested against independent sources, live prototype | Still to do: field records, field-level (10–20 m) data, real-device and screen-reader tests |
 
 How we test claims: rain vs soil moisture (NASA POWER), sea brightness vs hourly wind (`tools/wind_test.py`), clouds vs radar on the same morning (MODIS), land vs stable controls (city, oil fields, sea), irrigated vs dry land with a winter control (`tools/irrigation_test.py`). Physical basis: L-band backscatter rises with soil moisture (dielectric constant) and with sea-surface roughness from wind; HV tracks vegetation volume; calm water and smooth soil reflect the wave away.
 
