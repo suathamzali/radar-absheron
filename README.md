@@ -50,6 +50,18 @@ Built in from the start: a plain-language summary on every step and a tap-to-exp
 **What we tested ourselves:** in Chromium (desktop pane and 375 px phone emulation): every story step, Explore controls, swipe by mouse and keyboard, map click and `I` inspect, real key presses for `N`, `H`, `I`, arrows and `Esc`, focus moves to the step title, no unnamed controls, heading order, no horizontal overflow at 375 px, no console errors, Azerbaijani labels and dates.
 **Not yet verified:** a full screen-reader session (NVDA/VoiceOver/TalkBack), real iOS and Android phones, Firefox and Safari, an automated contrast audit (colours were chosen for ≥ 4.5:1 and spot-checked only).
 
+## Methodology and related approaches
+| Approach | Strength | Gap |
+|---|---|---|
+| A. Expert SAR software and portals (ESA SNAP, QGIS, ASF Vertex) | Full control of raw radar data | Experts only; hours of processing |
+| B. Optical maps (MODIS, NDVI viewers) | Easy to read | Blind under clouds and at night |
+| C. NASA NISAR StoryMaps | Clear explanations | Fixed stories about other places, in English |
+| **D. Radar Absheron (ours)** | Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, every claim tested against an independent source, live prototype | Still to do: field records, field-level (10–20 m) data, real-device and screen-reader tests |
+
+How we test claims: rain vs soil moisture (NASA POWER), sea brightness vs hourly wind (`tools/wind_test.py`), clouds vs radar on the same morning (MODIS), land vs stable controls (city, oil fields, sea), irrigated vs dry land with a winter control (`tools/irrigation_test.py`). Physical basis: L-band backscatter rises with soil moisture (dielectric constant) and with sea-surface roughness from wind; HV tracks vegetation volume; calm water and smooth soil reflect the wave away.
+
+**Impact with minimal resources:** one laptop and free NASA data cover about 6,600 km² of irrigated land plus Baku and the Caspian every 12 days, in Azerbaijani, free for everyone.
+
 ## How it works
 ```
 ASF DAAC: NISAR L3 SME2 HDF5 (track 56, frame 22; 15 dates)   NASA POWER API   NASA GIBS WMS (MODIS)

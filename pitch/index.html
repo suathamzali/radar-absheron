@@ -66,6 +66,9 @@ table.users { border-collapse: collapse; width: 100%; font-size: 18px; align-sel
 table.users th, table.users td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.users th { font: 600 14px var(--mono); color: var(--ink-2); text-transform: uppercase; letter-spacing: .05em; }
 table.users td:first-child { font-weight: 600; width: 34%; }
+table.compare { font-size: 15.5px; }
+table.compare td:first-child { width: 36%; }
+table.compare tr.ours td { background: var(--soft); font-weight: 600; color: var(--accent); }
 .steps { counter-reset: s; list-style: none; padding: 0 !important; }
 .steps li { counter-increment: s; position: relative; padding-left: 44px; }
 .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
@@ -227,66 +230,60 @@ const SLIDES = [
 <li><strong>Əlçatan:</strong> klaviatura, ekran oxuyucuları üçün qurulub, azaldılmış hərəkət, telefon əsaslı, iki dil.</li></ul></div>
 <div class="foot"><span>Açıq mənbə · ${REPO}</span><span>5 / 7</span></div>`),
 
-  T(`<span class="crit">Technical readiness</span>
-<h2>Live today, built on real calibrated NISAR data</h2>
-<div class="cols cols-60"><pre class="pipe">ASF DAAC: NISAR L3 SME2 (15 passes: 10 provisional, 5 beta)
-  → Python: h5py, numpy, Pillow
-     · σ⁰ HH/HV → dB on one fixed scale for every date
-     · soil moisture, quality flags, noise floor, water mask
-     · web images + a ~1 km data cube
-  → Browser: Leaflet 1.9.4, plain JavaScript
-     · story, swipe, time-lapse, change map, charts
-  → GitHub Pages (static, free)</pre>
+  T(`<span class="crit">Technical readiness · methodology</span>
+<h2>What exists, what is missing, and what we built</h2>
+<div class="cols cols-60"><table class="users compare"><thead><tr><th>Approach</th><th>Strength</th><th>Gap</th></tr></thead><tbody>
+<tr><td>A · Expert SAR software and portals (ESA SNAP, QGIS, ASF Vertex)</td><td>Full control of raw radar data</td><td>Experts only; hours of processing</td></tr>
+<tr><td>B · Optical maps (MODIS, NDVI viewers)</td><td>Easy to read</td><td>Blind under clouds and at night</td></tr>
+<tr><td>C · NASA NISAR StoryMaps</td><td>Clear explanations</td><td>Fixed stories about other places, in English</td></tr>
+<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Calibrated NISAR on one fixed dB scale, plain language in Azerbaijani and English, every claim tested against an independent source, live prototype</td></tr></tbody></table>
 <ul>
+<li><strong>Tested claims:</strong> rain (NASA POWER), wind (r = 0.63), clouds (MODIS), a city control, an irrigation mask (NDVI).</li>
 <li><strong>Live:</strong> desktop and phone, nothing to install.</li>
-<li><strong>Data:</strong> NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1), NASA POWER rain, NASA MODIS via GIBS.</li>
-<li><strong>Tested:</strong> every view at 1280, 375 and 320 px in both languages, keyboard paths, no errors.</li>
-<li><strong>Repeatable:</strong> two scripts rebuild everything from the archive.</li></ul></div>
-<div class="foot"><span>Still to do: tests on real phones and with screen-reader users</span><span>6 / 7</span></div>`,
-`<span class="crit">Texniki hazırlıq</span>
-<h2>Bu gün canlıdır, real kalibrlənmiş NISAR məlumatı üzərində qurulub</h2>
-<div class="cols cols-60"><pre class="pipe">ASF DAAC: NISAR L3 SME2 (15 keçid: 10 ilkin, 5 beta)
-  → Python: h5py, numpy, Pillow
-     · σ⁰ HH/HV → dB, bütün tarixlər üçün bir sabit şkala
-     · torpaq nəmliyi, keyfiyyət bayraqları, küy səviyyəsi, su maskası
-     · veb şəkillər + ~1 km məlumat kubu
-  → Brauzer: Leaflet 1.9.4, sadə JavaScript
-     · hekayə, sürüşdürmə, animasiya, dəyişiklik xəritəsi, qrafiklər
-  → GitHub Pages (statik, pulsuz)</pre>
+<li><strong>Repeatable:</strong> open scripts rebuild every number from the NASA archive.</li>
+<li><strong>Checked:</strong> every view at 1280, 375 and 320 px, both languages, no errors.</li></ul></div>
+<div class="foot"><span>Data: NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1) · NASA POWER · NASA MODIS via GIBS · method in README</span><span>6 / 7</span></div>`,
+`<span class="crit">Texniki hazırlıq · metodologiya</span>
+<h2>Nə var, nə çatışmır və biz nə qurduq</h2>
+<div class="cols cols-60"><table class="users compare"><thead><tr><th>Yanaşma</th><th>Güclü tərəf</th><th>Boşluq</th></tr></thead><tbody>
+<tr><td>A · Peşəkar SAR proqramları və portalları (ESA SNAP, QGIS, ASF Vertex)</td><td>Xam radar məlumatına tam nəzarət</td><td>Yalnız mütəxəssislər üçün; saatlarla emal</td></tr>
+<tr><td>B · Optik xəritələr (MODIS, NDVI)</td><td>Oxumaq asandır</td><td>Bulud altında və gecə kordur</td></tr>
+<tr><td>C · NASA NISAR StoryMaps</td><td>Aydın izahlar</td><td>Başqa yerlər haqqında hazır hekayələr, ingilis dilində</td></tr>
+<tr class="ours"><td>D · Radar Absheron</td><td colspan="2">Bir sabit dB şkalasında kalibrlənmiş NISAR, Azərbaycan və ingilis dilində sadə izah, hər iddia müstəqil mənbə ilə yoxlanıb, canlı prototip</td></tr></tbody></table>
 <ul>
+<li><strong>Yoxlanmış iddialar:</strong> yağış (NASA POWER), külək (r = 0,63), buludlar (MODIS), şəhər nəzarəti, suvarma maskası (NDVI).</li>
 <li><strong>Canlı:</strong> kompüterdə və telefonda, quraşdırma lazım deyil.</li>
-<li><strong>Məlumat:</strong> NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1), NASA POWER yağışı, NASA MODIS (GIBS).</li>
-<li><strong>Yoxlanıb:</strong> hər görünüş 1280, 375 və 320 px-də, iki dildə, klaviatura yolları, xəta yoxdur.</li>
-<li><strong>Təkrarlana bilən:</strong> iki skript hər şeyi arxivdən yenidən qurur.</li></ul></div>
-<div class="foot"><span>Hələ qalıb: real telefonlarda və ekran oxuyucusu istifadəçiləri ilə test</span><span>6 / 7</span></div>`),
+<li><strong>Təkrarlana bilən:</strong> açıq skriptlər hər rəqəmi NASA arxivindən yenidən qurur.</li>
+<li><strong>Yoxlanıb:</strong> hər görünüş 1280, 375 və 320 px-də, iki dildə, xəta yoxdur.</li></ul></div>
+<div class="foot"><span>Məlumat: NISAR SME2 (doi:10.5067/NIL3SME2-P1, -B1) · NASA POWER · NASA MODIS (GIBS) · metod README-də</span><span>6 / 7</span></div>`),
 
   T(`<span class="crit">Market potential · scalability</span>
-<h2>Free for users, near-zero cost to run, ready for any NISAR frame</h2>
-<div class="cols"><table class="users"><thead><tr><th>Who</th><th>What they get</th></tr></thead><tbody>
-<tr><td>Farmers, agronomists</td><td>How wet their area is after rain or irrigation, even under clouds</td></tr>
-<tr><td>Water managers</td><td>Every 12 days: where water reached the land</td></tr>
-<tr><td>Insurers, lenders</td><td>Independent evidence of rain, floods, field activity</td></tr>
-<tr><td>Cities, planners</td><td>A stable radar record for ground-motion checks</td></tr>
-<tr><td>Schools, universities</td><td>Radar taught in Azerbaijani with local data</td></tr></tbody></table>
-<div><p><strong>Cost:</strong> free NASA data, free static hosting, about 1 GB per frame per season on one laptop.</p>
+<h2>Big impact with minimal resources</h2>
+<div class="cols"><div class="stats">
+<div class="stat"><div class="big" style="font-size:40px">1 laptop + free NASA data</div><p>→ every 12 days, day and night, soil moisture over about <strong>6,600 km²</strong> of irrigated land, plus Baku and the Caspian, in Azerbaijani, <strong>free for everyone</strong>.</p></div>
+<table class="users"><thead><tr><th>Who</th><th>What they gain</th></tr></thead><tbody>
+<tr><td>Farmers, agronomists</td><td>Time: see wet or dry ground after rain, even under clouds</td></tr>
+<tr><td>Water managers</td><td>Reach: the whole lowland every 12 days, not single field visits</td></tr>
+<tr><td>Schools, universities</td><td>Knowledge: radar taught in Azerbaijani with local data</td></tr></tbody></table></div>
+<div><p><strong>How it scales:</strong> the same open scripts work for any NISAR frame.</p>
 <ol class="steps"><li>Automatic refresh after every 12-day pass.</li>
 <li>All of Azerbaijan, then irrigated basins of the South Caucasus and Central Asia.</li>
 <li>Field-level crop and flood maps (10–20 m GCOV); a pilot with a cooperative or university.</li></ol>
-<p class="small">Model (plan): the tool stays free and open; tailored reports for agencies and insurers fund it.</p></div></div>
+<p class="small">Running cost stays near zero (free data, static hosting). Optional later: tailored reports for agencies or insurers.</p></div></div>
 <div class="foot"><span>Radar Absheron · team NasAda · ${LIVE}</span><span>7 / 7</span></div>`,
 `<span class="crit">Bazar potensialı · miqyaslanma</span>
-<h2>İstifadəçi üçün pulsuz, işlətməsi demək olar ki, xərcsiz, istənilən NISAR kadrına hazır</h2>
-<div class="cols"><table class="users"><thead><tr><th>Kim</th><th>Nə əldə edir</th></tr></thead><tbody>
-<tr><td>Fermerlər, aqronomlar</td><td>Yağış və ya suvarmadan sonra ərazinin nəmliyi, hətta bulud altında</td></tr>
-<tr><td>Su idarəçiləri</td><td>Hər 12 gündən bir: su torpağa harada çatıb</td></tr>
-<tr><td>Sığortaçılar, kreditorlar</td><td>Yağış, daşqın, sahə fəaliyyəti barədə müstəqil sübut</td></tr>
-<tr><td>Şəhərlər, planlaşdırıcılar</td><td>Yer hərəkəti yoxlamaları üçün sabit radar qeydi</td></tr>
-<tr><td>Məktəb və universitetlər</td><td>Yerli məlumatla, Azərbaycan dilində radar təhsili</td></tr></tbody></table>
-<div><p><strong>Xərc:</strong> pulsuz NASA məlumatı, pulsuz statik hostinq, hər kadr üçün mövsümdə təxminən 1 GB, bir noutbukda.</p>
+<h2>Minimal resursla böyük təsir</h2>
+<div class="cols"><div class="stats">
+<div class="stat"><div class="big" style="font-size:40px">1 noutbuk + pulsuz NASA məlumatı</div><p>→ hər 12 gündən bir, gecə-gündüz, təxminən <strong>6 600 km²</strong> suvarılan torpağın, həmçinin Bakı və Xəzərin torpaq nəmliyi, Azərbaycan dilində, <strong>hamı üçün pulsuz</strong>.</p></div>
+<table class="users"><thead><tr><th>Kim</th><th>Nə qazanır</th></tr></thead><tbody>
+<tr><td>Fermerlər, aqronomlar</td><td>Vaxt: yağışdan sonra torpağın nəm və ya quru olduğunu bulud altında da görür</td></tr>
+<tr><td>Su idarəçiləri</td><td>Əhatə: tək sahə ziyarətləri yox, hər 12 gündən bir bütün ovalıq</td></tr>
+<tr><td>Məktəb və universitetlər</td><td>Bilik: yerli məlumatla, Azərbaycan dilində radar</td></tr></tbody></table></div>
+<div><p><strong>Necə genişlənir:</strong> eyni açıq skriptlər istənilən NISAR kadrı üçün işləyir.</p>
 <ol class="steps"><li>Hər 12 günlük keçiddən sonra avtomatik yeniləmə.</li>
 <li>Bütün Azərbaycan, sonra Cənubi Qafqaz və Mərkəzi Asiyanın suvarılan hövzələri.</li>
 <li>Sahə səviyyəsində əkin və daşqın xəritələri (10–20 m GCOV); kooperativ və ya universitetlə pilot.</li></ol>
-<p class="small">Model (plan): alət pulsuz və açıq qalır; qurumlar və sığortaçılar üçün xüsusi hesabatlar onu maliyyələşdirir.</p></div></div>
+<p class="small">İşlətmə xərci sıfıra yaxın qalır (pulsuz məlumat, statik hostinq). Sonra istəyə görə: qurumlar və sığortaçılar üçün xüsusi hesabatlar.</p></div></div>
 <div class="foot"><span>Radar Absheron · komanda NasAda · ${LIVE}</span><span>7 / 7</span></div>`),
 ];
 
