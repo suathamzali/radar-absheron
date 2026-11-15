@@ -114,6 +114,13 @@ button, input, select { font: inherit; color: inherit; }
 .plain p { margin: 0; }
 .plain strong:first-child, .plain-line strong:first-child { color: var(--accent); }
 .plain-line { font-size: var(--s0); margin: 0 0 8px; }
+.analysis { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 10px 12px; margin: 0 0 10px; font-size: var(--s0); }
+.analysis h4 { margin: 0 0 6px; font-size: var(--s1); color: var(--accent); }
+.analysis p { margin: 0 0 6px; }
+.analysis .an-h { font-weight: 600; margin: 8px 0 2px; }
+.analysis ul { margin: 0 0 6px; padding-left: 1.2em; }
+.analysis li { margin-bottom: 4px; }
+.analysis .why { color: var(--ink-2); }
 details.more { margin: 0 0 12px; }
 details.more > summary {
   cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 8px;

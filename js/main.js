@@ -1,11 +1,12 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115j';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115j';
-import { renderChart } from './chart.js?v=20261115j';
-import { STEPS, ACTIONS } from './story.js?v=20261115j';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115j';
-import { dataPanelHtml } from './datapanel.js?v=20261115j';
-import { linkTerms, closeTip } from './glossary.js?v=20261115j';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115k';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115k';
+import { renderChart } from './chart.js?v=20261115k';
+import { STEPS, ACTIONS } from './story.js?v=20261115k';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115k';
+import { dataPanelHtml } from './datapanel.js?v=20261115k';
+import { linkTerms, closeTip } from './glossary.js?v=20261115k';
+import { analyzePoint } from './analysis.js?v=20261115k';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -208,6 +209,7 @@ function drawInspector() {
     $('#inspDesc').textContent = t('insp_nodata');
     ['#chart', '#chart2', '#chartTable', '#chartTable2'].forEach((q) => $(q).replaceChildren());
     $('#inspNote').textContent = '';
+    $('#inspAnalysis').innerHTML = '';
     announce(t('insp_nodata'));
     return;
   }
@@ -255,6 +257,9 @@ function drawInspector() {
   $('#inspPlain').innerHTML = `<strong>${t('in_short')}</strong> ${plain.join(' ')}`;
   if (S.full) showMapNote(`<strong>${$('#inspTitle').textContent.replace(/\.$/, '')}.</strong> ${plain.join(' ')}`);
   $('#inspDesc').textContent = desc;
+  const cell = cellOf(data.bounds, data.H, data.W, lat, lng);
+  $('#inspAnalysis').innerHTML = analyzePoint(data, s, cell ? data.water[cell.r * data.W + cell.c] : 0, getLang());
+  linkTerms($('#inspAnalysis'), getLang());
   linkTerms($('#inspPlain'), getLang());
   $('#inspNote').textContent = `${t('beta_note')} ${t('rain_label')}: NASA POWER, ${data.power.sites[site].name}.`;
   announce(`${$('#inspTitle').textContent}. ${desc}`);
@@ -388,7 +393,7 @@ function fillSelects() {
   $('#compareRight').innerHTML = ctx.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')
     + data.dates.map((d, i) => `<option value="date:${i}">NISAR · ${fmtDate(i)}</option>`).join('');
   $('#compareRight').value = S.compareRight;
-  $('#placeList').replaceChildren(...data.places.map((p) => {
+  $('#placeList').replaceChildren(...data.places.filter((p) => p.id !== 'boyukshor').map((p) => {
     const li = document.createElement('li');
     const b = document.createElement('button');
     b.type = 'button';
