@@ -238,9 +238,9 @@ const Fade = ({ d, children }: { d: number; children: React.ReactNode }) => {
   return <AbsoluteFill style={{ opacity: o }}>{children}</AbsoluteFill>;
 };
 
-// 900 frames = 30 s. Scene starts follow the Azerbaijani voiceover (Arif, ElevenLabs), which starts at 0.3 s:
-// 0, 2.8, 5.5, 8.2, 11.87, 14.57, 16.97, 20.87 s.
-export const SCENES: [React.FC, number][] = [[S1, 84], [S2, 81], [S3, 81], [S4, 110], [S5, 81], [S6, 72], [S7, 117], [S8, 274]];
+// 900 frames = 30 s. Each scene starts 0.25 s before its sentence in the Azerbaijani voiceover
+// (voice-roger.wav, ElevenLabs "Roger"): 0, 2.9, 5.83, 8.97, 12.93, 15.9, 18.4, 22.43 s.
+export const SCENES: [React.FC, number][] = [[S1, 87], [S2, 88], [S3, 94], [S4, 119], [S5, 89], [S6, 75], [S7, 121], [S8, 227]];
 export const PROMO_FRAMES = SCENES.reduce((a, [, d]) => a + d, 0);
 
 export const Promo = () => {

@@ -14,8 +14,8 @@ DUR = 30.0
 BEAT = 0.5
 N = int(SR * DUR)
 t = np.arange(N) / SR
-CUTS = [84 / 30, 165 / 30, 246 / 30, 356 / 30, 437 / 30, 509 / 30, 626 / 30]  # scene starts in src/Promo.tsx
-LOGO = 626 / 30 + 95 / 30
+CUTS = [87 / 30, 175 / 30, 269 / 30, 388 / 30, 477 / 30, 552 / 30, 673 / 30]  # scene starts in src/Promo.tsx
+LOGO = 673 / 30 + 95 / 30
 rng = np.random.default_rng(7)
 
 
