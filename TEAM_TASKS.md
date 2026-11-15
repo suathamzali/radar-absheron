@@ -13,4 +13,4 @@ Türkan Süleymanova, Ali Hashimzada, Suat Hamzali. Assign the roles below in th
 - [ ] **Project page on spaceappschallenge.org** (team owner or one person): paste the texts from `SUBMISSION.md`, add links, submit before 23:59.
 - [ ] **Screen reader test**: NVDA (Windows) or TalkBack/VoiceOver (phone); note what is unclear.
 - [ ] **Local knowledge**: one or two sentences of personal context (Baku, Kura farms) for the story.
-- [ ] **Local judging pitch**: check the Baku event schedule with the Local Lead. Deck: Figma (English, 7 slides + Q&A slide), speech: `SPEECH.md` (kept locally). The organisers said Baku presentations are expected in Azerbaijani: decide who speaks and in which language.
+- [ ] **Local judging pitch**: check the Baku event schedule with the Local Lead. Deck: Figma (English, 7 slides + Q&A slide), speech: `SPEECH.md` (kept locally). Decided: the talk is in English (the organisers expect Azerbaijani; the AZ PDF deck and the AZ app can be shown on request).
