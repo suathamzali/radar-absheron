@@ -9,7 +9,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the SARs"*, by team **NasAda** (Baku, Azerbaijan).
 
-> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf))
+> **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf)) · **Video (30 s):** [promo.mp4](pitch/intro/promo.mp4)
 
 ## The problem
 Water decides farming in Azerbaijan: agriculture takes 92 % of the country's water withdrawal (11.96 of 12.97 km³), and 1.48 million ha, 63 % of the cultivated area, is equipped for irrigation (FAO AQUASTAT country fact sheet, 2023; FAO notes that some values are imputed).
@@ -28,9 +28,10 @@ Radar images are powerful (day or night, through cloud) but hard to read: grey s
 | The Caspian | NISAR HH/HV + noise floor | Sea brightness follows the wind; HV over the sea is instrument noise |
 | Find the change | NISAR HH dB difference | Change map: 69 % of land cells brightened by > 1.5 dB after the rain |
 | Explore | all of the above | Any layer, any date (15 passes Nov 2025–Oct 2026: 10 provisional, 5 beta), swipe with optical/NDVI, click anywhere for a calibrated time series |
+| Tap any place | NISAR SME2 at that point | A plain reading of its numbers (what the place probably is, wetter or drier than the lowland, its reaction to the 3 Oct rain) and practical advice, e.g. for a farmer: delay irrigation after a soaking rain, or check canal water if the area stays drier than average. Rule-based, stated thresholds, ~1 km: a guide, not a field survey |
 
 ### How it works for the user
-Every step opens with an **"In short"** box in everyday language (no jargon); the science, numbers and sources sit under **"More detail"**. Hard words (radar, HH, HV, dB, σ⁰, m³/m³, noise floor, NDVI, InSAR…) are underlined: tap one for a one-sentence explanation. A start screen asks one question and lists three steps. The story shows the legend before the data, plays the time-lapse once and then explains, and ends with a summary card ("what you saw, why it matters, what NISAR could do next"). Every view has a source line and a limits box. Explore mode hands over all controls.
+Every step opens with an **"In short"** box in everyday language (no jargon); the science, numbers and sources sit under **"More detail"**. Hard words (radar, HH, HV, dB, σ⁰, m³/m³, noise floor, NDVI, InSAR…) are underlined: tap one for a one-sentence explanation. A start screen asks one question and lists three steps. The story shows the legend before the data, plays the time-lapse once and then explains, and ends with a summary card ("what you saw, why it matters, what NISAR could do next"). Every view has a source line and a limits box. Explore mode hands over all controls. A footer links the open code and the 30-second video.
 
 ### Findings (all checkable in the app)
 - After **3 October 2026** rain (NASA POWER: ~18 mm around Baku, ~12 mm in the Kura-Araz lowland), the median land HH σ⁰ in the frame rose from **−13.5 to −11.3 dB** and median soil moisture from **0.18 to 0.23 m³/m³** (4 Oct pass). Part of this was scene-wide (central Baku +1.0 dB, oil fields +1.1 dB, sea +1.7 dB); the land rose **0.6–1.3 dB more than these controls** (each a single ~1 km spot, so an estimate). By 16 Oct soil moisture was back at 0.18; HH recovered only partly (−12.7 dB).
@@ -92,6 +93,10 @@ Browser (vanilla ES modules + Leaflet 1.9.4): story, swipe, time-lapse, change m
 | `js/data.js` | Loads assets, point queries, rain between passes |
 | `js/chart.js` | Accessible SVG charts + table alternative |
 | `js/story.js`, `js/i18n.js`, `js/datapanel.js` | Story text, UI strings (EN/AZ), Data & method panel |
+| `js/analysis.js` | Plain reading and advice for a tapped point (EN/AZ) |
+| `js/glossary.js` | Tap-to-explain glossary of hard words |
+| `pitch/` | 7-slide pitch (HTML, PDF EN/AZ), 3D illustrations (`pitch/3d`), intro and promo videos (`pitch/intro`) |
+| `assets/brand/` | Logo |
 | `tools/` | Data download and preparation scripts, place list |
 | `assets/data/` | Web-ready data (≈ 9 MB) |
 
@@ -105,11 +110,11 @@ Then open http://localhost:8765. To rebuild the data: `python tools/fetch_nisar_
 - **NISAR L3 Soil Moisture (SME2), PROVISIONAL V1**, NASA-ISRO, ASF DAAC, [doi:10.5067/NIL3SME2-P1](https://doi.org/10.5067/NIL3SME2-P1): 10 dates, 18 Jun–16 Oct 2026. Layers `sigma0HH`, `sigma0HV`, `noiseEquivalentBackscatterHV`, `soilMoisture`, `retrievalQualityFlag`, `waterbodyFraction`.
 - **NISAR L3 SME2, BETA V1**, [doi:10.5067/NIL3SME2-B1](https://doi.org/10.5067/NIL3SME2-B1): 5 dates, 26 Nov 2025–13 Jan 2026 (may carry a ~1 dB offset).
 - **NISAR L2 GCOV** browse images (QA colour rule) were used to design the composite: [ASF Vertex](https://search.asf.alaska.edu/#/?dataset=NISAR); [NISAR Data User Guide](https://nisar-docs.asf.alaska.edu/).
-- **NASA POWER** daily precipitation, 1 Nov 2025–31 Oct 2026, two points: [power.larc.nasa.gov](https://power.larc.nasa.gov/).
+- **NASA POWER** daily precipitation, 1 Nov 2025–31 Oct 2026, two points, and hourly 10 m wind (WS10M) over the Caspian at each pass time: [power.larc.nasa.gov](https://power.larc.nasa.gov/).
 - **NASA Terra/MODIS** Corrected Reflectance True Colour and NDVI 8-day, 12 Jul and 16 Oct 2026, base map NASA Blue Marble: [NASA GIBS](https://www.earthdata.nasa.gov/data/tools/gibs).
 - **FAO AQUASTAT** country fact sheet, Azerbaijan, 2023 values (water withdrawal by sector, irrigated area): [data.apps.fao.org/aquastat](https://data.apps.fao.org/aquastat) ([PDF](https://storage.googleapis.com/fao-aquastat.appspot.com/countries_regions/factsheets/summary_statistics/en/AZE-CF.pdf)).
 - Media are downscaled copies for web delivery.
-- Software: Leaflet 1.9.4 (BSD-2-Clause); IBM Plex Sans/Mono (SIL OFL) via Google Fonts.
+- Software: Leaflet 1.9.4 (BSD-2-Clause); IBM Plex Sans/Mono (SIL OFL) via Google Fonts; three.js 0.160 (MIT) and Remotion 4 for pitch media; ElevenLabs text-to-speech for the promo voiceover.
 
 ## Limits
 PROVISIONAL/BETA products are not fully validated. Soil moisture accuracy goal is 0.06 m³/m³ (not yet validated). POWER rain is a ~50 km reanalysis estimate. Points and change maps use ~1 km cells. Explanations of farmland behaviour are hypotheses. No InSAR ground-motion analysis was done.
@@ -124,5 +129,5 @@ NasAda, Baku, Azerbaijan: Ayan Alieva, Natig Mammadov, Türkan Süleymanova, Ali
 - Logo: `assets/brand/logo-mark.svg` (NISAR waves through a cloud to the Absheron peninsula; pink dot = the echo). Colours and type: IBM Plex Sans/Mono, teal #0B5F66, ink #15212B.
 - 3D illustrations (`pitch/img/3d-hero.png`, `pitch/img/3d-stack.png`) are drawn with three.js from the app's real NASA images: `pitch/3d/scene.html`.
 - 6-second intro video (`pitch/intro/intro.mp4`) made with Remotion: `pitch/intro/`.
-- 30-second vertical promo (`pitch/intro/promo.mp4`, 1080x1920, with music and an Azerbaijani voiceover: `pitch/intro/voice-roger.mp3`, ElevenLabs AI voice "Roger", pauses shortened and 5 % faster to fit 30 s; on-screen text in English) made with Remotion: `pitch/intro/src/Promo.tsx`. The music is synthesized from scratch by `pitch/intro/music.py` (no samples, no third-party music); scene cuts fall on its 120 BPM beat. Rebuild: `cd pitch/intro && npm install && npm run promo`, then `python music.py` and mux with ffmpeg. Its numbers are the tested results above; the app card shows the app's real output for the Kura fields point.
+- 30-second vertical promo (`pitch/intro/promo.mp4`, 1080x1920, with music and an Azerbaijani voiceover: `pitch/intro/voice-roger.mp3`, ElevenLabs AI voice "Roger", pauses shortened and 5 % faster to fit 30 s; on-screen text in English) made with Remotion: `pitch/intro/src/Promo.tsx`. The music is synthesized from scratch by `pitch/intro/music.py` (no samples, no third-party music); scene cuts follow the voiceover's sentences and the music ducks under the voice. Rebuild: `cd pitch/intro && npm install && npm run promo` (renders the frames, synthesizes the music and mixes it with the voice; needs ffmpeg). Its numbers are the tested results above; the app card shows the app's real output for the Kura fields point.
 - Image credits: NISAR L3 SME2 (NASA/JPL, doi:10.5067/NIL3SME2-P1); MODIS Terra true colour via NASA GIBS (https://gibs.earthdata.nasa.gov). The satellite in the 3D picture is a simplified model, not to scale.

@@ -4,7 +4,7 @@
 Radar Absheron
 
 ## High-level project summary
-Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map that makes NASA-ISRO NISAR radar readable for anyone. It plays 15 calibrated NISAR passes (Nov 2025–Oct 2026) over Baku, the Absheron peninsula and the Kura-Araz lowland, our home region. A swipe shows NISAR seeing the ground on 12 July 2026 while MODIS saw only clouds. A legend-first story teaches HH vs HV colours, then shows real findings: after the 3 October rain, soil moisture rose from 0.18 to 0.23 m³/m³ and the land's radar echo rose 0.6–1.3 dB more than stable controls (city, oil fields, sea); the Caspian's brightness follows the wind; Baku stands still; and, honestly, the farmland barely changed at 200 m–1 km. Change maps and click-anywhere time series let users test their own questions. Every value states its units, source and limits. It matters because water decides farming in Azerbaijan (agriculture uses 92 % of its water and 63 % of cropland is irrigated, FAO AQUASTAT 2023), and free, all-weather radar every 12 days can help farmers, water managers and students in Azerbaijan follow their land and water.
+Radar Absheron is an interactive, bilingual (English/Azerbaijani) web story map that makes NASA-ISRO NISAR radar readable for anyone. It plays 15 calibrated NISAR passes (Nov 2025–Oct 2026) over Baku, the Absheron peninsula and the Kura-Araz lowland, our home region. A swipe shows NISAR seeing the ground on 12 July 2026 while MODIS saw only clouds. A legend-first story teaches HH vs HV colours, then shows real findings: after the 3 October rain, soil moisture rose from 0.18 to 0.23 m³/m³ and the land's radar echo rose 0.6–1.3 dB more than stable controls (city, oil fields, sea); the Caspian's brightness follows the wind; Baku stands still; and, honestly, the farmland barely changed at 200 m–1 km. Change maps and click-anywhere time series let users test their own questions, and tapping any place gives a plain reading of its numbers with practical advice (for example, a farmer can see that the last rain wetted their area and delay the next irrigation turn). Every value states its units, source and limits. It matters because water decides farming in Azerbaijan (agriculture uses 92 % of its water and 63 % of cropland is irrigated, FAO AQUASTAT 2023), and free, all-weather radar every 12 days can help farmers, water managers and students in Azerbaijan follow their land and water.
 
 ## Link to project demo
 Option A (7 slides, public): https://suathamzali.github.io/radar-absheron/pitch/ (PDF: https://suathamzali.github.io/radar-absheron/pitch/radar-absheron-pitch-en.pdf)
@@ -24,7 +24,7 @@ https://suathamzali.github.io/radar-absheron/ (live app) · https://github.com/s
 7. The Caspian dances with the wind: sea HH varies with wind; sea HV equals the instrument noise floor (≈ −20 dB). Over dry land, too, HV is often within 3 dB of the noise floor, and the app says so.
 8. Find the change yourself: a dB change map (69 % of land cells brightened by > 1.5 dB after the rain), plus a season comparison.
 9. Summary: what you saw, why it matters, what NISAR could do next here.
-Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 dates, swipe against MODIS true colour or NDVI, and click anywhere for a calibrated σ⁰ and soil-moisture time series with rain bars and a table alternative.
+Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 dates, swipe against MODIS true colour or NDVI, and click anywhere for a calibrated σ⁰ and soil-moisture time series with rain bars and a table alternative, plus a plain reading of that point (what it probably is, wetter or drier than the lowland, its reaction to the rain) and practical advice. The advice uses simple stated thresholds on ~1 km of provisional data, so it is a guide, not a field survey.
 
 **How it works.** We downloaded NISAR L3 SME2 products (track 56, frame 22) from the ASF DAAC. A Python script reads σ⁰ HH/HV, the noise floor, soil moisture, quality flags and water fraction; converts σ⁰ to dB; uses one fixed colour stretch for every date so colours are comparable over time; and builds small web images and a ~1 km data cube. The browser app (vanilla JavaScript + Leaflet) draws the layers, swipe, time-lapse, change maps and charts.
 
@@ -32,22 +32,23 @@ Explore: any layer (HH+HV colour, HH, HV, soil moisture, change map), any of 15 
 
 **What we hope to achieve.** A free public NISAR viewer for Azerbaijan used by farmers, water and irrigation managers, insurers, planners and schools. Cost is close to zero (free NASA data, static hosting, about 1 GB per frame per season). The same scripts work for any NISAR frame, so the plan is: automatic refresh after every 12-day pass; all of Azerbaijan, then irrigated basins in the South Caucasus and Central Asia; field-level crop and harvest maps from 10–20 m GCOV, flood maps of the Kura floodplain, and ground-motion monitoring around Baku's oil fields; a pilot with a farming cooperative or university. The tool stays open; tailored reports for agencies and insurers could fund it.
 
-**Tools.** HTML, CSS, JavaScript (ES modules), Leaflet 1.9.4, Python 3 (h5py, numpy, Pillow, requests), GitHub Pages. Accessibility: native dialog, aria-live, reduced motion, 44 px touch targets.
+**Tools.** HTML, CSS, JavaScript (ES modules), Leaflet 1.9.4, Python 3 (h5py, numpy, Pillow, requests), GitHub Pages; for pitch media: three.js, Remotion, ffmpeg, ElevenLabs text-to-speech (voiceover). Accessibility: native dialog, aria-live, reduced motion, 44 px touch targets.
 
 ## NASA data
 - NISAR L3 Soil Moisture (SME2) PROVISIONAL V1, doi:10.5067/NIL3SME2-P1 (https://doi.org/10.5067/NIL3SME2-P1): calibrated σ⁰ HH/HV, noise-equivalent σ⁰, soil moisture, quality flags, water fraction; 10 dates, 18 Jun–16 Oct 2026.
 - NISAR L3 SME2 BETA V1, doi:10.5067/NIL3SME2-B1 (https://doi.org/10.5067/NIL3SME2-B1): 5 winter dates, 26 Nov 2025–13 Jan 2026.
 - NISAR L2 GCOV browse images via ASF Vertex (https://search.asf.alaska.edu/), used to design the colour composite; NISAR Data User Guide (https://nisar-docs.asf.alaska.edu/).
-- NASA POWER daily precipitation (https://power.larc.nasa.gov/).
+- NASA POWER daily precipitation and hourly 10 m wind (WS10M) at the pass times (https://power.larc.nasa.gov/).
 - NASA Terra/MODIS Corrected Reflectance True Colour and NDVI 8-day, NASA Blue Marble base map, via NASA GIBS (https://www.earthdata.nasa.gov/data/tools/gibs).
 
 ## Space agency partner data and other references
 - ISRO is a NISAR mission partner (S-band, launch); we used the NASA-processed L-band products.
-- Leaflet 1.9.4 (BSD-2-Clause), IBM Plex Sans/Mono (SIL Open Font License) via Google Fonts.
+- FAO AQUASTAT country fact sheet, Azerbaijan, 2023 values (water withdrawal by sector, irrigated area): https://data.apps.fao.org/aquastat
+- Leaflet 1.9.4 (BSD-2-Clause), IBM Plex Sans/Mono (SIL Open Font License) via Google Fonts, three.js (MIT), Remotion.
 - No copyrighted images, music or text were used. The promo music is synthesized by our own script (`pitch/intro/music.py`).
 
 ## Use of Super Intelligence (SI)
-Yes. The team chose the challenge, the study area and the concept, and reviewed all texts. An AI coding assistant (Anthropic Claude) helped write the code, the data-processing scripts and draft texts, and searched the NISAR documentation. All data shown are real NASA / NASA-ISRO measurements or models; no images, audio or data were generated by AI. The logo, the 3D illustrations, the promo video and its music were made with code written with the assistant (SVG, three.js, Remotion and a Python synthesizer, pitch/intro/music.py); they use only the real NASA images and tested numbers, and no generative image or video model. The promo video's Azerbaijani voiceover is AI-generated speech (ElevenLabs text-to-speech, voice "Roger") reading a script the team wrote. This is also stated in the README and in the app's "Data & method" panel.
+Yes. The team chose the challenge, the study area and the concept, and reviewed all texts. An AI coding assistant (Anthropic Claude) helped write the code, the data-processing scripts and draft texts, and searched the NISAR documentation. All data shown are real NASA / NASA-ISRO measurements or models; no data or images were generated by AI. The logo, the 3D illustrations, the promo video and its music were made with code written with the assistant (SVG, three.js, Remotion and a Python synthesizer, pitch/intro/music.py); they use only the real NASA images and tested numbers, and no generative image or video model. The promo video's Azerbaijani voiceover is AI-generated speech (ElevenLabs text-to-speech, voice "Roger") reading a script the team wrote. This is also stated in the README and in the app's "Data & method" panel.
 
 ## Checklist for the team (tick yourselves)
 - [ ] Live link and repository open in a private window without login.
