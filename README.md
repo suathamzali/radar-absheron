@@ -12,6 +12,8 @@ Built for the **NASA Space Apps Challenge 2026**, challenge *"Dancing with the S
 > **Live demo:** https://suathamzali.github.io/radar-absheron/ · **Code:** https://github.com/suathamzali/radar-absheron · **Pitch (7 slides):** https://suathamzali.github.io/radar-absheron/pitch/ ([PDF EN](pitch/radar-absheron-pitch-en.pdf), [PDF AZ](pitch/radar-absheron-pitch-az.pdf))
 
 ## The problem
+Water decides farming in Azerbaijan: agriculture takes 92 % of the country's water withdrawal (11.96 of 12.97 km³), and 1.48 million ha, 63 % of the cultivated area, is equipped for irrigation (FAO AQUASTAT country fact sheet, 2023; FAO notes that some values are imputed).
+
 Radar images are powerful (day or night, through cloud) but hard to read: grey speckle, strange colours, units like σ⁰ in decibels. People who could use them, such as farmers, water managers, teachers and students in Azerbaijan, rarely do.
 
 ## Our solution
@@ -105,6 +107,7 @@ Then open http://localhost:8765. To rebuild the data: `python tools/fetch_nisar_
 - **NISAR L2 GCOV** browse images (QA colour rule) were used to design the composite: [ASF Vertex](https://search.asf.alaska.edu/#/?dataset=NISAR); [NISAR Data User Guide](https://nisar-docs.asf.alaska.edu/).
 - **NASA POWER** daily precipitation, 1 Nov 2025–31 Oct 2026, two points: [power.larc.nasa.gov](https://power.larc.nasa.gov/).
 - **NASA Terra/MODIS** Corrected Reflectance True Colour and NDVI 8-day, 12 Jul and 16 Oct 2026, base map NASA Blue Marble: [NASA GIBS](https://www.earthdata.nasa.gov/data/tools/gibs).
+- **FAO AQUASTAT** country fact sheet, Azerbaijan, 2023 values (water withdrawal by sector, irrigated area): [data.apps.fao.org/aquastat](https://data.apps.fao.org/aquastat) ([PDF](https://storage.googleapis.com/fao-aquastat.appspot.com/countries_regions/factsheets/summary_statistics/en/AZE-CF.pdf)).
 - Media are downscaled copies for web delivery.
 - Software: Leaflet 1.9.4 (BSD-2-Clause); IBM Plex Sans/Mono (SIL OFL) via Google Fonts.
 
