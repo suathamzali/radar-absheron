@@ -69,7 +69,7 @@ export const STR = {
     lg_ctx_true: 'An ordinary colour photo from NASA\'s Terra/MODIS satellite (visible light, ~250 m). Clouds hide the ground.',
     lg_ctx_ndvi: 'MODIS greenness (NDVI, 8-day): the deeper the green, the more green leaves.',
     play_again: 'Play again', go_explore: 'Explore on your own', go_data: 'Data & method',
-    foot_copy: '© 2026 Team NasAda', foot_code: 'Open code on GitHub', foot_video: 'Watch the 30-second video', foot_data: 'Data: NASA-ISRO NISAR · NASA MODIS · NASA POWER',
+    theme_dark: 'Dark theme', foot_copy: '© 2026 Team NasAda', foot_code: 'Open code on GitHub', foot_video: 'Watch the 30-second video', foot_data: 'Data: NASA-ISRO NISAR · NASA MODIS · NASA POWER',
     loading: 'Loading NISAR data…', load_error: 'Could not load the data. Check the connection and reload.',
   },
   az: {
@@ -141,7 +141,7 @@ export const STR = {
     lg_ctx_true: 'NASA Terra/MODIS peykinin adi rəngli şəkli (görünən işıq, ~250 m). Buludlar yeri gizlədir.',
     lg_ctx_ndvi: 'MODIS yaşıllıq indeksi (NDVI, 8 günlük): yaşıl nə qədər tündsə, yaşıl yarpaq bir o qədər çoxdur.',
     play_again: 'Yenidən oynat', go_explore: 'Özünüz kəşf edin', go_data: 'Məlumat və metod',
-    foot_copy: '© 2026 NasAda komandası', foot_code: 'Açıq kod GitHub-da', foot_video: '30 saniyəlik videoya bax', foot_data: 'Məlumat: NASA-ISRO NISAR · NASA MODIS · NASA POWER',
+    theme_dark: 'Tünd tema', foot_copy: '© 2026 NasAda komandası', foot_code: 'Açıq kod GitHub-da', foot_video: '30 saniyəlik videoya bax', foot_data: 'Məlumat: NASA-ISRO NISAR · NASA MODIS · NASA POWER',
     loading: 'NISAR məlumatı yüklənir…', load_error: 'Məlumat yüklənmədi. Bağlantını yoxlayıb səhifəni yeniləyin.',
   },
 };

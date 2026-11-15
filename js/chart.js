@@ -3,12 +3,16 @@ const NS = 'http://www.w3.org/2000/svg';
 
 function el(tag, attrs = {}, text) {
   const n = document.createElementNS(NS, tag);
-  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  for (const [k, v] of Object.entries(attrs)) {
+    // CSS variables only work through style, not SVG attributes (needed for the dark theme).
+    if ((k === 'fill' || k === 'stroke') && String(v).startsWith('var(')) n.style[k] = v;
+    else n.setAttribute(k, v);
+  }
   if (text !== undefined) n.textContent = text;
   return n;
 }
 
-import { fmtISO } from './i18n.js?v=20261115r';
+import { fmtISO } from './i18n.js?v=20261115s';
 const fmtDate = (d, lang) => fmtISO(d, 'short', lang);
 
 /**
@@ -40,11 +44,11 @@ export function renderChart(host, tableHost, opts) {
   });
   for (const g of gaps) {
     const x0 = x(g) + 6, x1 = x(g + 1) - 6;
-    svg.append(el('rect', { x: x0, y: m.t, width: Math.max(2, x1 - x0), height: ph, fill: '#eef0ee' }));
+    svg.append(el('rect', { x: x0, y: m.t, width: Math.max(2, x1 - x0), height: ph, fill: 'var(--chart-gap)' }));
     svg.append(el('text', { x: (x0 + x1) / 2, y: m.t + 12, 'text-anchor': 'middle', class: 'axis' }, gapLabel));
   }
   if (current !== undefined && current !== null) {
-    svg.append(el('line', { x1: x(current), x2: x(current), y1: m.t, y2: m.t + ph, stroke: '#c25700', 'stroke-width': 2, 'stroke-dasharray': '3 3' }));
+    svg.append(el('line', { x1: x(current), x2: x(current), y1: m.t, y2: m.t + ph, stroke: 'var(--focus)', 'stroke-width': 2, 'stroke-dasharray': '3 3' }));
   }
   // lines
   for (const s of series) {
@@ -61,7 +65,7 @@ export function renderChart(host, tableHost, opts) {
       const yy = y(Math.max(yMin, Math.min(yMax, v)));
       const shape = s.marker === 'square'
         ? el('rect', { x: x(i) - 3.5, y: yy - 3.5, width: 7, height: 7, fill: s.color })
-        : el('circle', { cx: x(i), cy: yy, r: 3.6, fill: '#fff', stroke: s.color, 'stroke-width': 2 });
+        : el('circle', { cx: x(i), cy: yy, r: 3.6, fill: 'var(--surface)', stroke: s.color, 'stroke-width': 2 });
       svg.append(shape);
     });
   }

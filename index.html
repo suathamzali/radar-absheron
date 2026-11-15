@@ -6,19 +6,23 @@
 <title>Radar Absheron — NISAR radar over Baku and the Kura-Araz lowland</title>
 <meta name="description" content="Five months of NASA-ISRO NISAR L-band radar over Baku, the Absheron peninsula and the Kura-Araz lowland: time-lapse, swipe, change map and point history. NASA Space Apps 2026, team NasAda.">
 <meta name="theme-color" content="#f5f6f2">
-<link rel="icon" href="assets/img/icon.svg?v=20261115r" type="image/svg+xml">
+<script>
+// Apply the saved or system theme before the page paints (no flash).
+try { const t = localStorage.getItem('ra-theme'); document.documentElement.dataset.theme = t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) { document.documentElement.dataset.theme = 'light'; }
+</script>
+<link rel="icon" href="assets/img/icon.svg?v=20261115s" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link rel="stylesheet" href="css/style.css?v=20261115r">
+<link rel="stylesheet" href="css/style.css?v=20261115s">
 </head>
 <body>
 <a class="skip" href="#panel" data-i18n="skip">Skip to the story panel</a>
 
 <header class="top">
   <div class="brand">
-    <img class="brand-mark" src="assets/img/icon.svg?v=20261115r" alt="" width="34" height="34">
+    <img class="brand-mark" src="assets/img/icon.svg?v=20261115s" alt="" width="34" height="34">
     <div>
       <h1 class="brand-name">Radar Absheron</h1>
       <p class="brand-sub" data-i18n="tagline">NISAR L-band radar · Baku · Kura-Araz · Jun–Oct 2026</p>
@@ -34,6 +38,7 @@
       <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
       <button type="button" data-lang="az" aria-pressed="false" lang="az">AZ</button>
     </div>
+    <button type="button" class="icon-btn" id="themeBtn" aria-pressed="false" data-i18n-aria="theme_dark"><svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg><svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg></button>
     <button type="button" class="icon-btn" id="helpBtn" aria-haspopup="dialog" data-i18n-aria="help">?</button>
   </div>
 </header>
@@ -185,6 +190,6 @@
 
 <noscript><p class="noscript">Radar Absheron needs JavaScript to draw the map.</p></noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script type="module" src="js/main.js?v=20261115r"></script>
+<script type="module" src="js/main.js?v=20261115s"></script>
 </body>
 </html>

@@ -1,12 +1,12 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115r';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115r';
-import { renderChart } from './chart.js?v=20261115r';
-import { STEPS, ACTIONS } from './story.js?v=20261115r';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115r';
-import { dataPanelHtml } from './datapanel.js?v=20261115r';
-import { linkTerms, closeTip } from './glossary.js?v=20261115r';
-import { analyzePoint } from './analysis.js?v=20261115r';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115s';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115s';
+import { renderChart } from './chart.js?v=20261115s';
+import { STEPS, ACTIONS } from './story.js?v=20261115s';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115s';
+import { dataPanelHtml } from './datapanel.js?v=20261115s';
+import { linkTerms, closeTip } from './glossary.js?v=20261115s';
+import { analyzePoint } from './analysis.js?v=20261115s';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -221,8 +221,8 @@ function drawInspector() {
     dates, lang, digits: 1, current: S.date, gaps: [4], gapLabel: t('gap'), yMin, yMax, yLabel: t('rel_label'),
     title: `${t('rel_label')}: ${label || t('insp_point', lat, lng)}`,
     series: [
-      { label: t('hh_line'), color: '#a3237a', values: s.hh },
-      { label: t('hv_line'), color: '#1d7a3c', values: s.hv, dash: '6 4', marker: 'square' },
+      { label: t('hh_line'), color: 'var(--hh)', values: s.hh },
+      { label: t('hv_line'), color: 'var(--hv)', values: s.hv, dash: '6 4', marker: 'square' },
     ],
   });
   const site = nearestPowerSite(data.power, lat, lng);
@@ -230,7 +230,7 @@ function drawInspector() {
   renderChart($('#chart2'), $('#chartTable2'), {
     dates, lang, digits: 2, current: S.date, gaps: [4], gapLabel: t('gap'), yMin: 0, yMax: 0.5, yLabel: t('sm_label'),
     title: `${t('sm_label')}, ${t('rain_label')}`,
-    series: [{ label: t('sm_line'), color: '#2c7fb8', values: s.sm }],
+    series: [{ label: t('sm_line'), color: 'var(--sm-line)', values: s.sm }],
     bars: { label: `${t('rain_label')} · NASA POWER`, unit: 'mm', values: rain, color: '#6b8fb5' },
   });
   const f = (v) => (v === null ? '–' : v.toFixed(1));
@@ -478,6 +478,19 @@ function wire() {
   $('#mapNoteClose').addEventListener('click', () => { $('#mapNote').hidden = true; });
   $('#inspClose').addEventListener('click', closeInspector);
   $('#helpBtn').addEventListener('click', () => $('#helpDlg').showModal());
+  // Light / dark theme: the head script sets it before paint; the button toggles and remembers it.
+  const syncTheme = () => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    $('#themeBtn').setAttribute('aria-pressed', String(dark));
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0f171c' : '#f5f6f2');
+  };
+  $('#themeBtn').addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('ra-theme', next); } catch (e) { /* private mode: theme just isn't remembered */ }
+    syncTheme();
+  });
+  syncTheme();
   $('#helpClose').addEventListener('click', () => $('#helpDlg').close());
 
   document.querySelectorAll('input[name="layer"]').forEach((r) => r.addEventListener('change', () => { S.layer = r.value; applyExplore(); }));
