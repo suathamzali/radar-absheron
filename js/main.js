@@ -1,11 +1,11 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115i';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115i';
-import { renderChart } from './chart.js?v=20261115i';
-import { STEPS, ACTIONS } from './story.js?v=20261115i';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115i';
-import { dataPanelHtml } from './datapanel.js?v=20261115i';
-import { linkTerms, closeTip } from './glossary.js?v=20261115i';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite } from './data.js?v=20261115j';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115j';
+import { renderChart } from './chart.js?v=20261115j';
+import { STEPS, ACTIONS } from './story.js?v=20261115j';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115j';
+import { dataPanelHtml } from './datapanel.js?v=20261115j';
+import { linkTerms, closeTip } from './glossary.js?v=20261115j';
 
 const $ = (s) => document.querySelector(s);
 const store = {
@@ -33,7 +33,7 @@ const levelOf = (i) => (data.dates[i].level === 'BETA' ? t('level_beta') : t('le
 function announce(msg) { const n = $('#live'); n.textContent = ''; setTimeout(() => { n.textContent = msg; }, 30); }
 function layerName(desc) {
   if (!desc) return '';
-  if (desc.kind === 'ctx') return desc.id.includes('ndvi') ? `MODIS NDVI ${CONTEXT[desc.id].date}` : `MODIS ${CONTEXT[desc.id].date}`;
+  if (desc.kind === 'ctx') return desc.id === 'irrigated_mask' ? t('irr_layer') : desc.id.includes('ndvi') ? `MODIS NDVI ${CONTEXT[desc.id].date}` : `MODIS ${CONTEXT[desc.id].date}`;
   if (desc.kind === 'sm') return `${t('layer_sm')} ${fmtDate(desc.date, true)}`;
   if (desc.kind === 'change') return `${t('layer_change')} ${desc.pol ? 'HV' : 'HH'} ${fmtDate(desc.from, true)} → ${fmtDate(desc.to, true)}`;
   const p = desc.pol === 'hh' ? t('layer_hh') : desc.pol === 'hv' ? t('layer_hv') : t('layer_composite');
@@ -151,7 +151,9 @@ function renderLegend() {
       <div class="ramp-labels"><span>−${CHANGE_DB.full} dB · ${t('lg_change_low')}</span><span>+${CHANGE_DB.full} dB · ${t('lg_change_high')}</span></div>
       <p>${t('lg_change_note', p, fmtDate(d.from, true), fmtDate(d.to, true), CHANGE_DB.hide, CHANGE_DB.full)}</p>`;
   } else if (d.kind === 'ctx') {
-    html = `<h3>${t('legend_title_ctx')}</h3><p>${d.id.includes('ndvi') ? t('lg_ctx_ndvi') : t('lg_ctx_true')}</p>`;
+    html = d.id === 'irrigated_mask'
+      ? `<h3>${t('irr_layer')}</h3><div class="sw"><i style="background:rgb(24,150,140)"></i><span>${t('lg_irr_green')}</span></div><div class="sw"><i style="background:rgb(214,176,112)"></i><span>${t('lg_irr_dry')}</span></div>`
+      : `<h3>${t('legend_title_ctx')}</h3><p>${d.id.includes('ndvi') ? t('lg_ctx_ndvi') : t('lg_ctx_true')}</p>`;
     if (S.right) html += `<p><strong>→</strong> ${layerName(S.right)}</p>`;
   }
   if (S.right && d.kind !== 'ctx') html += `<p><strong>⇔</strong> ${layerName(S.right)}</p>`;
@@ -330,6 +332,9 @@ function runAction(a) {
     rmap.inspect({ lat: p.lat, lng: p.lon }, placeName(p));
   } else if (a === 'play_again') {
     play(STEPS[S.step].autoplay || [PROV_FIRST, PROV_LAST]);
+  } else if (a === 'irrigation_map') {
+    setDate(9, { layers: false });
+    applyLayers({ kind: 'ctx', id: 'irrigated_mask' }, { kind: 'sm', date: 9 }, 50);
   } else if (a === 'ndvi_compare') {
     applyLayers({ kind: 'ctx', id: 'modis_ndvi_2026-07-12' }, { kind: 'ctx', id: 'modis_ndvi_2026-10-16' }, 50);
   } else if (a === 'change_season') {
@@ -377,6 +382,7 @@ function fillSelects() {
     ['modis_truecolor_2026-10-16', 'MODIS true colour · 16 Oct 2026'],
     ['modis_ndvi_2026-07-12', 'MODIS NDVI · Jul 2026'],
     ['modis_ndvi_2026-10-16', 'MODIS NDVI · Oct 2026'],
+    ['irrigated_mask', t('irr_layer')],
     ['sm', `${t('layer_sm')} (NISAR)`],
   ];
   $('#compareRight').innerHTML = ctx.map(([v, l]) => `<option value="${v}">${l}</option>`).join('')

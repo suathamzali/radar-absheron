@@ -1,6 +1,6 @@
 /* global L */
 // Leaflet map with a NISAR radar layer, an optional swipe-compare layer, and point inspection.
-import { V } from './data.js?v=20261115i';
+import { V } from './data.js?v=20261115j';
 const GIBS = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best';
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -9,6 +9,7 @@ export const CONTEXT = {
   'modis_truecolor_2026-10-16': { file: 'assets/data/context/modis_truecolor_2026-10-16.webp', date: '2026-10-16' },
   'modis_ndvi_2026-07-12': { file: 'assets/data/context/modis_ndvi_2026-07-12.webp', date: '2026-07-12' },
   'modis_ndvi_2026-10-16': { file: 'assets/data/context/modis_ndvi_2026-10-16.webp', date: '2026-10-16' },
+  irrigated_mask: { file: 'assets/data/context/irrigated_mask.webp', date: 'Jul–Aug 2026' },
 };
 
 // Diverging palette for change maps (brown = lower later, teal = higher later); BrBG endpoints.

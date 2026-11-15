@@ -1,0 +1,234 @@
+{
+ "dates": [
+  {
+   "date": "2025-11-26",
+   "level": "BETA",
+   "sm_irrigated": 0.172,
+   "sm_dry": 0.114,
+   "diff": 0.058,
+   "n_irr": 104745,
+   "n_dry": 65012,
+   "kept_irr_pct": 100.0
+  },
+  {
+   "date": "2025-12-08",
+   "level": "BETA",
+   "sm_irrigated": 0.227,
+   "sm_dry": 0.172,
+   "diff": 0.056,
+   "n_irr": 24351,
+   "n_dry": 17158,
+   "kept_irr_pct": 100.0
+  },
+  {
+   "date": "2025-12-20",
+   "level": "BETA",
+   "sm_irrigated": 0.245,
+   "sm_dry": 0.214,
+   "diff": 0.031,
+   "n_irr": 23208,
+   "n_dry": 19348,
+   "kept_irr_pct": 21.9
+  },
+  {
+   "date": "2026-01-01",
+   "level": "BETA",
+   "sm_irrigated": 0.233,
+   "sm_dry": 0.153,
+   "diff": 0.079,
+   "n_irr": 25501,
+   "n_dry": 31942,
+   "kept_irr_pct": 24.3
+  },
+  {
+   "date": "2026-01-13",
+   "level": "BETA",
+   "sm_irrigated": 0.244,
+   "sm_dry": 0.168,
+   "diff": 0.076,
+   "n_irr": 23552,
+   "n_dry": 21582,
+   "kept_irr_pct": 22.4
+  },
+  {
+   "date": "2026-06-18",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.206,
+   "sm_dry": 0.145,
+   "diff": 0.061,
+   "n_irr": 97613,
+   "n_dry": 81927,
+   "kept_irr_pct": 97.0
+  },
+  {
+   "date": "2026-06-30",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.222,
+   "sm_dry": 0.155,
+   "diff": 0.067,
+   "n_irr": 98673,
+   "n_dry": 87701,
+   "kept_irr_pct": 97.8
+  },
+  {
+   "date": "2026-07-12",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.163,
+   "sm_dry": 0.099,
+   "diff": 0.064,
+   "n_irr": 99207,
+   "n_dry": 95037,
+   "kept_irr_pct": 95.4
+  },
+  {
+   "date": "2026-07-24",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.192,
+   "sm_dry": 0.104,
+   "diff": 0.088,
+   "n_irr": 99816,
+   "n_dry": 95392,
+   "kept_irr_pct": 95.4
+  },
+  {
+   "date": "2026-08-17",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.199,
+   "sm_dry": 0.111,
+   "diff": 0.088,
+   "n_irr": 99492,
+   "n_dry": 95307,
+   "kept_irr_pct": 95.1
+  },
+  {
+   "date": "2026-08-29",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.211,
+   "sm_dry": 0.137,
+   "diff": 0.074,
+   "n_irr": 100328,
+   "n_dry": 98326,
+   "kept_irr_pct": 95.2
+  },
+  {
+   "date": "2026-09-10",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.228,
+   "sm_dry": 0.154,
+   "diff": 0.074,
+   "n_irr": 99840,
+   "n_dry": 96201,
+   "kept_irr_pct": 95.2
+  },
+  {
+   "date": "2026-09-22",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.209,
+   "sm_dry": 0.128,
+   "diff": 0.081,
+   "n_irr": 100058,
+   "n_dry": 96550,
+   "kept_irr_pct": 94.9
+  },
+  {
+   "date": "2026-10-04",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.267,
+   "sm_dry": 0.168,
+   "diff": 0.099,
+   "n_irr": 100384,
+   "n_dry": 98141,
+   "kept_irr_pct": 94.8
+  },
+  {
+   "date": "2026-10-16",
+   "level": "PROVISIONAL",
+   "sm_irrigated": 0.225,
+   "sm_dry": 0.136,
+   "diff": 0.089,
+   "n_irr": 99884,
+   "n_dry": 95488,
+   "kept_irr_pct": 95.0
+  }
+ ],
+ "summary": {
+  "box": [
+   47.6,
+   49.6,
+   39.2,
+   40.45
+  ],
+  "ndvi_dates": [
+   "2026-07-12",
+   "2026-08-13"
+  ],
+  "thresholds": {
+   "irrigated_ndvi_min": 0.45,
+   "dry_ndvi_max": 0.25
+  },
+  "ndvi_exact_colour_match": [
+   1.0,
+   1.0
+  ],
+  "irrigated_cells_250m": 179511,
+  "dry_cells_250m": 133902,
+  "irrigated_area_km2": 6622,
+  "gap_summer_median": 0.071,
+  "gap_autumn_median": 0.085,
+  "gap_winter_median": 0.058,
+  "summer_dates_irrigated_wetter": "6/6",
+  "variants_gap_by_date": {
+   "0.4/0.3": [
+    0.04,
+    0.021,
+    0.024,
+    0.061,
+    0.062,
+    0.051,
+    0.057,
+    0.055,
+    0.074,
+    0.075,
+    0.06,
+    0.062,
+    0.069,
+    0.084,
+    0.078
+   ],
+   "0.45/0.25": [
+    0.058,
+    0.056,
+    0.031,
+    0.079,
+    0.076,
+    0.061,
+    0.067,
+    0.064,
+    0.088,
+    0.088,
+    0.074,
+    0.074,
+    0.081,
+    0.099,
+    0.089
+   ],
+   "0.5/0.2": [
+    0.077,
+    0.095,
+    0.065,
+    0.091,
+    0.092,
+    0.074,
+    0.081,
+    0.076,
+    0.103,
+    0.105,
+    0.09,
+    0.089,
+    0.096,
+    0.119,
+    0.102
+   ]
+  }
+ }
+}

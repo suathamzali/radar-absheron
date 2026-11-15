@@ -19,7 +19,7 @@ https://suathamzali.github.io/radar-absheron/ (live app) · https://github.com/s
 2. How to read radar colours: magenta = HH (buildings, rough ground), green = HV (plant volume), dark = smooth water; four example places.
 3. The dance: a time-lapse of 10 passes (18 Jun–16 Oct 2026) that plays once.
 4. The radar felt the rain: soil moisture 22 Sep vs 4 Oct, NASA POWER rain, measured change (land median HH +2.3 dB, of which ~1 dB was scene-wide; land 0.6–1.3 dB above stable controls: city, oil fields, sea; soil moisture 0.18 → 0.23 m³/m³).
-5. Kura-Araz lowland: an honest negative result. HV changed by only +0.6 dB (median) June–October at this scale; field-level monitoring needs NISAR's 10–20 m GCOV.
+5. Kura-Araz lowland: an honest negative result. HV changed by only +0.6 dB (median) June–October at this scale; field-level monitoring needs NISAR's 10–20 m GCOV. Human driver test: irrigated land (6,600 km², green in July–August per MODIS NDVI) had wetter soil on all 15 dates (+0.07 m³/m³ in summer), but almost as much in winter (+0.06), so irrigation water cannot yet be separated from soils and groundwater.
 6. Absheron: a stable city and century-old oil fields, and why NISAR interferometry could watch ground motion there.
 7. The Caspian dances with the wind: sea HH varies with wind; sea HV equals the instrument noise floor (≈ −20 dB). Over dry land, too, HV is often within 3 dB of the noise floor, and the app says so.
 8. Find the change yourself: a dB change map (69 % of land cells brightened by > 1.5 dB after the rain), plus a season comparison.
