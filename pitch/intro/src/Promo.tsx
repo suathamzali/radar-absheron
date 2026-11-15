@@ -238,7 +238,7 @@ const Fade = ({ d, children }: { d: number; children: React.ReactNode }) => {
   return <AbsoluteFill style={{ opacity: o }}>{children}</AbsoluteFill>;
 };
 
-export const SCENES: [React.FC, number][] = [[S1, 90], [S2, 90], [S3, 120], [S4, 150], [S5, 120], [S6, 100], [S7, 150], [S8, 230]];
+export const SCENES: [React.FC, number][] = [[S1, 75], [S2, 75], [S3, 105], [S4, 120], [S5, 105], [S6, 90], [S7, 135], [S8, 195]]; // 900 frames = 30 s; cuts fall on the 120 BPM beat grid
 export const PROMO_FRAMES = SCENES.reduce((a, [, d]) => a + d, 0);
 
 export const Promo = () => {

@@ -1,5 +1,5 @@
 // Loads the prepared NISAR (SME2) and NASA POWER assets and answers point queries.
-export const V = '20261115l';
+export const V = '20261115m';
 
 export async function loadAll() {
   const get = (p) => fetch(`${p}?v=${V}`).then((r) => {

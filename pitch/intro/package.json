@@ -2,8 +2,11 @@
   "name": "radar-absheron-intro",
   "private": true,
   "description": "6-second logo intro for Radar Absheron (Remotion).",
-  "scripts": { "render": "remotion render src/index.ts Intro out/intro.mp4", "still": "remotion still src/index.ts Intro out/intro.png --frame=150",
-    "promo": "remotion render src/index.ts Promo out/promo --sequence --image-format=jpeg && ffmpeg -framerate 30 -i out/promo/element-%04d.jpeg -c:v libx264 -pix_fmt yuv420p -crf 20 promo.mp4" },
+  "scripts": {
+    "render": "remotion render src/index.ts Intro out/intro.mp4",
+    "still": "remotion still src/index.ts Intro out/intro.png --frame=150",
+    "promo": "remotion render src/index.ts Promo out/p30 --sequence --image-format=jpeg && python music.py && ffmpeg -y -framerate 30 -i out/p30/element-%03d.jpeg -i out/music.wav -af loudnorm=I=-14:TP=-1.5 -c:v libx264 -pix_fmt yuv420p -crf 20 -c:a aac -b:a 160k -shortest -movflags +faststart promo.mp4"
+  },
   "dependencies": {
     "@remotion/cli": "4.0.290",
     "@remotion/google-fonts": "4.0.290",
