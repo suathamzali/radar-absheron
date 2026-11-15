@@ -56,6 +56,16 @@ const TERMS = {
     az: ['İLKİN / BETA', 'NISAR məlumatının hələ yer ölçmələri ilə tam yoxlanmamış erkən versiyaları.'],
     re: { en: /\b(PROVISIONAL|BETA)\b/, az: /(İLKİN\S*|\bBETA\b)/ },
   },
+  median: {
+    en: ['median', 'The middle value: half of the values are higher and half are lower. A few odd values fool it less than the average.'],
+    az: ['median', 'Orta dəyər: dəyərlərin yarısı ondan böyük, yarısı kiçikdir. Bir neçə qəribə dəyər onu ədədi ortadan az çaşdırır.'],
+    re: { en: /\bmedian\b/i, az: /\bmedian\S*/i },
+  },
+  corr: {
+    en: ['r (correlation)', 'How closely two things rise and fall together: 1 = always together, 0 = no link. 0.63 is a clear but not perfect link.'],
+    az: ['r (korrelyasiya)', 'İki şeyin nə qədər birlikdə artıb-azaldığı: 1 = həmişə birlikdə, 0 = əlaqə yoxdur. 0,63 aydın, amma mükəmməl olmayan əlaqədir.'],
+    re: { en: /\br = /, az: /\br = / },
+  },
   insar: {
     en: ['InSAR', 'Comparing radar images from different dates to measure tiny ground movements, down to millimetres.'],
     az: ['InSAR', 'Yerin millimetrlərlə ölçülən kiçik hərəkətlərini tapmaq üçün müxtəlif tarixlərin radar şəkillərini müqayisə etmək.'],

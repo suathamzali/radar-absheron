@@ -1,12 +1,12 @@
 // Radar Absheron controller: story, explore controls, time bar, inspector, keyboard, language.
-import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115m';
-import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115m';
-import { renderChart } from './chart.js?v=20261115m';
-import { STEPS, ACTIONS } from './story.js?v=20261115m';
-import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115m';
-import { dataPanelHtml } from './datapanel.js?v=20261115m';
-import { linkTerms, closeTip } from './glossary.js?v=20261115m';
-import { analyzePoint } from './analysis.js?v=20261115m';
+import { loadAll, seriesAt, rainBetweenPasses, nearestPowerSite, cellOf } from './data.js?v=20261115n';
+import { RadarMap, CONTEXT, CHANGE_DB } from './map.js?v=20261115n';
+import { renderChart } from './chart.js?v=20261115n';
+import { STEPS, ACTIONS } from './story.js?v=20261115n';
+import { t, setLang, getLang, applyStatic, fmtISO } from './i18n.js?v=20261115n';
+import { dataPanelHtml } from './datapanel.js?v=20261115n';
+import { linkTerms, closeTip } from './glossary.js?v=20261115n';
+import { analyzePoint } from './analysis.js?v=20261115n';
 
 const $ = (s) => document.querySelector(s);
 const store = {

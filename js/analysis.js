@@ -9,7 +9,7 @@ const f2 = (v) => (v === null ? '–' : v.toFixed(2));
 const T = {
   en: {
     title: 'What these numbers say',
-    type: 'Surface type (radar estimate)',
+    type: 'What this place probably is',
     types: {
       water: 'Water (sea or lake)',
       city: 'Built-up: city, industry or oil fields',
@@ -18,11 +18,11 @@ const T = {
       bare: 'Bare or sparse land: dry steppe or semi-desert',
     },
     why: {
-      water: 'HV is at the instrument noise floor, as over calm water.',
+      water: 'The plant echo (HV) is as weak as the instrument\'s background noise, as over calm water.',
       city: (hh) => `Very strong HH (median ${hh} dB): walls and streets send the wave straight back.`,
-      dense: (hv) => `Strong HV (median ${hv} dB): leaves and branches scatter the wave.`,
-      farm: (hv) => `Medium HV (median ${hv} dB): some plant volume.`,
-      bare: (hv) => `Weak HV (median ${hv} dB): little plant volume; close to the noise floor.`,
+      dense: (hv) => `A strong plant echo (HV, median ${hv} dB): leaves and branches bounce the wave around.`,
+      farm: (hv) => `A medium plant echo (HV, median ${hv} dB): there are some plants.`,
+      bare: (hv) => `A weak plant echo (HV, median ${hv} dB): few plants; close to the instrument\'s noise floor.`,
     },
     analysis: 'Analysis',
     smWet: (p, a) => `Soil moisture here (median ${p} m³/m³, Jun–Oct) is <strong>wetter</strong> than the lowland average (${a}).`,
@@ -48,7 +48,7 @@ const T = {
   },
   az: {
     title: 'Bu rəqəmlər nə deyir',
-    type: 'Səth növü (radar təxmini)',
+    type: 'Bura çox güman ki, nədir',
     types: {
       water: 'Su (dəniz və ya göl)',
       city: 'Tikili ərazi: şəhər, sənaye və ya neft yataqları',
@@ -57,11 +57,11 @@ const T = {
       bare: 'Çılpaq və ya seyrək torpaq: quru çöl və ya yarımsəhra',
     },
     why: {
-      water: 'HV cihazın küy səviyyəsindədir, sakit su üzərində olduğu kimi.',
+      water: 'Bitki əks-sədası (HV) cihazın fon küyü qədər zəifdir, sakit suda olduğu kimi.',
       city: (hh) => `Çox güclü HH (median ${hh} dB): divarlar və küçələr dalğanı birbaşa geri qaytarır.`,
-      dense: (hv) => `Güclü HV (median ${hv} dB): yarpaq və budaqlar dalğanı səpələyir.`,
-      farm: (hv) => `Orta HV (median ${hv} dB): müəyyən qədər bitki həcmi var.`,
-      bare: (hv) => `Zəif HV (median ${hv} dB): bitki azdır; küy səviyyəsinə yaxındır.`,
+      dense: (hv) => `Güclü bitki əks-sədası (HV, median ${hv} dB): yarpaq və budaqlar dalğanı o yan-bu yana atır.`,
+      farm: (hv) => `Orta bitki əks-sədası (HV, median ${hv} dB): burada bir qədər bitki var.`,
+      bare: (hv) => `Zəif bitki əks-sədası (HV, median ${hv} dB): bitki azdır; cihazın küy səviyyəsinə yaxındır.`,
     },
     analysis: 'Təhlil',
     smWet: (p, a) => `Buradakı torpaq nəmliyi (median ${p} m³/m³, iyun–oktyabr) ovalığın ortasından (${a}) <strong>nəmdir</strong>.`,
