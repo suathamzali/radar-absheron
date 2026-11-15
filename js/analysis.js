@@ -34,15 +34,21 @@ const T = {
     trendUp: (d) => `The plant echo (HV) rose by ${d} dB from June to October.`,
     trendDown: (d) => `The plant echo (HV) fell by ${d} dB from June to October (harvest, drying or ploughing are possible causes).`,
     trendFlat: 'The plant echo (HV) stayed about the same from June to October.',
-    recs: 'Recommendations',
+    recs: 'What you can do with this',
     rec: {
-      water: ['Use this point to study wind and sea state: on windier mornings the sea looks brighter.', 'Do not use it for soil moisture or vegetation.'],
-      city: ['A stable radar target: a good place to measure slow ground sinking over years with NISAR interferometry (InSAR).', 'Soil moisture is not available here; compare land points nearby instead.'],
-      dense: ['Good for following vegetation or forest change with HV over seasons.', 'Treat soil-moisture values here with care: dense plants weaken the retrieval.'],
-      farmWet: ['Behaves like irrigated or naturally wet farmland: a good point to follow the irrigation and crop season every 12 days.', 'To see single fields, use NISAR’s 10–20 m GCOV product and check on the ground.'],
-      farmDry: ['Drier than the lowland average: if this is farmland, it may be worth checking its water supply on the ground.', 'Compare with neighbouring points to see whether the whole area is dry or only this spot.'],
-      farm: ['Typical vegetated land for this area: follow it across seasons to see when plants grow and are harvested.', 'Field-level decisions need NISAR’s 10–20 m product and a ground check.'],
-      bare: ['Good for watching how quickly the ground gets wet after rain and dries again.', 'Small changes in HV here are close to the noise floor and not meaningful.'],
+      water: ['Use this point to follow wind and sea state: on windier mornings the sea looks brighter.', 'Do not use it for soil moisture or plants.'],
+      city: ['A stable radar target: a good place to measure slow ground sinking over years with NISAR interferometry (InSAR).', 'Soil moisture is not available here; tap farmland nearby instead.'],
+      dense: ['Good for following forest or orchard change over the seasons.', 'Treat soil-moisture values here with care: dense plants weaken the reading.'],
+    },
+    // Practical advice for farmland and open land, built from this point's own numbers.
+    tip: {
+      wet: (p, a) => `This area is usually <strong>wetter</strong> than the lowland average (${p} vs ${a} m³/m³). It probably needs less irrigation than drier parts of the lowland, so check before watering on a fixed schedule.`,
+      dry: (p, a) => `This area is usually <strong>drier</strong> than the lowland average (${p} vs ${a} m³/m³). If it is farmland, check whether canal water really reaches it. If it stays dry pass after pass, take this to your water users' association or irrigation office: the satellite shows it too.`,
+      same: 'Soil moisture here is close to the lowland average: no sign of a water problem.',
+      rainStrong: (d) => `The 3 October rain clearly wetted the soil here (+${d}). If you farm here, after a rain like that you can usually <strong>delay the next irrigation turn by a few days</strong> and save water and pumping costs.`,
+      rainWeak: 'The 3 October rain barely changed the soil here. A light rain is not enough to skip irrigation in this area.',
+      chart: 'Use this point\'s chart to see how fast the soil here dries after rain: it helps to plan sowing, ploughing and the next watering, even on cloudy days.',
+      ground: 'One reading covers about 1 km, so your field is mixed with its neighbours. Check your own field before deciding (squeeze a handful of soil). Single fields will need NISAR\'s 10–20 m product.',
     },
     caveat: 'Automatic reading from provisional NISAR data (~1 km around the point). It is a guide, not a field survey.',
   },
@@ -73,15 +79,20 @@ const T = {
     trendUp: (d) => `Bitki əks-sədası (HV) iyundan oktyabradək ${d} dB artdı.`,
     trendDown: (d) => `Bitki əks-sədası (HV) iyundan oktyabradək ${d} dB azaldı (səbəb məhsul yığımı, quruma və ya şum ola bilər).`,
     trendFlat: 'Bitki əks-sədası (HV) iyundan oktyabradək təxminən eyni qaldı.',
-    recs: 'Tövsiyələr',
+    recs: 'Bununla nə edə bilərsiniz',
     rec: {
-      water: ['Bu nöqtədən külək və dəniz vəziyyətini öyrənmək üçün istifadə edin: küləkli səhərlərdə dəniz daha parlaq görünür.', 'Torpaq nəmliyi və bitki örtüyü üçün istifadə etməyin.'],
-      city: ['Sabit radar hədəfidir: NISAR interferometriyası (InSAR) ilə illər ərzində yerin yavaş çökməsini ölçmək üçün yaxşı yerdir.', 'Burada torpaq nəmliyi yoxdur; yaxındakı quru nöqtələrlə müqayisə edin.'],
-      dense: ['Mövsümlər boyu HV ilə bitki və ya meşə dəyişikliyini izləmək üçün yaxşıdır.', 'Buradakı torpaq nəmliyi dəyərlərinə ehtiyatla yanaşın: sıx bitki ölçməni zəiflədir.'],
-      farmWet: ['Suvarılan və ya təbii nəm əkin sahəsi kimi davranır: suvarma və əkin mövsümünü hər 12 gündən bir izləmək üçün yaxşı nöqtədir.', 'Ayrı sahələri görmək üçün NISAR-ın 10–20 m-lik GCOV məhsulundan istifadə edin və yerində yoxlayın.'],
-      farmDry: ['Ovalığın ortasından qurudur: əgər bu əkin sahəsidirsə, suyunu yerində yoxlamağa dəyər.', 'Qonşu nöqtələrlə müqayisə edin: bütün ərazi qurudur, yoxsa yalnız bu yer.'],
-      farm: ['Bu ərazi üçün tipik bitki örtüklü torpaqdır: bitkilərin nə vaxt böyüdüyünü və yığıldığını görmək üçün mövsümlər boyu izləyin.', 'Sahə səviyyəsində qərarlar üçün NISAR-ın 10–20 m-lik məhsulu və yerində yoxlama lazımdır.'],
-      bare: ['Torpağın yağışdan sonra nə qədər tez nəmləndiyini və quruduğunu izləmək üçün yaxşıdır.', 'Buradakı kiçik HV dəyişiklikləri küy səviyyəsinə yaxındır və mənalı deyil.'],
+      water: ['Bu nöqtədən küləyi və dəniz vəziyyətini izləmək üçün istifadə edin: küləkli səhərlərdə dəniz daha parlaq görünür.', 'Torpaq nəmliyi və bitkilər üçün istifadə etməyin.'],
+      city: ['Sabit radar hədəfidir: NISAR interferometriyası (InSAR) ilə illər ərzində yerin yavaş çökməsini ölçmək üçün yaxşı yerdir.', 'Burada torpaq nəmliyi yoxdur; yaxındakı əkin sahəsinə toxunun.'],
+      dense: ['Meşə və ya bağ dəyişikliyini mövsümlər boyu izləmək üçün yaxşıdır.', 'Buradakı torpaq nəmliyi dəyərlərinə ehtiyatla yanaşın: sıx bitki ölçməni zəiflədir.'],
+    },
+    tip: {
+      wet: (p, a) => `Bu ərazi adətən ovalığın ortasından <strong>nəmdir</strong> (${p}, ortası ${a} m³/m³). Yəqin ki, ovalığın quru hissələrindən az suvarma tələb edir; ona görə sabit cədvəllə suvarmazdan əvvəl yoxlayın.`,
+      dry: (p, a) => `Bu ərazi adətən ovalığın ortasından <strong>qurudur</strong> (${p}, ortası ${a} m³/m³). Əkin sahəsidirsə, kanal suyunun həqiqətən çatıb-çatmadığını yoxlayın. Keçiddən keçidə quru qalırsa, su istifadəçiləri birliyinə və ya meliorasiya idarəsinə müraciət edin: peyk də bunu göstərir.`,
+      same: 'Buradakı torpaq nəmliyi ovalığın ortasına yaxındır: su problemi əlaməti yoxdur.',
+      rainStrong: (d) => `3 oktyabr yağışı burada torpağı aydın şəkildə nəmləndirdi (+${d}). Burada əkinçilik edirsinizsə, belə yağışdan sonra adətən <strong>növbəti suvarmanı bir neçə gün təxirə sala</strong>, su və nasos xərcinə qənaət edə bilərsiniz.`,
+      rainWeak: '3 oktyabr yağışı burada torpağı demək olar ki, dəyişmədi. Bu ərazidə yüngül yağış suvarmanı buraxmaq üçün kifayət deyil.',
+      chart: 'Torpağın yağışdan sonra nə qədər tez quruduğunu bu nöqtənin qrafikində görün: bu, buludlu günlərdə də əkini, şumu və növbəti suvarmanı planlamağa kömək edir.',
+      ground: 'Bir ölçmə təxminən 1 km-i əhatə edir, ona görə sizin sahəniz qonşularla qarışır. Qərar verməzdən əvvəl öz sahənizi yoxlayın (bir ovuc torpağı sıxıb baxın). Ayrı sahələr üçün NISAR-ın 10–20 m-lik məhsulu lazım olacaq.',
     },
     caveat: 'İlkin NISAR məlumatından avtomatik oxunuş (nöqtə ətrafında ~1 km). Bu, istiqamətdir, sahə müayinəsi deyil.',
   },
@@ -103,21 +114,28 @@ export function analyzePoint(data, s, water, lang) {
 
   const lines = [];
   let smState = null;
+  let rain = null;
   if (sm === null || type === 'water') lines.push(L.smNone);
   else {
     const d = sm - areaSm;
     smState = d > 0.03 ? 'wet' : d < -0.03 ? 'dry' : 'same';
     lines.push((smState === 'wet' ? L.smWet : smState === 'dry' ? L.smDry : L.smSame)(f2(sm), f2(areaSm)));
     const a = s.sm[RAIN_B], b = s.sm[RAIN_A];
-    if (a !== null && b !== null) { const dr = +(b - a).toFixed(2); lines.push(dr >= 0.04 ? L.rainStrong(dr.toFixed(2)) : L.rainWeak(dr)); }
+    if (a !== null && b !== null) { rain = +(b - a).toFixed(2); lines.push(rain >= 0.04 ? L.rainStrong(rain.toFixed(2)) : L.rainWeak(rain)); }
   }
   if (type !== 'water' && s.hv[P0] !== null && s.hv[P1] !== null) {
     const dt = s.hv[P1] - s.hv[P0];
     lines.push(Math.abs(dt) < 1 ? L.trendFlat : dt > 0 ? L.trendUp(dt.toFixed(1)) : L.trendDown(Math.abs(dt).toFixed(1)));
   }
-  let recKey = type;
-  if (type === 'farm') recKey = smState === 'wet' ? 'farmWet' : smState === 'dry' ? 'farmDry' : 'farm';
-  const recs = L.rec[recKey];
+  let recs;
+  if (type === 'farm' || type === 'bare') {
+    // Farmer-style advice from this point's own numbers.
+    recs = [];
+    if (smState) recs.push(smState === 'wet' ? L.tip.wet(f2(sm), f2(areaSm)) : smState === 'dry' ? L.tip.dry(f2(sm), f2(areaSm)) : L.tip.same);
+    if (rain !== null) recs.push(rain >= 0.04 ? L.tip.rainStrong(rain.toFixed(2)) : L.tip.rainWeak);
+    if (smState) recs.push(L.tip.chart);
+    recs.push(L.tip.ground);
+  } else recs = L.rec[type];
   return `<h4>${L.title}</h4>
 <p><strong>${L.type}:</strong> ${L.types[type]}. <span class="why">${why}</span></p>
 <p class="an-h">${L.analysis}</p><ul>${lines.map((x) => `<li>${x}</li>`).join('')}</ul>
