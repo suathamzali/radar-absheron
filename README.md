@@ -119,4 +119,5 @@ NasAda, Baku, Azerbaijan: Ayan Alieva, Natig Mammadov, Türkan Süleymanova, Ali
 - Logo: `assets/brand/logo-mark.svg` (NISAR waves through a cloud to the Absheron peninsula; pink dot = the echo). Colours and type: IBM Plex Sans/Mono, teal #0B5F66, ink #15212B.
 - 3D illustrations (`pitch/img/3d-hero.png`, `pitch/img/3d-stack.png`) are drawn with three.js from the app's real NASA images: `pitch/3d/scene.html`.
 - 6-second intro video (`pitch/intro/intro.mp4`) made with Remotion: `pitch/intro/`.
+- 35-second vertical promo (`pitch/intro/promo.mp4`, 1080x1920, silent; add music in an editor) made with Remotion: `pitch/intro/src/Promo.tsx`. Its numbers are the tested results above; the app card shows the app's real output for the Kura fields point.
 - Image credits: NISAR L3 SME2 (NASA/JPL, doi:10.5067/NIL3SME2-P1); MODIS Terra true colour via NASA GIBS (https://gibs.earthdata.nasa.gov). The satellite in the 3D picture is a simplified model, not to scale.
